@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LOGO — Expert AI Data Annotation & Labelling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════ */
+:root{
+  --white:  #FFFFFF;
+  --bg:     #F8F7F4;
+  --bg2:    #F0EDE7;
+  --bg3:    #E6E2D9;
+  --card:   #FFFFFF;
+  --rule:   rgba(15,17,30,.08);
+  --rule2:  rgba(15,17,30,.12);
+
+  --ink:    #0F111E;
+  --ink2:   #1C1F32;
+  --mid:    #454862;
+  --muted:  #8589A0;
+  --light:  #B8BCCC;
+
+  --b:      #1847F0;
+  --b2:     #3A68F5;
+  --b3:     #7098FF;
+  --bdk:    #0E38D6;
+  --bglow:  rgba(24,71,240,.14);
+  --bdim:   rgba(24,71,240,.07);
+  --bbord:  rgba(24,71,240,.2);
+
+  --dark:   #0B0E1C;
+  --dark2:  #101424;
+  --dbord:  rgba(255,255,255,.07);
+
+  --F1: 'Bebas Neue',sans-serif;
+  --F2: 'Playfair Display',serif;
+  --F3: 'DM Sans',sans-serif;
+  --F4: 'Space Mono',monospace;
+
+  --e1: cubic-bezier(.16,1,.3,1);
+  --e2: cubic-bezier(.4,0,.2,1);
+  --e3: cubic-bezier(.23,1,.32,1);
+}
+
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--F3);overflow-x:hidden;cursor:none}
+img{display:block;max-width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit;cursor:none}
+
+/* ══ CUSTOM CURSOR ══ */
+#C1,#C2{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;
+  top:0;left:0;transform:translate(-50%,-50%)}
+#C1{width:8px;height:8px;background:var(--b);transition:transform .1s,background .2s,width .2s,height .2s}
+#C2{width:40px;height:40px;border:1.5px solid rgba(24,71,240,.28);
+  transition:width .3s var(--e1),height .3s var(--e1),border-color .3s,background .3s,opacity .3s}
+body.hov #C2{width:60px;height:60px;border-color:var(--b);background:var(--bdim)}
+body.hov #C1{width:5px;height:5px;background:var(--bdk)}
+body.clk #C1{transform:translate(-50%,-50%) scale(5);background:var(--b2)}
+body.txt #C2{width:3px;height:28px;border-radius:2px;background:var(--b);border:none;opacity:.6}
+body.txt #C1{opacity:0}
+@media(max-width:768px){#C1,#C2{display:none}}
+
+/* ══ PROGRESS BAR ══ */
+#PB{position:fixed;top:0;left:0;height:2.5px;width:0;z-index:9000;
+  background:linear-gradient(90deg,var(--b),var(--b3),var(--b));
+  background-size:200% 100%;animation:pbshine 2s linear infinite}
+@keyframes pbshine{0%{background-position:0%}100%{background-position:200%}}
+
+/* ══ PAGE LOADER ══ */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:99999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+  transition:opacity .5s,transform .5s}
+#loader.out{opacity:0;transform:translateY(-100%);pointer-events:none}
+.ld-logo{font-family:var(--F1);font-size:52px;color:#fff;letter-spacing:-1px}
+.ld-logo span{color:var(--b3)}
+.ld-bar{width:180px;height:2px;background:rgba(255,255,255,.1);border-radius:1px;overflow:hidden}
+.ld-fill{height:100%;background:linear-gradient(90deg,var(--b),var(--b3));
+  border-radius:1px;animation:ldfill 1.4s var(--e2) forwards}
+@keyframes ldfill{from{width:0}to{width:100%}}
+
+/* ══ NAV ══ */
+#nav{position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;
+  justify-content:space-between;padding:24px 64px;transition:all .4s}
+#nav.sc{background:rgba(248,247,244,.95);backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);padding:14px 64px;
+  border-bottom:1px solid var(--rule);
+  box-shadow:0 4px 32px rgba(15,17,30,.06)}
+.logo{display:flex;align-items:center;gap:10px;z-index:801}
+.logo-mark{width:34px;height:34px;background:var(--ink);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .25s}
+.logo:hover .logo-mark{background:var(--b)}
+.logo-mark svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
+.logo-name{font-family:var(--F1);font-size:22px;color:var(--ink);letter-spacing:.5px;
+  transition:color .2s}
+.logo-name span{color:var(--b)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--F4);font-size:10px;font-weight:400;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+  background:var(--b);transition:width .35s var(--e1)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-family:var(--F4);font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  padding:10px 22px;background:var(--ink);color:#fff;border-radius:4px;
+  border:1.5px solid var(--ink);transition:all .22s;white-space:nowrap}
+.nav-cta:hover{background:var(--b);border-color:var(--b);
+  transform:translateY(-2px);box-shadow:0 8px 24px var(--bglow)}
+.ham{display:none;flex-direction:column;gap:5px;z-index:801}
+.ham span{width:22px;height:1.8px;background:var(--ink);border-radius:1px;transition:all .3s}
+.ham.x span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
+.ham.x span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.x span:nth-child(3){transform:translateY(-6.8px) rotate(-45deg)}
+.mob-nav{position:fixed;inset:0;background:var(--white);z-index:799;
+  display:flex;flex-direction:column;justify-content:center;padding:40px;
+  opacity:0;pointer-events:none;transition:opacity .35s}
+.mob-nav.on{opacity:1;pointer-events:all}
+.mob-nav a{font-family:var(--F1);font-size:clamp(36px,9vw,64px);color:var(--ink);
+  display:block;padding:7px 0;border-bottom:1px solid var(--rule);
+  opacity:0;transform:translateX(-24px);transition:all .4s}
+.mob-nav.on a{opacity:1;transform:none}
+.mob-nav.on a:nth-child(n){transition-delay:calc(.05s * var(--i,1))}
+.mob-nav.on a:nth-child(1){transition-delay:.04s}
+.mob-nav.on a:nth-child(2){transition-delay:.08s}
+.mob-nav.on a:nth-child(3){transition-delay:.12s}
+.mob-nav.on a:nth-child(4){transition-delay:.16s}
+.mob-nav.on a:nth-child(5){transition-delay:.20s}
+.mob-nav.on a:nth-child(6){transition-delay:.24s}
+.mob-cta-a{margin-top:20px;display:inline-block !important;
+  padding:13px 28px;background:var(--b);color:#fff !important;
+  font-family:var(--F4) !important;font-size:10px !important;
+  font-weight:400 !important;letter-spacing:1px;border-radius:4px;
+  opacity:0 !important;transition:all .4s !important}
+.mob-nav.on .mob-cta-a{opacity:1 !important;transition-delay:.28s !important}
+@media(max-width:960px){
+  #nav{padding:16px 20px}#nav.sc{padding:12px 20px}
+  .nav-links,.nav-cta{display:none}.ham{display:flex}
+}
+
+/* ══ SHARED ══ */
+.sec{padding:120px 0;position:relative}
+.W{max-width:1240px;margin:0 auto;padding:0 64px}
+@media(max-width:768px){.W{padding:0 20px}.sec{padding:80px 0}}
+.ey{display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;
+  font-family:var(--F4);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--b)}
+.ey::before{content:'';width:22px;height:1.5px;background:var(--b);flex-shrink:0}
+.ST{font-family:var(--F1);font-size:clamp(48px,5.5vw,84px);
+  line-height:.92;letter-spacing:-1px;color:var(--ink);margin-bottom:20px}
+.ST .a{color:var(--b)}.ST .d{color:var(--muted)}.ST .w{color:#fff}
+.SB{font-family:var(--F3);font-size:15px;font-weight:300;
+  color:var(--mid);line-height:1.9;max-width:480px}
+
+/* scroll reveal */
+.rv{opacity:0;transition:opacity 1s var(--e1),transform 1s var(--e1)}
+.rv.up{transform:translateY(52px)}.rv.lf{transform:translateX(-44px)}
+.rv.rt{transform:translateX(44px)}.rv.sc{transform:scale(.93)}
+.rv.in{opacity:1 !important;transform:none !important}
+.sg>*{opacity:0;transform:translateY(28px);
+  transition:opacity .8s var(--e1),transform .8s var(--e1)}
+.sg.in>*{opacity:1;transform:none}
+.sg.in>*:nth-child(1){transition-delay:0s}
+.sg.in>*:nth-child(2){transition-delay:.08s}
+.sg.in>*:nth-child(3){transition-delay:.16s}
+.sg.in>*:nth-child(4){transition-delay:.24s}
+.sg.in>*:nth-child(5){transition-delay:.32s}
+.sg.in>*:nth-child(6){transition-delay:.40s}
+.sg.in>*:nth-child(7){transition-delay:.48s}
+.sg.in>*:nth-child(8){transition-delay:.56s}
+.sg.in>*:nth-child(9){transition-delay:.64s}
+
+/* buttons */
+.BP{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;
+  background:var(--ink);color:#fff;font-family:var(--F4);font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;border-radius:4px;
+  border:1.5px solid var(--ink);transition:all .24s;white-space:nowrap}
+.BP:hover{background:var(--b);border-color:var(--b);
+  transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+.BG{display:inline-flex;align-items:center;gap:9px;padding:12px 24px;
+  background:transparent;color:var(--ink);font-family:var(--F4);font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;border-radius:4px;
+  border:1.5px solid var(--rule2);transition:all .24s;white-space:nowrap}
+.BG:hover{border-color:var(--b);color:var(--b);transform:translateY(-2px)}
+.BB{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;
+  background:var(--b);color:#fff;font-family:var(--F4);font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;border-radius:4px;
+  border:1.5px solid var(--b);transition:all .24s;white-space:nowrap}
+.BB:hover{background:var(--bdk);border-color:var(--bdk);
+  transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{min-height:100vh;position:relative;display:grid;
+  grid-template-columns:55% 45%;overflow:hidden;background:var(--white)}
+
+/* animated dot grid background */
+.hero-dots{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(24,71,240,.07) 1px,transparent 1px);
+  background-size:32px 32px;opacity:.8;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+
+/* soft blue orb */
+.hero-orb{position:absolute;top:10%;right:8%;width:500px;height:500px;
+  border-radius:50%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(24,71,240,.08) 0%,transparent 65%);
+  animation:orb 8s ease-in-out infinite}
+@keyframes orb{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(-16px,12px)}}
+
+/* animated ring decoration */
+.hero-ring{position:absolute;top:15%;right:10%;width:340px;height:340px;
+  border-radius:50%;border:1px solid rgba(24,71,240,.08);z-index:0;pointer-events:none;
+  animation:ring-spin 24s linear infinite}
+/* .hero-ring2{position:absolute;top:12%;right:7%;width:420px;height:420px;
+  border-radius:50%;border:1px dashed rgba(24,71,240,.05);z-index:0;pointer-events:none;
+  animation:ring-spin 36s linear infinite reverse} */
+@keyframes ring-spin{to{transform:rotate(360deg)}}
+
+.hero-left{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:center;padding:100px 60px 100px 64px;padding-top:140px}
+
+.hero-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;
+  padding:6px 14px;border:1px solid var(--bbord);border-radius:20px;
+  background:var(--bdim);font-family:var(--F4);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--b);width:fit-content;
+  opacity:0;animation:fup .7s .1s var(--e1) both}
+.hero-pill .pdot{width:6px;height:6px;border-radius:50%;background:var(--b);
+  animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.hero-h{font-family:var(--F1);font-size:clamp(72px,8.5vw,136px);
+  line-height:.88;letter-spacing:-1.5px;color:var(--ink);margin-bottom:28px}
+.hero-h .ln{display:block;overflow:hidden}
+.hero-h .ln span{display:block;transform:translateY(110%);
+  animation:lnup .95s var(--e1) both}
+.hero-h .ln:nth-child(1) span{animation-delay:.15s}
+.hero-h .ln:nth-child(2) span{animation-delay:.28s}
+.hero-h .ln:nth-child(3) span{animation-delay:.41s}
+.hero-h .a{color:var(--b)}
+@keyframes lnup{to{transform:translateY(0)}}
+
+/* word swap animation */
+.word-swap{display:inline-block;overflow:hidden;vertical-align:bottom;
+  height:1em;position:relative;min-width:200px}
+.ws-list{display:flex;flex-direction:column;
+  animation:wscroll 6s var(--e2) infinite}
+@keyframes wscroll{0%{transform:translateY(0)}33.3%{transform:translateY(-33.33%)}66.6%{transform:translateY(-66.66%)}100%{transform:translateY(0)}}
+.ws-w{display:block;height:1em;color:var(--b)}
+
+.hero-sub{font-family:var(--F3);font-size:clamp(14px,1.3vw,17px);font-weight:300;
+  color:var(--mid);line-height:1.85;max-width:420px;margin-bottom:36px;
+  opacity:0;animation:fup .9s .55s var(--e1) both}
+.hero-sub b{font-weight:600;color:var(--ink)}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;
+  opacity:0;animation:fup .9s .68s var(--e1) both}
+
+/* social proof row */
+.hero-proof{display:flex;align-items:center;gap:16px;
+  opacity:0;animation:fup .9s .82s var(--e1) both}
+.pavs{display:flex}
+.pav{width:32px;height:32px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--white);margin-left:-8px}
+.pav:first-child{margin-left:0}
+.pav img{width:100%;height:100%;object-fit:cover}
+.ptxt{font-family:var(--F3);font-size:12.5px;color:var(--mid)}
+.ptxt b{color:var(--ink)}
+
+/* hero right — image + overlay cards */
+.hero-right{position:relative;overflow:hidden;background:var(--ink2)}
+.hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.7;transform:scale(1.1);animation:hzoom 12s ease forwards;filter:saturate(.9)}
+@keyframes hzoom{to{transform:scale(1)}}
+.hero-right::before{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(95deg,var(--white) 0%,transparent 20%)}
+.hero-right::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,transparent 55%,rgba(15,17,30,.55) 100%)}
+
+/* floating stat card */
+.hfc1{position:absolute;bottom:52px;left:-16px;z-index:4;
+  background:var(--white);border:1px solid var(--rule);border-radius:10px;
+  padding:16px 20px;box-shadow:0 16px 48px rgba(15,17,30,.14);min-width:160px;
+  opacity:0;animation:fup .9s .95s var(--e1) both}
+.hfc-n{font-family:var(--F1);font-size:38px;color:var(--b);
+  line-height:1;letter-spacing:-1px}
+.hfc-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+.hfc2{position:absolute;top:36px;right:24px;z-index:4;
+  background:var(--ink);border:1px solid rgba(24,71,240,.25);border-radius:8px;
+  padding:12px 16px;box-shadow:0 12px 36px rgba(15,17,30,.3);
+  opacity:0;animation:fup .9s 1.1s var(--e1) both}
+.hfc2-tag{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--b3)}
+.hfc2-val{font-family:var(--F3);font-size:14px;font-weight:700;color:#fff;margin-top:3px}
+
+/* annotation overlay demo */
+.hfc3{position:absolute;bottom:52px;right:24px;z-index:4;
+  background:var(--b);border-radius:8px;padding:12px 16px;
+  box-shadow:0 12px 32px rgba(24,71,240,.4);
+  opacity:0;animation:fup .9s 1.2s var(--e1) both}
+.hfc3-label{font-family:var(--F4);font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:5px}
+.hfc3-list{display:flex;flex-direction:column;gap:4px}
+.hfc3-row{display:flex;align-items:center;gap:8px}
+.hfc3-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.hfc3-txt{font-family:var(--F3);font-size:12px;color:rgba(255,255,255,.85)}
+
+/* stats strip */
+.hero-stats{display:flex;background:var(--white);border-top:1px solid var(--rule);
+  opacity:0;animation:fup .9s 1.05s var(--e1) both}
+.hs{flex:1;padding:28px 32px;border-right:1px solid var(--rule);
+  position:relative;overflow:hidden;transition:background .3s;cursor:none}
+.hs:last-child{border-right:0}
+.hs::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--e1)}
+.hs:hover::after{transform:scaleX(1)}
+.hs:hover{background:var(--bdim)}
+.hs-n{font-family:var(--F1);font-size:clamp(32px,3.2vw,48px);
+  color:var(--ink);line-height:1;letter-spacing:-1px}
+.hs-n em{color:var(--b);font-style:normal}
+.hs-l{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+@media(max-width:1050px){
+  .hero{grid-template-columns:1fr;padding-top:80px}
+  .hero-left{padding:80px 20px 48px}
+  .hero-right{min-height:380px}
+  .hero-stats{flex-wrap:wrap}
+  .hs{min-width:50%;padding:20px}
+}
+@media(max-width:480px){
+  .hero-h{font-size:clamp(56px,14vw,100px)}
+  .hs{min-width:100%}
+}
+
+/* ══ MARQUEE ══ */
+.mq-band{background:var(--b);overflow:hidden;padding:14px 0;
+  transform:skewY(-1.3deg) translateY(-8px);
+  box-shadow:0 14px 40px rgba(24,71,240,.28)}
+.mq-inner{transform:skewY(1.3deg)}
+.mq-row{display:flex;animation:mqscroll 26s linear infinite;width:max-content;white-space:nowrap}
+.mq-row:hover{animation-play-state:paused}
+.mq-i{display:inline-flex;align-items:center;gap:14px;padding:0 24px;
+  font-family:var(--F4);font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,.7)}
+.mq-sep{color:rgba(255,255,255,.3);font-size:14px}
+@keyframes mqscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ ABOUT ══ */
+#about{background:var(--bg)}
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ab-left{position:relative;height:580px}
+.ab-img1{position:absolute;top:0;left:0;width:62%;height:78%;
+  border-radius:6px;overflow:hidden;border:1px solid var(--rule);
+  box-shadow:0 24px 64px rgba(15,17,30,.11)}
+.ab-img1 img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e1)}
+.ab-img1:hover img{transform:scale(1.04)}
+.ab-img2{position:absolute;right:0;top:18%;width:44%;height:42%;
+  border-radius:6px;overflow:hidden;border:1px solid var(--rule);
+  box-shadow:0 16px 44px rgba(15,17,30,.1)}
+.ab-img2 img{width:100%;height:100%;object-fit:cover}
+.ab-img3{position:absolute;bottom:0;right:8%;width:36%;height:26%;
+  border-radius:6px;overflow:hidden;border:1px solid var(--rule);
+  box-shadow:0 10px 32px rgba(15,17,30,.09)}
+.ab-img3 img{width:100%;height:100%;object-fit:cover}
+.ab-badge{position:absolute;bottom:80px;left:40%;z-index:3;
+  background:var(--b);border-radius:8px;padding:16px 22px;
+  box-shadow:0 20px 52px rgba(24,71,240,.38)}
+.ab-badge-n{font-family:var(--F1);font-size:40px;color:#fff;line-height:1;letter-spacing:-2px}
+.ab-badge-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px}
+
+.ck{display:flex;flex-direction:column;gap:13px;margin-top:24px}
+.ck-r{display:flex;align-items:flex-start;gap:13px;
+  font-family:var(--F3);font-size:13.5px;font-weight:300;color:var(--mid);line-height:1.72}
+.ck-i{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:var(--bdim);border:1.5px solid var(--bbord);
+  display:flex;align-items:center;justify-content:center}
+.ck-i svg{width:9px;height:9px;stroke:var(--b);fill:none;stroke-width:2.5;stroke-linecap:round}
+.certs{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.ct{font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:4px 10px;
+  border-radius:3px;background:var(--bdim)}
+
+@media(max-width:960px){.ab-grid{grid-template-columns:1fr}.ab-img2,.ab-img3{display:none}.ab-badge{right:0;left:auto}.ab-left{height:360px}}
+
+/* ══ BIG TEXT SCROLLER ══ */
+.bts{padding:56px 0;overflow:hidden;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);background:var(--bg2)}
+.bts-r{display:flex;white-space:nowrap;animation:btsscroll 20s linear infinite;width:max-content}
+.bts-r.rev{animation-direction:reverse;animation-duration:24s}
+.bts-i{font-family:var(--F1);font-size:clamp(68px,7.5vw,108px);
+  padding:0 20px;display:flex;align-items:center;gap:20px;line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(15,17,30,.1);
+  letter-spacing:-2px}
+.bts-i.f{color:var(--ink);-webkit-text-stroke:0}
+.bts-i.b{color:var(--b);-webkit-text-stroke:0}
+.bts-dot{width:9px;height:9px;border-radius:50%;background:var(--b);flex-shrink:0}
+@keyframes btsscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ SERVICES ══ */
+#services{background:var(--bg2)}
+.svc-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--rule);border-radius:8px;overflow:hidden}
+.sv{background:var(--card);padding:44px 36px;position:relative;overflow:hidden;
+  transition:background .3s;cursor:none}
+.sv:hover{background:var(--bg)}
+.sv-n{font-family:var(--F1);font-size:90px;line-height:1;
+  color:rgba(15,17,30,.04);position:absolute;top:8px;right:14px;
+  letter-spacing:-4px;pointer-events:none;transition:color .35s}
+.sv:hover .sv-n{color:rgba(24,71,240,.07)}
+.sv::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
+.sv:hover::before{transform:scaleX(1)}
+.sv-ico{width:48px;height:48px;border-radius:7px;font-size:22px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  background:var(--bdim);border:1px solid var(--bbord);transition:all .3s}
+.sv:hover .sv-ico{background:var(--b);box-shadow:0 8px 22px var(--bglow)}
+.sv h3{font-family:var(--F2);font-size:18px;font-weight:700;
+  color:var(--ink);margin-bottom:10px}
+.sv p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.85}
+.sv-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.sv-tag{font-family:var(--F4);font-size:8px;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:3px 8px;border-radius:2px}
+.sv-more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  font-family:var(--F4);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--b);transition:gap .2s,color .2s}
+.sv:hover .sv-more{gap:10px;color:var(--bdk)}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}.svc-hd{grid-template-columns:1fr}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+/* ══ WORKFLOW ANIMATED DEMO ══ */
+#workflow{background:var(--bg);overflow:hidden}
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.wf-visual{position:relative}
+.wf-screen{background:var(--white);border:1px solid var(--rule2);border-radius:10px;
+  overflow:hidden;box-shadow:0 32px 80px rgba(15,17,30,.12);
+  opacity:0;transition:opacity .9s var(--e1),transform .9s var(--e1);transform:translateY(36px)}
+.wf-screen.in{opacity:1;transform:none}
+.wf-topbar{background:var(--ink);padding:12px 18px;display:flex;align-items:center;gap:8px}
+.wf-dot{width:10px;height:10px;border-radius:50%}
+.wf-dot:nth-child(1){background:#FF5F57}
+.wf-dot:nth-child(2){background:#FDBC2C}
+.wf-dot:nth-child(3){background:#28CA41}
+.wf-title-bar{flex:1;text-align:center;font-family:var(--F4);font-size:9px;
+  letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.wf-body{padding:20px;position:relative}
+.wf-img-wrap{border-radius:6px;overflow:hidden;height:220px;position:relative;background:var(--bg3)}
+.wf-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85}
+
+/* animated annotation box */
+.ann-box{position:absolute;border:2px solid var(--b);border-radius:2px;
+  animation:annpulse 3s ease-in-out infinite}
+.ann-box::before{content:attr(data-label);position:absolute;top:-22px;left:0;
+  background:var(--b);color:#fff;font-family:var(--F4);font-size:8px;
+  letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:2px;
+  white-space:nowrap}
+@keyframes annpulse{0%,100%{box-shadow:0 0 0 0 rgba(24,71,240,.4)}50%{box-shadow:0 0 0 4px rgba(24,71,240,0)}}
+.ann-b1{top:18%;left:10%;width:34%;height:52%}
+.ann-b2{top:30%;left:52%;width:38%;height:38%;border-color:#22C55E;animation-delay:.8s}
+.ann-b2::before{background:#22C55E;border-color:#22C55E}
+.ann-b3{top:62%;left:26%;width:20%;height:28%;border-color:#F59E0B;animation-delay:1.6s}
+.ann-b3::before{background:#F59E0B}
+
+.wf-meta{display:flex;gap:12px;margin-top:14px;align-items:center}
+.wf-chip{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:3px}
+.wf-chip.ok{background:rgba(34,197,94,.1);color:#16A34A;border:1px solid rgba(34,197,94,.25)}
+.wf-chip.pr{background:var(--bdim);color:var(--b);border:1px solid var(--bbord)}
+.wf-pct{font-family:var(--F1);font-size:22px;color:var(--b);margin-left:auto;letter-spacing:-1px}
+.wf-pct-l{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right}
+
+/* progress bars animated */
+.wf-bars{padding:0 20px 20px;display:flex;flex-direction:column;gap:10px}
+.wbar-label{font-family:var(--F4);font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:4px;
+  display:flex;justify-content:space-between}
+.wbar-track{height:5px;background:var(--rule);border-radius:3px;overflow:hidden}
+.wbar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--b),var(--b3));
+  width:0;transition:width 1.4s var(--e3) .5s}
+.wf-screen.in .wbar-fill{width:var(--w)}
+
+.wf-steps{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.wf-step{display:flex;align-items:flex-start;gap:16px}
+.wf-sn{width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:var(--bdim);border:1.5px solid var(--bbord);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--F1);font-size:18px;color:var(--b);
+  transition:all .3s}
+.wf-step.active .wf-sn{background:var(--b);border-color:var(--b);color:#fff;
+  box-shadow:0 6px 18px var(--bglow)}
+.wf-step-txt h4{font-family:var(--F2);font-size:16px;font-weight:700;
+  color:var(--ink);margin-bottom:4px}
+.wf-step-txt p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.7}
+.wf-conn{width:2px;height:22px;background:var(--rule);margin-left:17px;flex-shrink:0}
+
+@media(max-width:960px){.wf-grid{grid-template-columns:1fr}}
+
+/* ══ PLATFORM / FEATURES ══ */
+#platform{background:var(--bg2)}
+.plat-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.feat-tabs{display:flex;gap:0;border:1px solid var(--rule2);border-radius:6px;overflow:hidden;
+  margin-bottom:40px;background:var(--card);width:fit-content}
+.ft{padding:10px 20px;font-family:var(--F4);font-size:9.5px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted);cursor:none;transition:all .25s;border-right:1px solid var(--rule)}
+.ft:last-child{border-right:0}
+.ft.on{background:var(--b);color:#fff}
+.ft:hover:not(.on){background:var(--bdim);color:var(--ink)}
+.feat-panels{position:relative}
+.feat-panel{display:none;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+.feat-panel.on{display:grid}
+.feat-img{border-radius:8px;overflow:hidden;height:360px;
+  box-shadow:0 24px 60px rgba(15,17,30,.1);border:1px solid var(--rule)}
+.feat-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.95)}
+.feat-list{display:flex;flex-direction:column;gap:16px}
+.fl-item{display:flex;align-items:flex-start;gap:16px;padding:18px;
+  border:1px solid var(--rule);border-radius:7px;background:var(--card);
+  transition:all .3s;cursor:none}
+.fl-item:hover{border-color:var(--bbord);background:var(--bdim);transform:translateX(4px)}
+.fl-ico{width:40px;height:40px;border-radius:6px;background:var(--bdim);
+  border:1px solid var(--bbord);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0}
+.fl-item:hover .fl-ico{background:var(--b)}
+.fl-txt h4{font-family:var(--F2);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.fl-txt p{font-family:var(--F3);font-size:12.5px;font-weight:300;color:var(--mid);line-height:1.7}
+@media(max-width:900px){.feat-panel.on{grid-template-columns:1fr}.plat-hd{grid-template-columns:1fr}}
+
+/* ══ CAPABILITIES ══ */
+#cap{background:var(--bg)}
+.cap-hd{text-align:center;margin-bottom:56px}
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cc{background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .7s var(--e1),transform .7s var(--e1),box-shadow .3s,border-color .3s}
+.cc:hover{box-shadow:0 14px 44px var(--bglow);transform:translateY(-4px) !important;border-color:var(--bbord)}
+.cc-head{background:var(--ink);padding:18px 20px;display:flex;align-items:center;gap:10px}
+.cc-head h4{font-family:var(--F2);font-size:15px;font-weight:700;color:#fff}
+.cc-rows{padding:14px 20px;display:flex;flex-direction:column}
+.cc-row{font-family:var(--F3);font-size:12.5px;color:var(--mid);
+  padding:7px 0;border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;gap:8px;
+  transition:color .2s,padding-left .2s}
+.cc-row:last-child{border-bottom:0}
+.cc-row::before{content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--b);flex-shrink:0;opacity:.45;transition:opacity .2s}
+.cc-row:hover{color:var(--ink);padding-left:4px}
+.cc-row:hover::before{opacity:1}
+@media(max-width:900px){.cap-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cap-grid{grid-template-columns:1fr}}
+
+/* ══ INDUSTRIES ══ */
+#ind{background:var(--bg2)}
+.ind-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ic{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  overflow:hidden;cursor:none;transition:all .4s}
+.ic:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(15,17,30,.1);border-color:var(--bbord)}
+.ic-img{height:196px;overflow:hidden;position:relative}
+.ic-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e1)}
+.ic:hover .ic-img img{transform:scale(1.07)}
+.ic-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 42%,rgba(15,17,30,.38) 100%)}
+.ic-body{padding:20px 22px}
+.ic-tag{font-family:var(--F4);font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--b);margin-bottom:6px}
+.ic h3{font-family:var(--F2);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.ic p{font-family:var(--F3);font-size:12.5px;font-weight:300;color:var(--mid);line-height:1.75}
+.ic-lnk{display:inline-flex;align-items:center;gap:5px;margin-top:11px;
+  font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--b);transition:gap .2s}
+.ic:hover .ic-lnk{gap:8px}
+@media(max-width:900px){.ind-grid{grid-template-columns:1fr 1fr}.ind-hd{grid-template-columns:1fr}}
+@media(max-width:560px){.ind-grid{grid-template-columns:1fr}}
+
+/* ══ PROCESS (dark) ══ */
+#proc{background:var(--dark);padding:0}
+.proc-hd{padding:100px 0 60px;text-align:center}
+.proc-hd .ey{color:rgba(112,152,255,.65);justify-content:center}
+.proc-hd .ey::before{background:rgba(112,152,255,.45)}
+.proc-hd .ST{color:#fff;text-align:center}
+.proc-cards{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--dbord);border-bottom:1px solid var(--dbord)}
+.pc{padding:44px 36px;border-right:1px solid var(--dbord);
+  position:relative;overflow:hidden;transition:background .3s;cursor:none}
+.pc:last-child{border-right:0}
+.pc:hover{background:rgba(24,71,240,.05)}
+.pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
+.pc:hover::after{transform:scaleX(1)}
+.pc-n{font-family:var(--F1);font-size:56px;color:rgba(255,255,255,.06);
+  letter-spacing:-2px;margin-bottom:16px;display:block;transition:color .3s;line-height:1}
+.pc:hover .pc-n{color:rgba(24,71,240,.22)}
+.pc h4{font-family:var(--F2);font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
+.pc p{font-family:var(--F3);font-size:13px;font-weight:300;
+  color:rgba(255,255,255,.42);line-height:1.82}
+.proc-split{display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--dbord);height:440px}
+.ps-img{position:relative;overflow:hidden;border-right:1px solid var(--dbord)}
+.ps-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.8)}
+.ps-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,rgba(24,71,240,.22),transparent 55%)}
+.ps-txt{background:var(--b);display:flex;flex-direction:column;
+  justify-content:center;padding:56px}
+.ps-txt h3{font-family:var(--F1);font-size:clamp(40px,4vw,66px);
+  color:#fff;line-height:.92;letter-spacing:-1px;margin-bottom:18px}
+.ps-txt p{font-family:var(--F3);font-size:14px;font-weight:300;
+  color:rgba(255,255,255,.65);line-height:1.85;max-width:340px}
+.livepulse{display:flex;align-items:center;gap:10px;margin-top:22px;
+  font-family:var(--F4);font-size:9.5px;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,.55)}
+.livepulse::before{content:'';width:8px;height:8px;border-radius:50%;
+  background:#fff;flex-shrink:0;animation:ripple 2s ease infinite}
+@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media(max-width:860px){
+  .proc-cards{grid-template-columns:1fr 1fr}.pc{border-bottom:1px solid var(--dbord)}
+  .proc-split{grid-template-columns:1fr;height:auto}.ps-txt{padding:40px 20px}
+}
+@media(max-width:480px){.proc-cards{grid-template-columns:1fr}}
+
+/* ══ PRICING ══ */
+#pricing{background:var(--bg)}
+.prc-hd{text-align:center;margin-bottom:52px}
+.prc-toggle{display:flex;align-items:center;gap:14px;margin:0 auto 40px;
+  width:fit-content;font-family:var(--F4);font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.tog{width:44px;height:24px;background:var(--rule2);border-radius:12px;
+  position:relative;cursor:none;transition:background .3s}
+.tog.on{background:var(--b)}
+.tog::before{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;
+  border-radius:50%;background:#fff;transition:transform .3s var(--e1);
+  box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.tog.on::before{transform:translateX(20px)}
+.save-badge{background:rgba(34,197,94,.12);color:#16A34A;border:1px solid rgba(34,197,94,.25);
+  font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:3px 9px;border-radius:3px}
+.prc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pcard{background:var(--card);border:1.5px solid var(--rule);border-radius:10px;
+  padding:36px 32px;position:relative;transition:all .35s;cursor:none}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(15,17,30,.1)}
+.pcard.pop{border-color:var(--b);box-shadow:0 0 0 1px var(--b),0 20px 56px var(--bglow)}
+.pop-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--b);color:#fff;font-family:var(--F4);font-size:8.5px;letter-spacing:1.2px;
+  text-transform:uppercase;padding:4px 14px;border-radius:3px;white-space:nowrap}
+.pcard h3{font-family:var(--F2);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.pcard .pdesc{font-family:var(--F3);font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.7}
+.pcard-price{display:flex;align-items:baseline;gap:6px;margin-bottom:24px}
+.pp-cur{font-family:var(--F3);font-size:18px;font-weight:600;color:var(--mid)}
+.pp-n{font-family:var(--F1);font-size:52px;color:var(--ink);line-height:1;letter-spacing:-2px}
+.pcard.pop .pp-n{color:var(--b)}
+.pp-per{font-family:var(--F4);font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.pcard-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.pf{display:flex;align-items:flex-start;gap:10px;
+  font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.6}
+.pf::before{content:'✓';color:var(--b);font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
+.pf.off{opacity:.35}.pf.off::before{content:'—';color:var(--muted)}
+@media(max-width:840px){.prc-grid{grid-template-columns:1fr}}
+
+/* ══ TRUST ══ */
+#trust{background:var(--bg2)}
+.tr-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.trc{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:38px 34px;position:relative;overflow:hidden;transition:all .35s;cursor:none;
+  transform-style:preserve-3d}
+.trc:hover{box-shadow:0 14px 44px var(--bglow);background:var(--bg)}
+.trc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
+.trc:hover::after{transform:scaleX(1)}
+.trc-ico{font-size:26px;margin-bottom:16px}
+.trc h3{font-family:var(--F2);font-size:19px;font-weight:700;color:var(--ink);margin-bottom:9px}
+.trc p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.85}
+.trc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.trc-tag{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:4px 10px;border-radius:3px;background:var(--bdim)}
+.trc-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.trc-li{display:flex;align-items:flex-start;gap:9px;
+  font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.65}
+.trc-li::before{content:'✓';color:var(--b);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px}
+@media(max-width:760px){.tr-grid{grid-template-columns:1fr}.tr-hd{grid-template-columns:1fr}}
+
+/* ══ NUMBERS ══ */
+#nums{background:var(--ink);padding:0}
+.nums-wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.nb{padding:56px 40px;border-right:1px solid rgba(255,255,255,.06);
+  text-align:center;position:relative;overflow:hidden;transition:background .3s;cursor:none}
+.nb:last-child{border-right:0}
+.nb::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+  transform:scaleX(0);transform-origin:center;transition:transform .6s var(--e1)}
+.nb:hover::before{transform:scaleX(1)}
+.nb:hover{background:rgba(24,71,240,.06)}
+.nb-n{font-family:var(--F1);font-size:clamp(48px,5vw,78px);
+  color:#fff;line-height:1;letter-spacing:-2px}
+.nb-n em{color:var(--b3);font-style:normal}
+.nb-l{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:8px}
+.nb-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:100px;height:100px;border-radius:50%;
+  border:1px solid rgba(24,71,240,.12);pointer-events:none;
+  animation:nbring 4s linear infinite}
+@keyframes nbring{from{transform:translate(-50%,-50%) rotate(0) scale(.9)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.1);opacity:0}}
+@media(max-width:860px){.nums-wrap{grid-template-columns:1fr 1fr}.nb{border-bottom:1px solid rgba(255,255,255,.06)}.nb:nth-child(2){border-right:0}}
+@media(max-width:480px){.nums-wrap{grid-template-columns:1fr}.nb{border-right:0}}
+
+/* ══ TESTIMONIALS ══ */
+#test{background:var(--dark2)}
+.test-hd{text-align:center;margin-bottom:52px}
+.test-hd .ey{color:rgba(112,152,255,.6);justify-content:center}
+.test-hd .ey::before{background:rgba(112,152,255,.4)}
+.test-hd .ST{color:#fff;text-align:center}
+.test-hd .ST .a{color:var(--b3)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tc{background:rgba(255,255,255,.03);border:1px solid var(--dbord);border-radius:8px;
+  padding:32px 28px;transition:all .35s;cursor:none;position:relative;overflow:hidden}
+.tc::before{content:'\201C';font-family:var(--F1);font-size:100px;line-height:1;
+  color:rgba(24,71,240,.07);position:absolute;top:-6px;left:12px;pointer-events:none;
+  transition:color .35s}
+.tc:hover::before{color:rgba(24,71,240,.15)}
+.tc:hover{border-color:rgba(24,71,240,.25);transform:translateY(-5px);
+  box-shadow:0 20px 52px rgba(0,0,0,.28)}
+.tc-stars{display:flex;gap:3px;margin-bottom:14px}
+.tc-star{font-size:12px;color:var(--b2)}
+.tc-q{font-family:var(--F3);font-size:13.5px;font-weight:300;
+  color:rgba(255,255,255,.62);line-height:1.88;margin-bottom:22px;position:relative;z-index:1}
+.tc-name{font-family:var(--F2);font-size:14px;font-weight:700;color:#fff}
+.tc-role{font-family:var(--F4);font-size:8.5px;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
+@media(max-width:900px){.test-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.test-grid{grid-template-columns:1fr}}
+
+/* ══ CASE STUDIES / CONTENT ══ */
+#content{background:var(--bg2)}
+.cnt-hd{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:48px}
+.cnt-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
+.crd-big,.crd-sm{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  overflow:hidden;cursor:none;transition:all .35s}
+.crd-big:hover,.crd-sm:hover{transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(15,17,30,.09);border-color:var(--bbord)}
+.crd-big-img{height:220px;overflow:hidden}
+.crd-big-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e1)}
+.crd-big:hover .crd-big-img img{transform:scale(1.05)}
+.crd-body{padding:24px 26px}
+.crd-lbl{font-family:var(--F4);font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--b);margin-bottom:8px}
+.crd-big h3{font-family:var(--F2);font-size:18px;font-weight:700;
+  color:var(--ink);line-height:1.35;margin-bottom:8px}
+.crd-big p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.8}
+.crd-more{display:inline-flex;align-items:center;gap:5px;margin-top:12px;
+  font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--b);transition:gap .2s}
+.crd-big:hover .crd-more,.crd-sm:hover .crd-more{gap:9px}
+.crd-sm-img{height:130px;overflow:hidden}
+.crd-sm-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.crd-sm:hover .crd-sm-img img{transform:scale(1.06)}
+.crd-sm-body{padding:16px 18px}
+.crd-sm h4{font-family:var(--F2);font-size:14px;font-weight:700;
+  color:var(--ink);line-height:1.4;margin-bottom:5px}
+.crd-sm p{font-family:var(--F3);font-size:12px;font-weight:300;color:var(--mid);line-height:1.75}
+.va-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;
+  border:1.5px solid var(--rule2);border-radius:5px;white-space:nowrap;
+  font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--ink);transition:all .2s}
+.va-btn:hover{background:var(--bdim);border-color:var(--b);color:var(--b);transform:translateY(-1px)}
+@media(max-width:920px){.cnt-grid{grid-template-columns:1fr 1fr}.crd-big{grid-column:span 2}.cnt-hd{grid-template-columns:1fr}}
+@media(max-width:560px){.cnt-grid{grid-template-columns:1fr}.crd-big{grid-column:1}}
+
+/* ══ LOGOS ══ */
+#logos{background:var(--bg);padding:52px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.logos-lbl{text-align:center;font-family:var(--F4);font-size:8.5px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:30px}
+.logos-track{overflow:hidden;position:relative}
+.logos-track::before,.logos-track::after{content:'';position:absolute;
+  top:0;bottom:0;width:90px;z-index:2}
+.logos-track::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.logos-track::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.logos-row{display:flex;animation:lgscroll 24s linear infinite;width:max-content}
+.logos-row:hover{animation-play-state:paused}
+.li{padding:0 40px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--rule)}
+.li:last-child{border-right:0}
+.li-name{font-family:var(--F2);font-size:13px;font-style:italic;font-weight:700;
+  color:var(--light);transition:color .25s;white-space:nowrap}
+.li:hover .li-name{color:var(--ink)}
+@keyframes lgscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ FAQ ══ */
+#faq{background:var(--bg2)}
+.faq-wrap{display:grid;grid-template-columns:5fr 7fr;gap:80px}
+.fq-item{border-bottom:1px solid var(--rule);overflow:hidden}
+.fq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px 0;cursor:default;transition:color .25s;
+  font-family:var(--F3);font-size:15px;font-weight:400;color:var(--mid)}
+.fq-item:hover .fq-q{color:var(--ink)}
+.fq-item.on .fq-q{color:var(--b)}
+.fq-ic{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--rule2);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  color:var(--muted);flex-shrink:0;transition:all .3s}
+.fq-item.on .fq-ic{transform:rotate(45deg);border-color:var(--b);color:var(--b);background:var(--bdim)}
+.fq-a{max-height:0;overflow:hidden;font-family:var(--F3);font-size:13.5px;font-weight:300;
+  color:var(--mid);line-height:1.88;transition:max-height .45s var(--e2),padding .3s}
+.fq-item.on .fq-a{max-height:200px;padding-bottom:18px}
+@media(max-width:900px){.faq-wrap{grid-template-columns:1fr}}
+
+/* ══ CTA ══ */
+#cta{background:var(--b);text-align:center;padding:128px 0;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 65%)}
+#cta::after{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px}
+.cta-ey{display:inline-flex;align-items:center;gap:7px;margin-bottom:22px;
+  font-family:var(--F4);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.6)}
+.cta-ey::before{content:'';width:14px;height:1.5px;background:rgba(255,255,255,.5)}
+.cta-h{font-family:var(--F1);font-size:clamp(58px,8vw,110px);
+  line-height:.88;letter-spacing:-2px;color:#fff;margin-bottom:20px}
+.cta-h span{color:rgba(255,255,255,.45)}
+.cta-p{font-family:var(--F3);font-size:15px;font-weight:300;
+  color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:44px}
+.cta-form{display:flex;max-width:440px;margin:0 auto 14px;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;overflow:hidden}
+.cta-inp{flex:1;background:transparent;border:none;outline:none;
+  padding:15px 18px;font-size:14px;color:#fff;font-family:var(--F3)}
+.cta-inp::placeholder{color:rgba(255,255,255,.45)}
+.cta-sub{background:var(--ink);border:none;padding:15px 22px;cursor:none;
+  font-family:var(--F4);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  color:#fff;transition:background .22s;white-space:nowrap}
+.cta-sub:hover{background:var(--dark)}
+.cta-note{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:72px 64px 0}
+.foot-wrap{max-width:1240px;margin:0 auto}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;margin-bottom:48px}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fmark{width:30px;height:30px;border-radius:5px;background:var(--b);
+  display:flex;align-items:center;justify-content:center}
+.fmark svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
+.ftxt{font-family:var(--F1);font-size:20px;color:#fff;letter-spacing:.5px}
+.ftxt span{color:var(--b3)}
+.fdesc{font-family:var(--F3);font-size:13px;font-weight:300;
+  color:rgba(255,255,255,.28);line-height:1.8;max-width:195px;margin-bottom:18px}
+.fsoc{display:flex;gap:7px}
+.fsi{width:30px;height:30px;border-radius:4px;border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+  color:rgba(255,255,255,.32);transition:all .22s}
+.fsi:hover{border-color:var(--b3);color:var(--b3);background:rgba(24,71,240,.12)}
+.fcol h5{font-family:var(--F4);font-size:8.5px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--b3);margin-bottom:14px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcol a{font-family:var(--F3);font-size:13px;font-weight:300;
+  color:rgba(255,255,255,.28);transition:color .2s}
+.fcol a:hover{color:#fff}
+.fbot{border-top:1px solid rgba(255,255,255,.05);padding:18px 0;
+  display:flex;justify-content:space-between;align-items:center}
+.fbot p,.fbot a{font-family:var(--F4);font-size:9.5px;color:rgba(255,255,255,.2)}
+.fbot a:hover{color:rgba(255,255,255,.5)}
+.flinks{display:flex;gap:16px}
+@media(max-width:900px){footer{padding:48px 20px 0}.foot-grid{grid-template-columns:1fr 1fr;gap:28px}.fbot{flex-direction:column;gap:8px;text-align:center}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div id="loader">
+  <div class="ld-logo">LOGO<span>X</span></div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<div id="C1"></div>
+<div id="C2"></div>
+<div id="PB"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 18 18"><path d="M3 9h12M9 3v12"/></svg>
+    </div>
+    <span class="logo-name">LOGO<span>X</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#ind">Industries</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Talk to an Expert</a>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+<nav class="mob-nav" id="mobnav">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#platform">Platform</a>
+  <a href="#ind">Industries</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
+  <a href="#cta" class="mob-cta-a">Talk to an Expert →</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring2"></div>
+
+  <div class="hero-left">
+    <div class="hero-pill"><span class="pdot"></span>Quality Guaranteed Since 2015</div>
+    <h1 class="hero-h">
+      <span class="ln"><span>Expert</span></span>
+      <span class="ln"><span>Data For</span></span>
+      <span class="ln"><span><span class="a">Your AI.</span></span></span>
+    </h1>
+    <p class="hero-sub"><b>LOGO</b> delivers mission-critical data annotation and model fine-tuning — combining expert-led human intelligence with rigorous QA to accelerate your AI to production.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="BP">Talk to an Expert <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg></a>
+      <a href="#workflow" class="BG">See It In Action →</a>
+    </div>
+    <div class="hero-proof">
+      <div class="pavs">
+        <div class="pav"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face" alt=""/></div>
+        <div class="pav"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face" alt=""/></div>
+        <div class="pav"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=64&h=64&fit=crop&crop=face" alt=""/></div>
+        <div class="pav"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face" alt=""/></div>
+      </div>
+      <div class="ptxt"><b>150+ enterprise teams</b> trust us for AI data</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&h=900&fit=crop" alt="AI Annotation"/>
+    <div class="hfc1">
+      <div class="hfc-n"><span class="cu" data-v="500">0</span>M+</div>
+      <div class="hfc-l">Labels Delivered</div>
+    </div>
+    <div class="hfc2">
+      <div class="hfc2-tag">Accuracy Rate</div>
+      <div class="hfc2-val">99.2% IAA Guaranteed</div>
+    </div>
+    <div class="hfc3">
+      <div class="hfc3-label">Annotation Types</div>
+      <div class="hfc3-list">
+        <div class="hfc3-row"><div class="hfc3-dot" style="background:#60A5FA"></div><div class="hfc3-txt">Bounding Box</div></div>
+        <div class="hfc3-row"><div class="hfc3-dot" style="background:#34D399"></div><div class="hfc3-txt">Segmentation</div></div>
+        <div class="hfc3-row"><div class="hfc3-dot" style="background:#F59E0B"></div><div class="hfc3-txt">3D Cuboid</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats strip -->
+<div class="hero-stats">
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="500">0</span><em>M+</em></div><div class="hs-l">Labels Delivered</div></div>
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="99">0</span><em>.2%</em></div><div class="hs-l">Accuracy Rate</div></div>
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="5000">0</span><em>+</em></div><div class="hs-l">Vetted Annotators</div></div>
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="150">0</span><em>+</em></div><div class="hs-l">Enterprise Clients</div></div>
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="48">0</span><em>h</em></div><div class="hs-l">Avg. Onboarding</div></div>
+</div>
+
+<!-- ══ MARQUEE ══ -->
+<div class="mq-band">
+  <div class="mq-inner">
+    <div class="mq-row">
+      <span class="mq-i">Data Annotation Services <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Advanced Video Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Precise Image Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">RLHF Solutions <span class="mq-sep">◆</span></span>
+      <span class="mq-i">LLM Training Data <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Bounding Box <span class="mq-sep">◆</span></span>
+      <span class="mq-i">3D Cuboid Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Semantic Segmentation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">AI Data Labeling <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Expert Annotation Teams <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Data Annotation Services <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Advanced Video Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Precise Image Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">RLHF Solutions <span class="mq-sep">◆</span></span>
+      <span class="mq-i">LLM Training Data <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Bounding Box <span class="mq-sep">◆</span></span>
+      <span class="mq-i">3D Cuboid Annotation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Semantic Segmentation <span class="mq-sep">◆</span></span>
+      <span class="mq-i">AI Data Labeling <span class="mq-sep">◆</span></span>
+      <span class="mq-i">Expert Annotation Teams <span class="mq-sep">◆</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="sec" id="about">
+  <div class="W">
+    <div class="ab-grid">
+      <div class="ab-left rv lf">
+        <div class="ab-img1"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1000&fit=crop" alt="Expert team"/></div>
+        <div class="ab-img2"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=380&fit=crop" alt="Annotator"/></div>
+        <div class="ab-img3"><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=360&h=220&fit=crop" alt="QA"/></div>
+        <div class="ab-badge">
+          <div class="ab-badge-n"><span class="cu" data-v="100">0</span>M+</div>
+          <div class="ab-badge-l">Images Labelled</div>
+        </div>
+      </div>
+      <div>
+        <div class="ey rv up">High Quality Data At Scale</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Mission&#8209;Critical<br/><span class="a">AI Data.</span></h2>
+        <p class="SB rv up" style="transition-delay:.12s">Trusted by leading model innovators for domain expertise and consistently high quality. LOGO delivers expert-driven data solutions powering the world's most advanced AI — from foundation models to autonomous systems and medical AI.</p>
+        <div class="ck rv up" style="transition-delay:.17s">
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Actively manage experts — global SMEs for GenAI, RLHF, multimodal SFT &amp; alignment</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Domain knowledge — Computer Vision, Audio, LiDAR &amp; Sensor Fusion with guaranteed quality</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Enterprise security — SOC 2, ISO 27001, HIPAA, GDPR. NDA-first on every engagement</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Full pipeline orchestration — workflow design, automation, annotation &amp; real-time analytics</span></div>
+        </div>
+        <div class="certs rv up" style="transition-delay:.22s">
+          <span class="ct">SOC 2 Type II</span><span class="ct">ISO 27001</span>
+          <span class="ct">HIPAA</span><span class="ct">GDPR</span><span class="ct">NDA Protected</span>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap" class="rv up">
+          <a href="#cta" class="BP">Book a Demo →</a>
+          <a href="#services" class="BG">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BIG TEXT ══ -->
+<div class="bts">
+  <div class="bts-r">
+    <span class="bts-i f">ANNOTATE<span class="bts-dot"></span></span>
+    <span class="bts-i">ENRICH<span class="bts-dot"></span></span>
+    <span class="bts-i b">LABEL<span class="bts-dot"></span></span>
+    <span class="bts-i">VALIDATE<span class="bts-dot"></span></span>
+    <span class="bts-i f">ANNOTATE<span class="bts-dot"></span></span>
+    <span class="bts-i">ENRICH<span class="bts-dot"></span></span>
+    <span class="bts-i b">LABEL<span class="bts-dot"></span></span>
+    <span class="bts-i">VALIDATE<span class="bts-dot"></span></span>
+  </div>
+  <div class="bts-r rev" style="margin-top:6px">
+    <span class="bts-i">COMPUTER VISION<span class="bts-dot"></span></span>
+    <span class="bts-i b">RLHF<span class="bts-dot"></span></span>
+    <span class="bts-i f">LIDAR 3D<span class="bts-dot"></span></span>
+    <span class="bts-i">MEDICAL AI<span class="bts-dot"></span></span>
+    <span class="bts-i">COMPUTER VISION<span class="bts-dot"></span></span>
+    <span class="bts-i b">RLHF<span class="bts-dot"></span></span>
+    <span class="bts-i f">LIDAR 3D<span class="bts-dot"></span></span>
+    <span class="bts-i">MEDICAL AI<span class="bts-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<section class="sec" id="services">
+  <div class="W">
+    <div class="svc-hd">
+      <div>
+        <div class="ey rv up">What We Do</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Annotation For<br/>Every <span class="a">AI Use Case.</span></h2>
+      </div>
+      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">From simple bounding boxes to complex RLHF pipelines — one specialist team, every modality, production-scale quality.</p>
+    </div>
+    <div class="svc-grid sg">
+      <div class="sv"><span class="sv-n">01</span><div class="sv-ico">🖼️</div><h3>Image Annotation</h3><p>Bounding boxes, polygons, keypoints, semantic &amp; instance segmentation. 100M+ images labelled with sub-pixel precision across all object classes.</p><div class="sv-tags"><span class="sv-tag">Bounding Box</span><span class="sv-tag">Polygon</span><span class="sv-tag">Keypoints</span></div><div class="sv-more">Learn more →</div></div>
+      <div class="sv"><span class="sv-n">02</span><div class="sv-ico">🎬</div><h3>Video Annotation</h3><p>Frame-by-frame object tracking, action recognition, temporal event labeling and multi-sensor annotation with full audit trails and SLA-backed delivery.</p><div class="sv-tags"><span class="sv-tag">Object Tracking</span><span class="sv-tag">Action Labels</span></div><div class="sv-more">Learn more →</div></div>
+      <div class="sv"><span class="sv-n">03</span><div class="sv-ico">🤖</div><h3>RLHF &amp; LLM Alignment</h3><p>Expert-led fine-tuning, preference ranking, chain-of-thought reasoning, red teaming and alignment for frontier language &amp; multimodal models.</p><div class="sv-tags"><span class="sv-tag">RLHF</span><span class="sv-tag">Fine-Tuning</span><span class="sv-tag">Red Teaming</span></div><div class="sv-more">Learn more →</div></div>
+      <div class="sv"><span class="sv-n">04</span><div class="sv-ico">📝</div><h3>NLP &amp; Text Annotation</h3><p>Named entity recognition, sentiment analysis, intent classification, and corpus augmentation across 40+ languages with expert SMEs.</p><div class="sv-tags"><span class="sv-tag">NER</span><span class="sv-tag">Sentiment</span><span class="sv-tag">40+ Languages</span></div><div class="sv-more">Learn more →</div></div>
+      <div class="sv"><span class="sv-n">05</span><div class="sv-ico">🏥</div><h3>Medical Imaging</h3><p>DICOM annotation, radiology labeling, digital pathology segmentation and clinical data structuring with HIPAA workflows and credentialed reviewers.</p><div class="sv-tags"><span class="sv-tag">DICOM</span><span class="sv-tag">HIPAA</span><span class="sv-tag">Radiology</span></div><div class="sv-more">Learn more →</div></div>
+      <div class="sv"><span class="sv-n">06</span><div class="sv-ico">📡</div><h3>LiDAR &amp; 3D Annotation</h3><p>3D cuboid annotation, point cloud segmentation, multi-sensor fusion labeling for autonomous vehicles, HD mapping and spatial AI systems.</p><div class="sv-tags"><span class="sv-tag">Point Cloud</span><span class="sv-tag">3D Cuboid</span><span class="sv-tag">Sensor Fusion</span></div><div class="sv-more">Learn more →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORKFLOW DEMO (NEW) ══ -->
+<section class="sec" id="workflow">
+  <div class="W">
+    <div class="wf-grid">
+      <div>
+        <div class="ey rv up">Live Platform</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">See How The<br/><span class="a">Annotation</span><br/>Process Works.</h2>
+        <p class="SB rv up" style="transition-delay:.12s;margin-bottom:32px">Our annotation platform combines AI-assisted pre-labeling with expert human review — cutting turnaround time by up to 70% without sacrificing quality.</p>
+        <div class="wf-steps rv up" style="transition-delay:.17s">
+          <div class="wf-step active">
+            <div class="wf-sn">1</div>
+            <div class="wf-step-txt">
+              <h4>Upload &amp; Pre-label</h4>
+              <p>Upload raw data. Our AI pre-labels up to 80% of assets instantly for expert review.</p>
+            </div>
+          </div>
+          <div class="wf-conn"></div>
+          <div class="wf-step">
+            <div class="wf-sn">2</div>
+            <div class="wf-step-txt">
+              <h4>Expert Review &amp; Correct</h4>
+              <p>Certified annotators review, adjust and validate every label against your guidelines.</p>
+            </div>
+          </div>
+          <div class="wf-conn"></div>
+          <div class="wf-step">
+            <div class="wf-sn">3</div>
+            <div class="wf-step-txt">
+              <h4>QA Sign-off &amp; Export</h4>
+              <p>Senior QA engineers run final checks. Export in COCO, VOC, YOLO, or custom format.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-visual">
+        <div class="wf-screen" id="wfscreen">
+          <div class="wf-topbar">
+            <div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div>
+            <div class="wf-title-bar">LOGO Platform — Annotation Workspace</div>
+          </div>
+          <div class="wf-body">
+            <div class="wf-img-wrap">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=440&fit=crop" alt="Annotation"/>
+              <div class="ann-box ann-b1" data-label="Vehicle"></div>
+              <div class="ann-box ann-b2" data-label="Pedestrian"></div>
+              <div class="ann-box ann-b3" data-label="Sign"></div>
+            </div>
+            <div class="wf-meta">
+              <span class="wf-chip ok">✓ QA Passed</span>
+              <span class="wf-chip pr">In Progress</span>
+              <div style="margin-left:auto">
+                <div class="wf-pct"><span class="cu" data-v="94">0</span>%</div>
+                <div class="wf-pct-l">Batch Complete</div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-bars">
+            <div>
+              <div class="wbar-label"><span>Image Annotation</span><span>98%</span></div>
+              <div class="wbar-track"><div class="wbar-fill" style="--w:98%"></div></div>
+            </div>
+            <div>
+              <div class="wbar-label"><span>QA Verification</span><span>94%</span></div>
+              <div class="wbar-track"><div class="wbar-fill" style="--w:94%"></div></div>
+            </div>
+            <div>
+              <div class="wbar-label"><span>Export Ready</span><span>76%</span></div>
+              <div class="wbar-track"><div class="wbar-fill" style="--w:76%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PLATFORM FEATURES (NEW) ══ -->
+<section class="sec" id="platform">
+  <div class="W">
+    <div class="plat-hd">
+      <div>
+        <div class="ey rv up">Platform</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">One Platform,<br/><span class="a">Every Modality.</span></h2>
+      </div>
+      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">LOGO Hub brings annotation, QA, workforce management, and analytics into a single enterprise workspace with real-time visibility.</p>
+    </div>
+    <div class="feat-tabs" id="featTabs">
+      <div class="ft on" data-tab="0">Annotation</div>
+      <div class="ft" data-tab="1">Quality</div>
+      <div class="ft" data-tab="2">Analytics</div>
+      <div class="ft" data-tab="3">Security</div>
+    </div>
+    <div class="feat-panels">
+      <div class="feat-panel on" data-panel="0">
+        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=720&fit=crop" alt="Annotation"/></div>
+        <div class="feat-list sg">
+          <div class="fl-item"><div class="fl-ico">🖊️</div><div class="fl-txt"><h4>AI-Assisted Pre-labeling</h4><p>Reduce annotation time by up to 70% with AI-generated first-pass labels reviewed and corrected by expert annotators.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">🔄</div><div class="fl-txt"><h4>Multi-modality Support</h4><p>Image, video, point cloud, audio, and text annotation — all in one unified workspace with consistent tooling.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">⚡</div><div class="fl-txt"><h4>Batch Workflow Automation</h4><p>Automate task routing, annotator assignment, and QA escalation across thousands of assets simultaneously.</p></div></div>
+        </div>
+      </div>
+      <div class="feat-panel" data-panel="1">
+        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=720&fit=crop" alt="Quality"/></div>
+        <div class="feat-list sg">
+          <div class="fl-item"><div class="fl-ico">🎯</div><div class="fl-txt"><h4>Real-time IAA Scoring</h4><p>Inter-annotator agreement calculated live per batch. Automatic escalation when scores drop below threshold.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">👁️</div><div class="fl-txt"><h4>Peer Review Layer</h4><p>Every label reviewed by a second certified annotator before reaching QA sign-off. No single-point failures.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">📋</div><div class="fl-txt"><h4>Audit Trail on Every Label</h4><p>Full history of who annotated, reviewed, and approved every single data point — exportable for compliance.</p></div></div>
+        </div>
+      </div>
+      <div class="feat-panel" data-panel="2">
+        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=720&fit=crop" alt="Analytics"/></div>
+        <div class="feat-list sg">
+          <div class="fl-item"><div class="fl-ico">📊</div><div class="fl-txt"><h4>Live Project Dashboard</h4><p>Real-time throughput, accuracy, and cost metrics visible to your team the moment you log in — no waiting for reports.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">🔔</div><div class="fl-txt"><h4>Smart Alerts &amp; SLA Monitoring</h4><p>Automated alerts when batches fall behind schedule or quality drops. SLA breach prevention built in.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">📤</div><div class="fl-txt"><h4>Custom Reporting &amp; Export</h4><p>One-click reports on cost-per-label, velocity, annotator performance, and dataset quality for stakeholder review.</p></div></div>
+        </div>
+      </div>
+      <div class="feat-panel" data-panel="3">
+        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=720&fit=crop" alt="Security"/></div>
+        <div class="feat-list sg">
+          <div class="fl-item"><div class="fl-ico">🔐</div><div class="fl-txt"><h4>Zero Data Retention Policy</h4><p>Data processed exclusively in your approved cloud environment. Nothing stored on LOGO servers after project close.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">🏛️</div><div class="fl-txt"><h4>SOC 2 + HIPAA Compliant</h4><p>Current certificates available before contract signature. Regular third-party audits. Full compliance documentation provided.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">🤝</div><div class="fl-txt"><h4>NDA-first Engagements</h4><p>Every team member signs NDAs before accessing your data. Annotators are vetted, trained, and background-checked.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CAPABILITIES ══ -->
+<section class="sec" id="cap">
+  <div class="W">
+    <div class="cap-hd">
+      <div class="ey rv up" style="justify-content:center">Full Capabilities</div>
+      <h2 class="ST rv up" style="text-align:center;transition-delay:.07s">Everything In <span class="a">One Partner.</span></h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cc"><div class="cc-head"><span>📸</span><h4>Visual Data</h4></div><div class="cc-rows"><div class="cc-row">2D &amp; 3D Bounding Boxes</div><div class="cc-row">Semantic Segmentation</div><div class="cc-row">Instance Segmentation</div><div class="cc-row">Polygon &amp; Spline Annotation</div><div class="cc-row">Keypoint &amp; Skeleton Mapping</div><div class="cc-row">Image Classification &amp; Tagging</div><div class="cc-row">OCR &amp; Document Layout</div><div class="cc-row">Depth Map Annotation</div></div></div>
+      <div class="cc"><div class="cc-head"><span>🎬</span><h4>Video &amp; 3D</h4></div><div class="cc-rows"><div class="cc-row">Frame-by-frame Labelling</div><div class="cc-row">Multi-object Tracking</div><div class="cc-row">Action &amp; Gesture Recognition</div><div class="cc-row">LiDAR 3D Cuboid Annotation</div><div class="cc-row">Point Cloud Segmentation</div><div class="cc-row">Sensor Fusion (RGB + LiDAR)</div><div class="cc-row">Lane &amp; Road Surface Marking</div><div class="cc-row">Radar &amp; Event Camera Data</div></div></div>
+      <div class="cc"><div class="cc-head"><span>🗣️</span><h4>Language &amp; Audio</h4></div><div class="cc-rows"><div class="cc-row">Speech-to-Text Transcription</div><div class="cc-row">Speaker Diarization</div><div class="cc-row">Named Entity Recognition</div><div class="cc-row">Sentiment &amp; Emotion Analysis</div><div class="cc-row">Intent Classification</div><div class="cc-row">Coreference Resolution</div><div class="cc-row">Relation Extraction</div><div class="cc-row">40+ Languages Covered</div></div></div>
+      <div class="cc"><div class="cc-head"><span>⚙️</span><h4>AI Alignment</h4></div><div class="cc-rows"><div class="cc-row">RLHF Response Ranking</div><div class="cc-row">Human Preference Collection</div><div class="cc-row">Constitutional AI Feedback</div><div class="cc-row">Instruction Tuning Datasets</div><div class="cc-row">Red-Teaming &amp; Jailbreak Tests</div><div class="cc-row">Hallucination Evaluation</div><div class="cc-row">Factuality Assessment</div><div class="cc-row">Bias Detection &amp; Mitigation</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INDUSTRIES ══ -->
+<section class="sec" id="ind">
+  <div class="W">
+    <div class="ind-hd">
+      <div>
+        <div class="ey rv up">Domains</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Built For The<br/><span class="a">Hardest</span> <span class="d">Domains.</span></h2>
+      </div>
+      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">From foundation models to autonomous systems and medical AI — expert-driven data solutions with guaranteed quality and domain-specific expertise.</p>
+    </div>
+    <div class="ind-grid sg">
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="AV"/></div><div class="ic-body"><div class="ic-tag">Mobility AI</div><h3>Autonomous Vehicles</h3><p>High-precision sensor labeling enabling ADAS systems to perceive complex environments and operate safely.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop" alt="Healthcare"/></div><div class="ic-body"><div class="ic-tag">Healthcare AI</div><h3>Medical &amp; Life Sciences</h3><p>Clinical domain expertise powers medical imaging, diagnostics, and AI-driven healthcare with accuracy &amp; compliance.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="GenAI"/></div><div class="ic-body"><div class="ic-tag">Generative AI</div><h3>LLMs &amp; Foundation Models</h3><p>Expert-led annotation and reinforcement workflows strengthen language models — accuracy, safety, reliability.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Robotics"/></div><div class="ic-body"><div class="ic-tag">Robotics</div><h3>Robotics &amp; Manufacturing</h3><p>Structured training data and scenario validation enhance robotic perception and task execution.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?w=600&h=400&fit=crop" alt="Agriculture"/></div><div class="ic-body"><div class="ic-tag">Agricultural AI</div><h3>Precision Agriculture</h3><p>Crop &amp; weed detection, drone image annotation and plant health classification for smart farming AI.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop" alt="Smart Cities"/></div><div class="ic-body"><div class="ic-tag">Infrastructure</div><h3>Smart Cities &amp; Retail</h3><p>Surveillance annotation, footfall analysis and product detection powering urban intelligence and retail AI.</p><div class="ic-lnk">Learn More →</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS (dark) ══ -->
+<section id="proc">
+  <div class="proc-hd W">
+    <div class="ey rv up" style="justify-content:center">How It Works</div>
+    <h2 class="ST rv up" style="text-align:center;transition-delay:.08s;color:#fff">Raw Data To <span class="a" style="color:var(--b3)">Model-Ready</span><br/>In 48 Hours.</h2>
+  </div>
+  <div class="W">
+    <div class="proc-cards sg">
+      <div class="pc"><span class="pc-n">01</span><h4>Data Intake &amp; Scoping</h4><p>We audit your dataset, co-define annotation guidelines, set quality benchmarks, and launch a shared dashboard before a single label is placed.</p></div>
+      <div class="pc"><span class="pc-n">02</span><h4>Expert Team Assignment</h4><p>Domain-matched annotators pass a qualification test on your specific task. Medical data? Only certified SMEs. No generalists, ever.</p></div>
+      <div class="pc"><span class="pc-n">03</span><h4>Annotation + Multi-Layer QA</h4><p>Every label passes automated validation, peer review, and senior sign-off. IAA scores tracked and reported per batch — always.</p></div>
+      <div class="pc"><span class="pc-n">04</span><h4>Delivery &amp; Iteration</h4><p>Datasets in your preferred format, on time. We stay engaged for model feedback loops, edge-case expansion, and relabelling.</p></div>
+    </div>
+  </div>
+  <div class="proc-split rv sc" style="margin-top:2px">
+    <div class="ps-img"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&h=600&fit=crop" alt="Process"/></div>
+    <div class="ps-txt">
+      <h3>48-Hour<br/>Project Launch.</h3>
+      <p>From brief to first annotations in two business days. No procurement delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs.</p>
+      <div class="livepulse">Live quality dashboard access</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING (NEW) ══ -->
+<section class="sec" id="pricing">
+  <div class="W">
+    <div class="prc-hd">
+      <div class="ey rv up" style="justify-content:center">Pricing</div>
+      <h2 class="ST rv up" style="text-align:center;transition-delay:.07s">Transparent <span class="a">Pricing.</span><br/>No Surprises.</h2>
+      <p class="SB rv up" style="text-align:center;margin:0 auto;transition-delay:.12s">Start with a pilot, scale to enterprise. All plans include a dedicated project manager and quality guarantee.</p>
+    </div>
+    <div class="prc-toggle">
+      <span>Monthly</span>
+      <div class="tog on" id="billingTog"></div>
+      <span>Annual</span>
+      <span class="save-badge">Save 20%</span>
+    </div>
+    <div class="prc-grid sg">
+      <div class="pcard">
+        <h3>Starter</h3>
+        <p class="pdesc">Ideal for small teams and proof-of-concept projects up to 50K labels.</p>
+        <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">2,400</span><span class="pp-per">/mo</span></div>
+        <div class="pcard-feats">
+          <div class="pf">Up to 50,000 labels / month</div>
+          <div class="pf">Image &amp; video annotation</div>
+          <div class="pf">Basic QA layer included</div>
+          <div class="pf">COCO / YOLO export formats</div>
+          <div class="pf">Email support</div>
+          <div class="pf off">Dedicated project manager</div>
+          <div class="pf off">LiDAR &amp; 3D annotation</div>
+          <div class="pf off">RLHF &amp; LLM alignment</div>
+        </div>
+        <a href="#cta" class="BG" style="width:100%;justify-content:center">Get Started →</a>
+      </div>
+      <div class="pcard pop">
+        <div class="pop-badge">Most Popular</div>
+        <h3>Professional</h3>
+        <p class="pdesc">For growing teams with ongoing annotation needs and multi-modality requirements.</p>
+        <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">7,900</span><span class="pp-per">/mo</span></div>
+        <div class="pcard-feats">
+          <div class="pf">Up to 250,000 labels / month</div>
+          <div class="pf">All annotation modalities</div>
+          <div class="pf">Multi-layer QA + IAA scoring</div>
+          <div class="pf">All export formats + custom</div>
+          <div class="pf">Dedicated project manager</div>
+          <div class="pf">LiDAR &amp; 3D annotation</div>
+          <div class="pf">Priority support (4h SLA)</div>
+          <div class="pf off">RLHF &amp; LLM alignment</div>
+        </div>
+        <a href="#cta" class="BB" style="width:100%;justify-content:center">Get Started →</a>
+      </div>
+      <div class="pcard">
+        <h3>Enterprise</h3>
+        <p class="pdesc">Custom volume, RLHF/LLM data, medical AI and full pipeline management.</p>
+        <div class="pcard-price"><span class="pp-cur"></span><span class="pp-n">Custom</span></div>
+        <div class="pcard-feats">
+          <div class="pf">Unlimited labels</div>
+          <div class="pf">All annotation modalities</div>
+          <div class="pf">Full pipeline orchestration</div>
+          <div class="pf">RLHF &amp; LLM alignment</div>
+          <div class="pf">Medical AI (HIPAA)</div>
+          <div class="pf">Dedicated team (5–50+ SMEs)</div>
+          <div class="pf">SOC 2 + ISO 27001 compliance</div>
+          <div class="pf">24/7 priority support</div>
+        </div>
+        <a href="#cta" class="BP" style="width:100%;justify-content:center">Contact Sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST ══ -->
+<section class="sec" id="trust">
+  <div class="W">
+    <div class="tr-hd">
+      <div>
+        <div class="ey rv up">Security &amp; Compliance</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Enterprise-Grade<br/><span class="a">Trust</span> By Default.</h2>
+      </div>
+      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">Your data never leaves your approved environment. Our security posture meets the most demanding requirements in healthcare, finance, and defence-adjacent AI.</p>
+    </div>
+    <div class="tr-grid sg">
+      <div class="trc"><div class="trc-ico">🔐</div><h3>Data Privacy &amp; NDA</h3><p>Every project begins with a signed NDA. Data processed exclusively in your cloud storage or our SOC 2-certified environment — never on personal devices.</p><div class="trc-tags"><span class="trc-tag">NDA Protected</span><span class="trc-tag">Zero Retention</span><span class="trc-tag">Audit Trail</span></div></div>
+      <div class="trc"><div class="trc-ico">🏛️</div><h3>Compliance &amp; Certifications</h3><p>SOC 2 Type II, ISO 27001, GDPR, and HIPAA compliance across all workflows. Certificates available before contract signature.</p><div class="trc-tags"><span class="trc-tag">SOC 2 Type II</span><span class="trc-tag">ISO 27001</span><span class="trc-tag">HIPAA</span><span class="trc-tag">GDPR</span></div></div>
+      <div class="trc"><div class="trc-ico">⚙️</div><h3>Quality Assurance</h3><p>Dual-layer QA: automated IAA scoring plus expert human review on every batch. ≥99% IAA guaranteed, with free rework if not met.</p><div class="trc-list"><div class="trc-li">Automated consistency checks on every label</div><div class="trc-li">Senior annotator peer review layer</div><div class="trc-li">Free rework guarantee below threshold</div><div class="trc-li">Real-time quality dashboard access</div></div></div>
+      <div class="trc"><div class="trc-ico">⚡</div><h3>Scale &amp; Reliability</h3><p>5,000+ vetted annotators on standby. Scale to surge volumes within 72 hours without quality compromise, backed by contractual SLAs.</p><div class="trc-list"><div class="trc-li">72-hour surge capacity guarantee</div><div class="trc-li">Contractual SLAs on every project</div><div class="trc-li">Dedicated project manager assigned</div><div class="trc-li">24/7 progress dashboard and alerts</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NUMBERS ══ -->
+<section id="nums">
+  <div class="nums-wrap sg">
+    <div class="nb"><div class="nb-ring"></div><div class="nb-n"><span class="cu" data-v="500">0</span><em>M+</em></div><div class="nb-l">Total Labels Delivered</div></div>
+    <div class="nb"><div class="nb-ring"></div><div class="nb-n"><span class="cu" data-v="99">0</span><em>.2%</em></div><div class="nb-l">Inter-Annotator Agreement</div></div>
+    <div class="nb"><div class="nb-ring"></div><div class="nb-n"><span class="cu" data-v="40">0</span><em>+</em></div><div class="nb-l">Languages Supported</div></div>
+    <div class="nb"><div class="nb-ring"></div><div class="nb-n"><span class="cu" data-v="10">0</span><em>yr+</em></div><div class="nb-l">Years Of Expertise</div></div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="sec" id="test">
+  <div class="W">
+    <div class="test-hd rv up">
+      <div class="ey" style="justify-content:center">Client Voices</div>
+      <h2 class="ST" style="margin-top:10px;color:#fff;text-align:center">Trusted By Teams<br/><span style="color:var(--b3)">Building Tomorrow.</span></h2>
+    </div>
+    <div class="test-grid sg">
+      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">LOGO's annotation enables us to build accurate models and actionable insights. Onboarded in 48 hours, hit 99% IAA from batch one. Never needed a single rework cycle in 18 months.</p><div class="tc-name">Sarah Chen</div><div class="tc-role">Head of ML Data · Autonomous AI Co.</div></div>
+      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">Incredibly knowledgeable data labelers who are genuinely part of our team. HIPAA compliance, full audit trail, and a dedicated PM made enterprise procurement entirely painless.</p><div class="tc-name">Dr. Michael Torres</div><div class="tc-role">CTO · MedVision Diagnostics</div></div>
+      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">We needed deep language understanding across 12 languages for our RLHF pipeline. LOGO delivered real domain experts — not generalists — with genuine chain-of-thought reasoning skills.</p><div class="tc-name">Priya Nair</div><div class="tc-role">Research Lead · Foundation Model Lab</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESOURCES ══ -->
+<section class="sec" id="content">
+  <div class="W">
+    <div class="cnt-hd">
+      <div>
+        <div class="ey rv up">Resources &amp; Insights</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Featured <span class="a">Content.</span></h2>
+      </div>
+      <a href="#" class="va-btn rv up">View All →</a>
+    </div>
+    <div class="cnt-grid sg">
+      <div class="crd-big">
+        <div class="crd-big-img"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=440&fit=crop" alt="CV"/></div>
+        <div class="crd-body">
+          <div class="crd-lbl">Blog Post</div>
+          <h3>How Context Improves Annotation Accuracy in Computer Vision Models</h3>
+          <p>Why environmental context shapes annotation decisions — and why it matters for model performance at the edges.</p>
+          <div class="crd-more">Read More →</div>
+        </div>
+      </div>
+      <div class="crd-sm">
+        <div class="crd-sm-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=280&fit=crop" alt="LiDAR"/></div>
+        <div class="crd-sm-body">
+          <div class="crd-lbl">Guide</div>
+          <h4>29 Free Image Datasets for Computer Vision Workflows</h4>
+          <p>A curated list of open datasets to bootstrap your training pipeline.</p>
+          <div class="crd-more">Read More →</div>
+        </div>
+      </div>
+      <div class="crd-sm">
+        <div class="crd-sm-img"><img src="https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=500&h=280&fit=crop" alt="RLHF"/></div>
+        <div class="crd-sm-body">
+          <div class="crd-lbl">Research</div>
+          <h4>How Edge Cases Hinder Autonomous Vehicle Development</h4>
+          <p>Why rare scenarios disproportionately impact AV model reliability.</p>
+          <div class="crd-more">Read More →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOGOS ══ -->
+<section id="logos">
+  <div class="logos-lbl">Trusted by top AI innovators worldwide</div>
+  <div class="logos-track">
+    <div class="logos-row">
+      <div class="li"><span class="li-name">Microsoft</span></div>
+      <div class="li"><span class="li-name">eBay</span></div>
+      <div class="li"><span class="li-name">Autodesk</span></div>
+      <div class="li"><span class="li-name">TripAdvisor</span></div>
+      <div class="li"><span class="li-name">Bill.com</span></div>
+      <div class="li"><span class="li-name">Nuro AI</span></div>
+      <div class="li"><span class="li-name">Orbital Insight</span></div>
+      <div class="li"><span class="li-name">Johnson &amp; Johnson</span></div>
+      <div class="li"><span class="li-name">Microsoft</span></div>
+      <div class="li"><span class="li-name">eBay</span></div>
+      <div class="li"><span class="li-name">Autodesk</span></div>
+      <div class="li"><span class="li-name">TripAdvisor</span></div>
+      <div class="li"><span class="li-name">Bill.com</span></div>
+      <div class="li"><span class="li-name">Nuro AI</span></div>
+      <div class="li"><span class="li-name">Orbital Insight</span></div>
+      <div class="li"><span class="li-name">Johnson &amp; Johnson</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="sec" id="faq">
+  <div class="W">
+    <div class="faq-wrap">
+      <div>
+        <div class="ey rv up">FAQ</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Common<br/><span class="a">Questions.</span></h2>
+        <p class="SB rv up" style="transition-delay:.12s;margin-top:12px">Everything you need before starting your first project with us.</p>
+        <div style="margin-top:28px" class="rv up"><a href="#cta" class="BP">Start a Project →</a></div>
+      </div>
+      <div class="rv up" style="transition-delay:.1s">
+        <div class="fq-item on"><div class="fq-q">How quickly can you start a new project? <span class="fq-ic">+</span></div><div class="fq-a">Most projects onboard within 48 hours. We review your dataset, agree on guidelines, assign annotators, and begin labelling — all within two business days of your brief.</div></div>
+        <div class="fq-item"><div class="fq-q">What accuracy level do you guarantee? <span class="fq-ic">+</span></div><div class="fq-a">We guarantee a minimum 99% IAA on standard tasks. For specialist domains we agree a custom threshold — and offer free rework if it's not met. No exceptions.</div></div>
+        <div class="fq-item"><div class="fq-q">How do you handle sensitive or confidential data? <span class="fq-ic">+</span></div><div class="fq-a">Every engagement starts with a signed NDA. Data never leaves your approved cloud storage. Annotators work in your environment or our SOC 2-certified platform with full audit trails.</div></div>
+        <div class="fq-item"><div class="fq-q">Can you scale quickly for large surge projects? <span class="fq-ic">+</span></div><div class="fq-a">Yes. We maintain 5,000+ vetted annotators across multiple domains. For large-scale surges we can scale within 72 hours without quality compromise, backed by contractual SLAs.</div></div>
+        <div class="fq-item"><div class="fq-q">What annotation formats do you deliver in? <span class="fq-ic">+</span></div><div class="fq-a">COCO JSON, Pascal VOC XML, YOLO TXT, CSV, DICOM, and any custom schema your pipeline requires. We match your toolchain, not the other way around.</div></div>
+        <div class="fq-item"><div class="fq-q">Do you offer a pilot or proof-of-concept? <span class="fq-ic">+</span></div><div class="fq-a">Yes — we always recommend a small paid pilot so you can evaluate quality firsthand. Most clients proceed to full scale after 500–1,000 labels.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="cta">
+  <div class="cta-inner rv sc">
+    <div class="cta-ey">Get Started Today</div>
+    <h2 class="cta-h">Ready To Build<br/><span>Better AI?</span></h2>
+    <p class="cta-p">The need for speed in high-quality data annotation has never been greater. Tell us about your data — we'll scope, price, and have a dedicated expert team ready within 48 hours.</p>
+    <div class="cta-form">
+      <input class="cta-inp" type="email" placeholder="your@company.com"/>
+      <button class="cta-sub">Let's Connect</button>
+    </div>
+    <p class="cta-note">No commitment · 24hr response · Free pilot available</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="flogo">
+          <div class="fmark"><svg viewBox="0 0 18 18"><path d="M3 9h12M9 3v12" stroke-width="2"/></svg></div>
+          <span class="ftxt">LOGO<span>X</span></span>
+        </div>
+        <p class="fdesc">Precision data labelling and annotation for the world's most demanding AI teams.</p>
+        <div class="fsoc">
+          <a href="#" class="fsi">in</a>
+          <a href="#" class="fsi">𝕏</a>
+          <a href="#" class="fsi">✉</a>
+        </div>
+      </div>
+      <div class="fcol"><h5>Services</h5><ul><li><a href="#services">Image Annotation</a></li><li><a href="#services">Video Annotation</a></li><li><a href="#services">RLHF &amp; LLMs</a></li><li><a href="#services">NLP &amp; Text</a></li><li><a href="#services">Medical Imaging</a></li><li><a href="#services">LiDAR &amp; 3D</a></li></ul></div>
+      <div class="fcol"><h5>Company</h5><ul><li><a href="#about">About Us</a></li><li><a href="#workflow">Platform Demo</a></li><li><a href="#ind">Industries</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#content">Resources</a></li><li><a href="#cta">Contact Us</a></li></ul></div>
+      <div class="fcol"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">AI Ethics Policy</a></li><li><a href="#">Compliance</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 LOGO. All rights reserved.</p>
+      <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══ LOADER ══ */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('out'),1500);
+});
+
+/* ══ CURSOR ══ */
+const C1=document.getElementById('C1'),C2=document.getElementById('C2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  C1.style.left=mx+'px';C1.style.top=my+'px';
+},{passive:true});
+document.addEventListener('mousedown',()=>document.body.classList.add('clk'));
+document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  C2.style.left=rx+'px';C2.style.top=ry+'px';
+  requestAnimationFrame(loop);})();
+/* hover state */
+document.querySelectorAll('a,button,.sv,.ic,.tc,.pc,.trc,.cc,.crd-big,.crd-sm,.pcard,.fl-item,.hs').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+/* text cursor */
+document.querySelectorAll('p,h1,h2,h3,h4,.SB').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('txt'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('txt'));
+});
+
+/* ══ PROGRESS ══ */
+window.addEventListener('scroll',()=>{
+  document.getElementById('PB').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
+},{passive:true});
+
+/* ══ NAV ══ */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>50),{passive:true});
+
+/* ══ HAM ══ */
+const ham=document.getElementById('ham'),mob=document.getElementById('mobnav');
+ham.addEventListener('click',()=>{ham.classList.toggle('x');mob.classList.toggle('on');document.body.style.overflow=mob.classList.contains('on')?'hidden':'';});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('x');mob.classList.remove('on');document.body.style.overflow='';}));
+
+/* ══ SCROLL REVEAL ══ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.06,rootMargin:'0px 0px -44px 0px'});
+document.querySelectorAll('.rv,.sg').forEach(el=>io.observe(el));
+
+/* ══ WORKFLOW SCREEN REVEAL ══ */
+const wfio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');wfio.unobserve(e.target);}});
+},{threshold:.2});
+const wfs=document.getElementById('wfscreen');
+if(wfs)wfio.observe(wfs);
+
+/* ══ COUNT UP ══ */
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,t=+el.dataset.v,dur=2200,s=performance.now();
+    (function step(n){const p=Math.min((n-s)/dur,1);
+      el.textContent=Math.round((1-Math.pow(1-p,3.5))*t);
+      if(p<1)requestAnimationFrame(step);})(s);
+    cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.cu').forEach(el=>cio.observe(el));
+
+/* ══ CAP CARDS STAGGER ══ */
+document.querySelectorAll('.cap-grid .cc').forEach((card,i)=>{
+  const o=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*90);
+        o.unobserve(e.target);
+      }
+    });
+  },{threshold:.1});
+  o.observe(card);
+});
+
+/* ══ FAQ ══ */
+document.querySelectorAll('.fq-item').forEach(item=>{
+  item.querySelector('.fq-q').addEventListener('click',()=>{
+    const on=item.classList.contains('on');
+    document.querySelectorAll('.fq-item').forEach(x=>x.classList.remove('on'));
+    if(!on)item.classList.add('on');
+  });
+});
+
+/* ══ PLATFORM TABS ══ */
+document.querySelectorAll('.ft').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const idx=+tab.dataset.tab;
+    document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));
+    document.querySelectorAll('.feat-panel').forEach(p=>p.classList.remove('on'));
+    tab.classList.add('on');
+    document.querySelector(`.feat-panel[data-panel="${idx}"]`).classList.add('on');
+    // re-trigger reveal
+    document.querySelectorAll('.feat-panel.on .rv,.feat-panel.on .sg').forEach(el=>{
+      el.classList.remove('in');
+      setTimeout(()=>el.classList.add('in'),50);
+    });
+  });
+});
+
+/* ══ HERO PARALLAX ══ */
+const hImg=document.querySelector('.hero-right img');
+window.addEventListener('scroll',()=>{
+  if(scrollY<window.innerHeight&&hImg)
+    hImg.style.transform=`scale(1) translateY(${scrollY*.1}px)`;
+},{passive:true});
+
+/* ══ MAGNETIC BUTTONS ══ */
+document.querySelectorAll('.BP,.BG,.BB,.nav-cta').forEach(b=>{
+  b.addEventListener('mousemove',e=>{
+    const r=b.getBoundingClientRect();
+    b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.14}px,${(e.clientY-r.top-r.height/2)*.14}px) translateY(-2px)`;
+  });
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+/* ══ 3D TILT on trust + pricing cards ══ */
+document.querySelectorAll('.trc,.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+/* ══ BILLING TOGGLE ══ */
+const tog=document.getElementById('billingTog');
+if(tog){
+  tog.addEventListener('click',()=>{
+    tog.classList.toggle('on');
+    // animate price numbers (simulate toggle effect)
+    document.querySelectorAll('.pp-n').forEach(n=>{
+      n.style.transform='scale(1.08)';
+      n.style.color=tog.classList.contains('on')?'var(--b)':'var(--ink)';
+      setTimeout(()=>n.style.transform='',300);
+    });
+  });
+}
+
+/* ══ WORKFLOW STEP CYCLER ══ */
+let wfStep=0;
+const wfSteps=document.querySelectorAll('.wf-step');
+if(wfSteps.length){
+  setInterval(()=>{
+    wfSteps.forEach(s=>s.classList.remove('active'));
+    wfStep=(wfStep+1)%wfSteps.length;
+    wfSteps[wfStep].classList.add('active');
+  },2400);
+}
+
+/* ══ HERO TITLE HOVER BREATHE ══ */
+const hh=document.querySelector('.hero-h');
+if(hh){
+  hh.addEventListener('mouseenter',()=>{hh.style.letterSpacing='-3px';});
+  hh.addEventListener('mouseleave',()=>{hh.style.letterSpacing='';});
+  hh.style.transition='letter-spacing .4s';
+}
+
+/* ══ NAV LINK ACTIVE HIGHLIGHT ══ */
+const sections=document.querySelectorAll('section[id],div[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+const actIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navAs.forEach(a=>{
+        a.style.color=a.getAttribute('href')==='#'+e.target.id?'var(--ink)':'';
+      });
+    }
+  });
+},{threshold:.4});
+sections.forEach(s=>actIO.observe(s));
+
+/* ══ SMOOTH SECTION COUNTER RING ANIMATION DELAY ══ */
+document.querySelectorAll('.nb-ring').forEach((ring,i)=>{
+  ring.style.animationDelay=`${i*-1}s`;
+});
+</script>
+</body>
+</html>
