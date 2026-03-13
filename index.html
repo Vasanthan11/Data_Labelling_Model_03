@@ -16,25 +16,25 @@
   --bg2:    #F0EDE7;
   --bg3:    #E6E2D9;
   --card:   #FFFFFF;
-  --rule:   rgba(15,17,30,.08);
-  --rule2:  rgba(15,17,30,.12);
+  /* --rule:   rgba(15,17,30,.08);
+  --rule2:  rgba(15,17,30,.12); */
 
-  --ink:    #0F111E;
-  --ink2:   #1C1F32;
+  --ink:    #02A384;
+  --ink2:   #02A384;
   --mid:    #454862;
-  --muted:  #8589A0;
+  --muted:  #02A384;
   --light:  #B8BCCC;
 
-  --b:      #1847F0;
-  --b2:     #3A68F5;
-  --b3:     #7098FF;
-  --bdk:    #0E38D6;
+  --b:      #005751;
+  --b2:     #005751;
+  --b3:     #005751;
+  --bdk:    #005751;
   --bglow:  rgba(24,71,240,.14);
   --bdim:   rgba(24,71,240,.07);
-  --bbord:  rgba(24,71,240,.2);
+  --bbord: #02A384;
 
-  --dark:   #0B0E1C;
-  --dark2:  #101424;
+  --dark:   #02A384;
+  --dark2:  #02A384;
   --dbord:  rgba(255,255,255,.07);
 
   --F1: 'Bebas Neue',sans-serif;
@@ -872,13 +872,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 .flinks{display:flex;gap:16px}
 @media(max-width:900px){footer{padding:48px 20px 0}.foot-grid{grid-template-columns:1fr 1fr;gap:28px}.fbot{flex-direction:column;gap:8px;text-align:center}}
 @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+
+.logo-img{
+  height: 52px;
+  margin-left: 8px;
+}
 </style>
 </head>
 <body>
 
 <!-- Page Loader -->
 <div id="loader">
-  <div class="ld-logo">LOGO<span>X</span></div>
+  <img src="./VG-1a.png" alt="Fast Labelling Logo" class="logo-img">
   <div class="ld-bar"><div class="ld-fill"></div></div>
 </div>
 
@@ -889,10 +894,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <div class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 18 18"><path d="M3 9h12M9 3v12"/></svg>
-    </div>
-    <span class="logo-name">LOGO<span>X</span></span>
+     <img src="./VG-1a.png" alt="Fast Labelling Logo" class="logo-img">
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -923,7 +925,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <div class="hero-ring2"></div>
 
   <div class="hero-left">
-    <div class="hero-pill"><span class="pdot"></span>Quality Guaranteed Since 2015</div>
+    <div class="hero-pill"><span class="pdot"></span>Precision Labelling Solutions</div>
     <h1 class="hero-h">
       <span class="ln"><span>Expert</span></span>
       <span class="ln"><span>Data For</span></span>
@@ -1253,7 +1255,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <!-- ══ PROCESS (dark) ══ -->
 <section id="proc">
   <div class="proc-hd W">
-    <div class="ey rv up" style="justify-content:center">How It Works</div>
+    <!-- <div class="ey rv up" style="justify-content:center">How It Works</div> -->
     <h2 class="ST rv up" style="text-align:center;transition-delay:.08s;color:#fff">Raw Data To <span class="a" style="color:var(--b3)">Model-Ready</span><br/>In 48 Hours.</h2>
   </div>
   <div class="W">
@@ -1490,7 +1492,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </section>
 
 <!-- ══ FOOTER ══ -->
-<footer>
+<!-- <footer>
   <div class="foot-wrap">
     <div class="foot-grid">
       <div>
@@ -1514,7 +1516,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
     </div>
   </div>
-</footer>
+</footer> -->
 
 <script>
 /* ══ LOADER ══ */
