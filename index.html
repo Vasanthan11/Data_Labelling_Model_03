@@ -16,25 +16,26 @@
   --bg2:    #F0EDE7;
   --bg3:    #E6E2D9;
   --card:   #FFFFFF;
-  /* --rule:   rgba(15,17,30,.08);
-  --rule2:  rgba(15,17,30,.12); */
+  --rule:   rgba(15,17,30,.08);
+  --rule2:  rgba(15,17,30,.12);
 
-  --ink:    #02A384;
-  --ink2:   #02A384;
+  --ink:    #0F111E;
+  --ink0:    #05c29c;
+  --ink2:   #1C1F32;
   --mid:    #454862;
-  --muted:  #02A384;
+  --muted:  #8589A0;
   --light:  #B8BCCC;
 
-  --b:      #005751;
-  --b2:     #005751;
+  --b:      #02A384;
+  --b2:     #02A384;
   --b3:     #005751;
   --bdk:    #005751;
   --bglow:  rgba(24,71,240,.14);
   --bdim:   rgba(24,71,240,.07);
-  --bbord: #02A384;
+  --bbord:  rgba(24,71,240,.2);
 
-  --dark:   #02A384;
-  --dark2:  #02A384;
+  --dark:   #0B0E1C;
+  --dark2:  #101424;
   --dbord:  rgba(255,255,255,.07);
 
   --F1: 'Bebas Neue',sans-serif;
@@ -73,7 +74,7 @@ body.txt #C1{opacity:0}
 @keyframes pbshine{0%{background-position:0%}100%{background-position:200%}}
 
 /* ══ PAGE LOADER ══ */
-#loader{position:fixed;inset:0;background:var(--ink);z-index:99999;
+#loader{position:fixed;inset:0;background:var(--ink0);z-index:99999;
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
   transition:opacity .5s,transform .5s}
 #loader.out{opacity:0;transform:translateY(-100%);pointer-events:none}
@@ -196,8 +197,21 @@ body.txt #C1{opacity:0}
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
-.hero{min-height:100vh;position:relative;display:grid;
-  grid-template-columns:55% 45%;overflow:hidden;background:var(--white)}
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:grid;
+  grid-template-columns:55% 45%;
+  overflow:hidden;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.85)),
+ url("https://images.unsplash.com/photo-1677442136019-21780ecad995");
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
 
 /* animated dot grid background */
 .hero-dots{position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -811,6 +825,215 @@ body.txt #C1{opacity:0}
 .fq-item.on .fq-a{max-height:200px;padding-bottom:18px}
 @media(max-width:900px){.faq-wrap{grid-template-columns:1fr}}
 
+/* ══════════════════════════════════════════════
+   CONTACT SECTION — NEW
+══════════════════════════════════════════════ */
+#contact{background:var(--bg)}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:72px;
+  align-items:start;
+}
+
+/* LEFT */
+.cd-left{}
+.cd-details{display:flex;flex-direction:column;gap:0;margin-bottom:36px;
+  border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.cd-item{display:flex;align-items:flex-start;gap:18px;padding:22px 24px;
+  border-bottom:1px solid var(--rule);transition:background .25s;cursor:default}
+.cd-item:last-child{border-bottom:0}
+.cd-item:hover{background:var(--bdim)}
+.cd-icon{width:42px;height:42px;border-radius:7px;background:var(--bdim);
+  border:1px solid var(--bbord);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;transition:background .25s}
+.cd-item:hover .cd-icon{background:var(--b)}
+.cd-label{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px}
+.cd-value{font-family:var(--F3);font-size:14px;font-weight:400;color:var(--ink);line-height:1.6}
+
+.cd-socials{display:flex;gap:8px}
+.cd-soc{width:38px;height:38px;border-radius:6px;border:1.5px solid var(--rule2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--F4);font-size:12px;color:var(--muted);
+  transition:all .22s;cursor:none}
+.cd-soc:hover{border-color:var(--b);color:var(--b);background:var(--bdim);
+  transform:translateY(-2px)}
+
+/* RIGHT: Form card */
+.eq-form-card{
+  background:var(--card);
+  border:1px solid var(--rule2);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 24px 72px rgba(15,17,30,.09);
+  position:relative;
+}
+.eq-form-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--b),var(--b3));
+}
+.eq-form-head{
+  padding:28px 32px 0;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:20px;
+  margin-bottom:24px;
+}
+.eq-form-title{
+  font-family:var(--F2);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px
+}
+.eq-form-sub{
+  font-family:var(--F3);font-size:13px;font-weight:300;color:var(--muted)
+}
+
+.eq-form{padding:0 32px 32px;display:flex;flex-direction:column;gap:16px}
+.eq-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.eq-field{display:flex;flex-direction:column;gap:6px}
+.eq-label{
+  font-family:var(--F4);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)
+}
+.eq-inp{
+  font-family:var(--F3);font-size:14px;color:var(--ink);
+  background:var(--bg);border:1.5px solid var(--rule2);border-radius:5px;
+  padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;appearance:none;
+}
+.eq-inp:focus{border-color:var(--b);box-shadow:0 0 0 3px var(--bdim)}
+.eq-inp::placeholder{color:var(--muted)}
+.eq-sel{cursor:none}
+.eq-ta{resize:vertical;min-height:96px;line-height:1.6}
+
+.eq-submit{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px 24px;margin-top:4px;
+  background:var(--b);color:#fff;border:none;border-radius:5px;
+  font-family:var(--F4);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:none;transition:all .24s;position:relative;overflow:hidden;
+}
+.eq-submit::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.eq-submit:hover{background:var(--bdk);transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+.eq-submit:hover::before{transform:translateX(100%)}
+.eq-submit:active{transform:translateY(0)}
+
+.eq-privacy{
+  font-family:var(--F3);font-size:11.5px;color:var(--muted);
+  text-align:center;line-height:1.7;
+}
+
+/* success state */
+.eq-success{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:56px 32px;text-align:center;
+}
+.eq-success-icon{
+  width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,.1);
+  border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;
+  font-size:26px;color:#16A34A;margin-bottom:16px;
+  animation:succpop .5s var(--e1) both;
+}
+@keyframes succpop{from{transform:scale(0)}to{transform:scale(1)}}
+.eq-success h3{font-family:var(--F2);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.eq-success p{font-family:var(--F3);font-size:14px;color:var(--mid);line-height:1.7}
+
+@media(max-width:960px){.contact-grid{grid-template-columns:1fr;gap:48px}}
+@media(max-width:560px){.eq-form{padding:0 20px 24px}.eq-row{grid-template-columns:1fr}.eq-form-head{padding:20px 20px 16px}}
+
+
+/* ══════════════════════════════════════════════
+   REUSABLE ENQUIRY BUTTON — drop anywhere
+   Usage: <a href="#contact" class="eq-cta-btn">Enquire Now</a>
+   Or: <button class="eq-cta-btn" onclick="openEnquiryModal()">Enquire Now</button>
+══════════════════════════════════════════════ */
+.eq-cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 24px;
+  background:var(--b);color:#fff;
+  font-family:var(--F4);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;
+  border-radius:5px;border:none;
+  cursor:none;
+  position:relative;overflow:hidden;
+  transition:background .22s,transform .22s,box-shadow .22s;
+  white-space:nowrap;
+  text-decoration:none;
+}
+.eq-cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform .45s;
+}
+.eq-cta-btn:hover{
+  background:var(--bdk);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px var(--bglow);
+}
+.eq-cta-btn:hover::before{transform:translateX(120%)}
+.eq-cta-btn:active{transform:translateY(0)}
+.eq-cta-btn .eq-btn-dot{
+  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);
+  animation:blink 2s ease infinite;flex-shrink:0;
+}
+/* Dark variant */
+.eq-cta-btn.dark{background:var(--ink);border:1.5px solid var(--ink)}
+.eq-cta-btn.dark:hover{background:var(--b);border-color:var(--b)}
+/* Ghost variant */
+.eq-cta-btn.ghost{
+  background:transparent;color:var(--b);
+  border:1.5px solid var(--bbord);
+}
+.eq-cta-btn.ghost:hover{background:var(--bdim);border-color:var(--b);box-shadow:none}
+/* Large variant */
+.eq-cta-btn.lg{padding:15px 32px;font-size:10.5px}
+/* Arrow icon built-in */
+.eq-cta-btn .eq-arr{
+  display:inline-flex;transition:transform .22s;flex-shrink:0;
+}
+.eq-cta-btn:hover .eq-arr{transform:translateX(4px)}
+
+/* ══════════════════════════════════════════════
+   ENQUIRY MODAL — full-screen overlay version
+══════════════════════════════════════════════ */
+.eq-modal-overlay{
+  position:fixed;inset:0;z-index:8000;
+  background:rgba(15,17,30,.72);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.eq-modal-overlay.open{opacity:1;pointer-events:all}
+.eq-modal{
+  background:var(--card);border-radius:12px;
+  width:100%;max-width:580px;max-height:92vh;overflow-y:auto;
+  position:relative;
+  transform:translateY(24px) scale(.97);
+  transition:transform .4s var(--e1);
+  box-shadow:0 40px 100px rgba(15,17,30,.3);
+}
+.eq-modal-overlay.open .eq-modal{transform:none}
+.eq-modal::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--b),var(--b3));border-radius:12px 12px 0 0;
+}
+.eq-modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--muted);cursor:none;z-index:1;
+  transition:all .2s;
+}
+.eq-modal-close:hover{background:var(--bdim);border-color:var(--b);color:var(--b)}
+.eq-modal .eq-form-head{padding:28px 32px 0}
+.eq-modal .eq-form{padding:0 32px 32px}
+
+@media(max-width:560px){
+  .eq-modal .eq-form-head{padding:20px 20px 0}
+  .eq-modal .eq-form{padding:0 20px 24px}
+}
+
 /* ══ CTA ══ */
 #cta{background:var(--b);text-align:center;padding:128px 0;position:relative;overflow:hidden}
 #cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -858,7 +1081,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 .fsi{width:30px;height:30px;border-radius:4px;border:1px solid rgba(255,255,255,.08);
   display:flex;align-items:center;justify-content:center;font-size:12px;
   color:rgba(255,255,255,.32);transition:all .22s}
-.fsi:hover{border-color:var(--b3);color:var(--b3);background:rgba(24,71,240,.12)}
+.fsi:hover{border-color:var(--b3);color:var(--b3);background:rgba(2,163,132,.12)}
 .fcol h5{font-family:var(--F4);font-size:8.5px;letter-spacing:2.5px;
   text-transform:uppercase;color:var(--b3);margin-bottom:14px}
 .fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
@@ -873,10 +1096,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 @media(max-width:900px){footer{padding:48px 20px 0}.foot-grid{grid-template-columns:1fr 1fr;gap:28px}.fbot{flex-direction:column;gap:8px;text-align:center}}
 @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
 
-.logo-img{
-  height: 52px;
-  margin-left: 8px;
-}
+.logo-img{height:52px;margin-left:8px}
 </style>
 </head>
 <body>
@@ -931,7 +1151,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <span class="ln"><span>Data For</span></span>
       <span class="ln"><span><span class="a">Your AI.</span></span></span>
     </h1>
-    <p class="hero-sub"><b>LOGO</b> delivers mission-critical data annotation and model fine-tuning — combining expert-led human intelligence with rigorous QA to accelerate your AI to production.</p>
+    <p class="hero-sub"><b>VISION GLOBAL</b> delivers mission-critical data annotation and model fine-tuning — combining expert-led human intelligence with rigorous QA to accelerate your AI to production.</p>
     <div class="hero-btns">
       <a href="#cta" class="BP">Talk to an Expert <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg></a>
       <a href="#workflow" class="BG">See It In Action →</a>
@@ -1033,7 +1253,15 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <span class="ct">HIPAA</span><span class="ct">GDPR</span><span class="ct">NDA Protected</span>
         </div>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap" class="rv up">
-          <a href="#cta" class="BP">Book a Demo →</a>
+          <a href="#contact" class="eq-cta-btn">
+  <span class="eq-btn-dot"></span>
+  Enquire Now
+  <span class="eq-arr">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M1.5 6h9M7 2.5l3 3.5-3 3.5"/>
+    </svg>
+  </span>
+</a>
           <a href="#services" class="BG">Our Services</a>
         </div>
       </div>
@@ -1477,15 +1705,148 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </section>
 
+
+
+<!-- ══════════════════════════════════════════════
+   CONTACT & ENQUIRY FORM SECTION  ← NEW
+══════════════════════════════════════════════ -->
+<section class="sec" id="contact">
+  <div class="W">
+    <div class="contact-grid">
+
+      <!-- LEFT: Contact Details -->
+      <div class="cd-left rv lf">
+        <div class="ey">Get In Touch</div>
+        <h2 class="ST" style="margin-bottom:16px">Let's Talk<br/><span class="a">Data.</span></h2>
+        <p class="SB" style="margin-bottom:32px">Have a project in mind? Our specialists are ready to scope, quote, and onboard you within 48 hours. No commitment needed.</p>
+
+        <div class="cd-details rv up" style="transition-delay:.1s">
+          <div class="cd-item">
+            <div class="cd-icon">📍</div>
+            <div class="cd-info">
+              <div class="cd-label">Headquarters</div>
+              <div class="cd-value">Coimbatore<br/>Tamil Nadu, India</div>
+            </div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-icon">📧</div>
+            <div class="cd-info">
+              <div class="cd-label">Email Us</div>
+              <div class="cd-value"><a href="mailto:info@visionglobalbpo.com" style="color:var(--b)">info@visionglobalbpo.com</a></div>
+            </div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-icon">📞</div>
+            <div class="cd-info">
+              <div class="cd-label">Call Us</div>
+              <div class="cd-value"><a href="tel:+918012345678" style="color:var(--b)">+1 (408)-878-6865</a></div>
+            </div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-icon">🕐</div>
+            <div class="cd-info">
+              <div class="cd-label">Business Hours</div>
+              <div class="cd-value">Mon–Fri: 9:00 AM – 7:00 PM IST<br/>Enterprise clients: 24/7 support</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cd-socials rv up" style="transition-delay:.2s;margin-top:24px">
+          <a href="#" class="cd-soc" title="LinkedIn">in</a>
+          <a href="#" class="cd-soc" title="Twitter/X">𝕏</a>
+          <a href="#" class="cd-soc" title="YouTube">▶</a>
+          <a href="mailto:info@visionglobalbpo.com" class="cd-soc" title="Email">✉</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Enquiry Form -->
+      <div class="cd-right rv rt" style="transition-delay:.12s">
+        <div class="eq-form-card">
+          <div class="eq-form-head">
+            <div class="eq-form-title">Send An Enquiry</div>
+            <div class="eq-form-sub">We respond within 24 hours, guaranteed.</div>
+          </div>
+
+          <form class="eq-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="eq-row">
+              <div class="eq-field">
+                <label class="eq-label">First Name *</label>
+                <input class="eq-inp" type="text" placeholder="John" required/>
+              </div>
+              <div class="eq-field">
+                <label class="eq-label">Last Name *</label>
+                <input class="eq-inp" type="text" placeholder="Smith" required/>
+              </div>
+            </div>
+            <div class="eq-field">
+              <label class="eq-label">Work Email *</label>
+              <input class="eq-inp" type="email" placeholder="john@company.com" required/>
+            </div>
+            <div class="eq-field">
+              <label class="eq-label">Company</label>
+              <input class="eq-inp" type="text" placeholder="Your Company Name"/>
+            </div>
+            <div class="eq-field">
+              <label class="eq-label">Service Needed *</label>
+              <select class="eq-inp eq-sel" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option>Image Annotation</option>
+                <option>Video Annotation</option>
+                <option>RLHF &amp; LLM Alignment</option>
+                <option>NLP &amp; Text Annotation</option>
+                <option>Medical Imaging</option>
+                <option>LiDAR &amp; 3D Annotation</option>
+                <option>Custom / Multiple Services</option>
+              </select>
+            </div>
+            <!-- <div class="eq-field">
+              <label class="eq-label">Estimated Volume</label>
+              <select class="eq-inp eq-sel">
+                <option value="" disabled selected>How many labels / month?</option>
+                <option>Under 10,000</option>
+                <option>10,000 – 50,000</option>
+                <option>50,000 – 250,000</option>
+                <option>250,000+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div> -->
+            <div class="eq-field">
+              <label class="eq-label">Tell Us About Your Project</label>
+              <textarea class="eq-inp eq-ta" rows="4" placeholder="Describe your dataset, use case, or any specific requirements..."></textarea>
+            </div>
+            <button type="submit" class="eq-submit">
+              <span class="eq-btn-txt">Send Enquiry</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg>
+            </button>
+            <p class="eq-privacy">🔒 Your data is protected by our NDA and Privacy Policy. We never share your information.</p>
+          </form>
+
+          <div class="eq-success" id="formSuccess">
+            <div class="eq-success-icon">✓</div>
+            <h3>Enquiry Sent!</h3>
+            <p>Thank you — a specialist will reach out within 24 hours to discuss your project.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══ CTA ══ -->
 <section id="cta">
   <div class="cta-inner rv sc">
     <div class="cta-ey">Get Started Today</div>
     <h2 class="cta-h">Ready To Build<br/><span>Better AI?</span></h2>
     <p class="cta-p">The need for speed in high-quality data annotation has never been greater. Tell us about your data — we'll scope, price, and have a dedicated expert team ready within 48 hours.</p>
-    <div class="cta-form">
-      <input class="cta-inp" type="email" placeholder="your@company.com"/>
-      <button class="cta-sub">Let's Connect</button>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px">
+      <a href="#contact" class="eq-cta-btn lg" style="background:#fff;color:var(--b)">
+        <span class="eq-btn-dot" style="background:var(--b)"></span>Send an Enquiry
+        <span class="eq-arr" style="color:var(--b)"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg></span>
+      </a>
+      <button class="eq-cta-btn" onclick="openEnquiryModal()" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3)">
+        Quick Modal Form ↗
+      </button>
     </div>
     <p class="cta-note">No commitment · 24hr response · Free pilot available</p>
   </div>
