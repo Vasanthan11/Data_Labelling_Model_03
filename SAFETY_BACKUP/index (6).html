@@ -618,10 +618,10 @@ body.txt #C1{opacity:0}
 .pc h4{font-family:var(--F2);font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
 .pc p{font-family:var(--F3);font-size:13px;font-weight:300;
   color:rgba(255,255,255,.42);line-height:1.82}
-.proc-split{display:grid;grid-template-columns:1fr 1.5fr;
+.proc-split{display:grid;grid-template-columns:1fr 1fr;
   border-top:1px solid var(--dbord);height:440px}
 .ps-img{position:relative;overflow:hidden;border-right:1px solid var(--dbord)}
-.ps-img img{width:100%;height:fit-content%;object-fit:contain;filter:brightness(.55) saturate(.8)}
+.ps-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.8)}
 .ps-img::after{content:'';position:absolute;inset:0;
   background:linear-gradient(120deg,rgba(24,71,240,.22),transparent 55%)}
 .ps-txt{background:var(--b);display:flex;flex-direction:column;
@@ -1119,7 +1119,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#platform">Platform to Processing</a></li>
+    <li><a href="#platform">Platform</a></li>
     <li><a href="#ind">Industries</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -1342,7 +1342,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <!-- RIGHT: Content -->
       <div class="ab-new-right">
         <div class="ey rv up">Who We Are</div>
-        <h2 class="ST rv up" style="transition-delay:.07s">About <span class="a">Us</span></h2>
+        <h2 class="ST rv up" style="transition-delay:.07s">About Us<br/><span class="a">.</span></h2>
         <p class="SB rv up" style="transition-delay:.12s">Vision Global ITES Pvt Ltd is a leading Data and Back-office support specialist headquartered in Coimbatore, India — with over 25 years of industry experience and a team of 300+ highly skilled data professionals. Our clients across North America, the UK, and Europe trust us to deliver high-volume, high-accuracy processing at scale.</p>
 
         <div class="vg-stat-row rv up" style="transition-delay:.17s">
@@ -1613,7 +1613,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </div>
   </div>
   <div class="proc-split rv sc" style="margin-top:2px">
-    <div class="ps-img"><img src="./vision_img.jpeg" alt="Process"/></div>
+    <div class="ps-img"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&h=600&fit=crop" alt="Process"/></div>
     <div class="ps-txt">
       <h3>48-Hour<br/>Project Launch.</h3>
       <p> From brief to first annotations in two business days. No delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs</p>
