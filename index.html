@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>LOGO — Expert AI Data Annotation & Labelling</title>
+<title>Vision Global — Expert AI Data Annotation & Labelling</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -30,9 +30,9 @@
   --b2:     #02A384;
   --b3:     #005751;
   --bdk:    #005751;
-  --bglow:  rgba(24,71,240,.14);
-  --bdim:   rgba(24,71,240,.07);
-  --bbord:  rgba(24,71,240,.2);
+  --bglow:  rgba(2,163,132,.14);
+  --bdim:   rgba(2,163,132,.07);
+  --bbord:  rgba(2,163,132,.2);
 
   --dark:   #0B0E1C;
   --dark2:  #101424;
@@ -50,22 +50,10 @@
 
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--bg);color:var(--ink);font-family:var(--F3);overflow-x:hidden;cursor:none}
+/* CHANGE 5: Normal cursor — removed custom cursor */
+body{background:var(--bg);color:var(--ink);font-family:var(--F3);overflow-x:hidden;cursor:auto}
 img{display:block;max-width:100%;object-fit:cover}
-a{text-decoration:none;color:inherit;cursor:none}
-
-/* ══ CUSTOM CURSOR ══ */
-#C1,#C2{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;
-  top:0;left:0;transform:translate(-50%,-50%)}
-#C1{width:8px;height:8px;background:var(--b);transition:transform .1s,background .2s,width .2s,height .2s}
-#C2{width:40px;height:40px;border:1.5px solid rgba(24,71,240,.28);
-  transition:width .3s var(--e1),height .3s var(--e1),border-color .3s,background .3s,opacity .3s}
-body.hov #C2{width:60px;height:60px;border-color:var(--b);background:var(--bdim)}
-body.hov #C1{width:5px;height:5px;background:var(--bdk)}
-body.clk #C1{transform:translate(-50%,-50%) scale(5);background:var(--b2)}
-body.txt #C2{width:3px;height:28px;border-radius:2px;background:var(--b);border:none;opacity:.6}
-body.txt #C1{opacity:0}
-@media(max-width:768px){#C1,#C2{display:none}}
+a{text-decoration:none;color:inherit;cursor:pointer}
 
 /* ══ PROGRESS BAR ══ */
 #PB{position:fixed;top:0;left:0;height:2.5px;width:0;z-index:9000;
@@ -79,11 +67,11 @@ body.txt #C1{opacity:0}
   transition:opacity .5s,transform .5s}
 #loader.out{opacity:0;transform:translateY(-100%);pointer-events:none}
 .ld-logo{font-family:var(--F1);font-size:52px;color:#fff;letter-spacing:-1px}
-.ld-logo span{color:var(--b3)}
 .ld-bar{width:180px;height:2px;background:rgba(255,255,255,.1);border-radius:1px;overflow:hidden}
 .ld-fill{height:100%;background:linear-gradient(90deg,var(--b),var(--b3));
   border-radius:1px;animation:ldfill 1.4s var(--e2) forwards}
 @keyframes ldfill{from{width:0}to{width:100%}}
+.logo-img{height:52px;margin-left:8px}
 
 /* ══ NAV ══ */
 #nav{position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;
@@ -94,12 +82,10 @@ body.txt #C1{opacity:0}
   box-shadow:0 4px 32px rgba(15,17,30,.06)}
 .logo{display:flex;align-items:center;gap:10px;z-index:801}
 .logo-mark{width:34px;height:34px;background:var(--ink);border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .25s}
+  display:flex;align-items:center;justify-content:center;transition:background .25s}
 .logo:hover .logo-mark{background:var(--b)}
 .logo-mark svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
-.logo-name{font-family:var(--F1);font-size:22px;color:var(--ink);letter-spacing:.5px;
-  transition:color .2s}
+.logo-name{font-family:var(--F1);font-size:22px;color:var(--ink);letter-spacing:.5px;transition:color .2s}
 .logo-name span{color:var(--b)}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-family:var(--F4);font-size:10px;font-weight:400;letter-spacing:1.2px;
@@ -111,9 +97,8 @@ body.txt #C1{opacity:0}
 .nav-cta{font-family:var(--F4);font-size:10px;letter-spacing:1px;text-transform:uppercase;
   padding:10px 22px;background:var(--ink);color:#fff;border-radius:4px;
   border:1.5px solid var(--ink);transition:all .22s;white-space:nowrap}
-.nav-cta:hover{background:var(--b);border-color:var(--b);
-  transform:translateY(-2px);box-shadow:0 8px 24px var(--bglow)}
-.ham{display:none;flex-direction:column;gap:5px;z-index:801}
+.nav-cta:hover{background:var(--b);border-color:var(--b);transform:translateY(-2px);box-shadow:0 8px 24px var(--bglow)}
+.ham{display:none;flex-direction:column;gap:5px;z-index:801;cursor:pointer}
 .ham span{width:22px;height:1.8px;background:var(--ink);border-radius:1px;transition:all .3s}
 .ham.x span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
 .ham.x span:nth-child(2){opacity:0;transform:scaleX(0)}
@@ -126,7 +111,6 @@ body.txt #C1{opacity:0}
   display:block;padding:7px 0;border-bottom:1px solid var(--rule);
   opacity:0;transform:translateX(-24px);transition:all .4s}
 .mob-nav.on a{opacity:1;transform:none}
-.mob-nav.on a:nth-child(n){transition-delay:calc(.05s * var(--i,1))}
 .mob-nav.on a:nth-child(1){transition-delay:.04s}
 .mob-nav.on a:nth-child(2){transition-delay:.08s}
 .mob-nav.on a:nth-child(3){transition-delay:.12s}
@@ -179,20 +163,18 @@ body.txt #C1{opacity:0}
 .BP{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;
   background:var(--ink);color:#fff;font-family:var(--F4);font-size:10px;
   letter-spacing:1px;text-transform:uppercase;border-radius:4px;
-  border:1.5px solid var(--ink);transition:all .24s;white-space:nowrap}
-.BP:hover{background:var(--b);border-color:var(--b);
-  transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+  border:1.5px solid var(--ink);transition:all .24s;white-space:nowrap;cursor:pointer}
+.BP:hover{background:var(--b);border-color:var(--b);transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
 .BG{display:inline-flex;align-items:center;gap:9px;padding:12px 24px;
   background:transparent;color:var(--ink);font-family:var(--F4);font-size:10px;
   letter-spacing:1px;text-transform:uppercase;border-radius:4px;
-  border:1.5px solid var(--rule2);transition:all .24s;white-space:nowrap}
+  border:1.5px solid var(--rule2);transition:all .24s;white-space:nowrap;cursor:pointer}
 .BG:hover{border-color:var(--b);color:var(--b);transform:translateY(-2px)}
 .BB{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;
   background:var(--b);color:#fff;font-family:var(--F4);font-size:10px;
   letter-spacing:1px;text-transform:uppercase;border-radius:4px;
-  border:1.5px solid var(--b);transition:all .24s;white-space:nowrap}
-.BB:hover{background:var(--bdk);border-color:var(--bdk);
-  transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+  border:1.5px solid var(--b);transition:all .24s;white-space:nowrap;cursor:pointer}
+.BB:hover{background:var(--bdk);border-color:var(--bdk);transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
 
 /* ══════════════════════════════════════════
    HERO
@@ -354,19 +336,17 @@ body.txt #C1{opacity:0}
   .hero-h{font-size:clamp(56px,14vw,100px)}
   .hs{min-width:100%}
 }
-
 /* ══ MARQUEE ══ */
 .mq-band{background:var(--b);overflow:hidden;padding:14px 0;
-  transform:skewY(-1.3deg) translateY(-8px);
-  box-shadow:0 14px 40px rgba(24,71,240,.28)}
+  transform:skewY(-1.3deg) translateY(-8px);box-shadow:0 14px 40px rgba(2,163,132,.28)}
 .mq-inner{transform:skewY(1.3deg)}
 .mq-row{display:flex;animation:mqscroll 26s linear infinite;width:max-content;white-space:nowrap}
 .mq-row:hover{animation-play-state:paused}
 .mq-i{display:inline-flex;align-items:center;gap:14px;padding:0 24px;
-  font-family:var(--F4);font-size:10px;letter-spacing:0px;
-  text-transform:uppercase;color:rgba(255,255,255,.7)}
+  font-family:var(--F4);font-size:10px;letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .mq-sep{color:rgba(255,255,255,.3);font-size:14px}
 @keyframes mqscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
 
 /* ══ ABOUT ══ */
 #about{background:var(--bg)}
@@ -420,18 +400,62 @@ body.txt #C1{opacity:0}
 .bts-dot{width:9px;height:9px;border-radius:50%;background:var(--b);flex-shrink:0}
 @keyframes btsscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* ══ ABOUT ══ */
+#about{background:var(--bg)}
+.ab-new-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ab-new-left{position:relative}
+.ab-ai-img-wrap{position:relative;border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(15,17,30,.18);height:560px}
+.ab-ai-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1)}
+.ab-ai-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,17,30,.72) 100%)}
+.ab-ai-badge{position:absolute;bottom:28px;left:28px;right:28px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;padding:18px 22px;display:flex;gap:20px;align-items:center}
+.ab-ai-stat{text-align:center;flex:1}
+.ab-ai-stat-n{font-family:var(--F1);font-size:32px;color:#fff;letter-spacing:-1px;line-height:1}
+.ab-ai-stat-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
+.ab-ai-divider{width:1px;height:40px;background:rgba(255,255,255,.15)}
+.ab-new-right .vg-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+.vg-stat-box{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:20px 22px;position:relative;overflow:hidden;transition:all .3s;cursor:pointer}
+.vg-stat-box:hover{border-color:var(--bbord);transform:translateY(-3px);box-shadow:0 12px 36px var(--bglow)}
+.vg-stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--b),var(--b3));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.vg-stat-box:hover::before{transform:scaleX(1)}
+.vg-stat-n{font-family:var(--F1);font-size:40px;color:var(--b);letter-spacing:0px;line-height:1}
+.vg-stat-l{font-family:var(--F4);font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.ck{display:flex;flex-direction:column;gap:13px;margin-top:24px}
+.ck-r{display:flex;align-items:flex-start;gap:13px;font-family:var(--F3);font-size:13.5px;font-weight:300;color:var(--mid);line-height:1.72}
+.ck-i{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:var(--bdim);border:1.5px solid var(--bbord);display:flex;align-items:center;justify-content:center}
+.ck-i svg{width:9px;height:9px;stroke:var(--b);fill:none;stroke-width:2.5;stroke-linecap:round}
+.certs{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.ct{font-family:var(--F4);font-size:8px;letter-spacing:0px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:4px 10px;border-radius:3px;background:var(--bdim)}
+@media(max-width:900px){.ab-new-grid{grid-template-columns:1fr;gap:48px}.ab-ai-img-wrap{height:380px}}
+
+/* ══ BIG TEXT SCROLLER ══ */
+.bts{padding:56px 0;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg2)}
+.bts-r{display:flex;white-space:nowrap;animation:btsscroll 20s linear infinite;width:max-content}
+.bts-r.rev{animation-direction:reverse;animation-duration:24s}
+.bts-i{font-family:var(--F1);font-size:clamp(68px,7.5vw,108px);
+  padding:0 20px;display:flex;align-items:center;gap:20px;line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(15,17,30,.1);letter-spacing:0px}
+.bts-i.f{color:var(--ink);-webkit-text-stroke:0}
+.bts-i.b{color:var(--b);-webkit-text-stroke:0}
+.bts-dot{width:9px;height:9px;border-radius:50%;background:var(--b);flex-shrink:0}
+@keyframes btsscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
 /* ══ SERVICES ══ */
 #services{background:var(--bg2)}
 .svc-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  background:var(--rule);border-radius:8px;overflow:hidden}
-.sv{background:var(--card);padding:44px 36px;position:relative;overflow:hidden;
-  transition:background .3s;cursor:none}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule);border-radius:8px;overflow:hidden}
+.sv{background:var(--card);padding:44px 36px;position:relative;overflow:hidden;transition:background .3s;cursor:pointer}
 .sv:hover{background:var(--bg)}
 .sv-n{font-family:var(--F1);font-size:90px;line-height:1;
   color:rgba(15,17,30,.04);position:absolute;top:8px;right:14px;
   letter-spacing:-4px;pointer-events:none;transition:color .35s}
-.sv:hover .sv-n{color:rgba(24,71,240,.07)}
+.sv:hover .sv-n{color:rgba(2,163,132,.07)}
 .sv::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
   background:linear-gradient(90deg,var(--b),var(--b3));
   transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
@@ -440,8 +464,7 @@ body.txt #C1{opacity:0}
   display:flex;align-items:center;justify-content:center;margin-bottom:20px;
   background:var(--bdim);border:1px solid var(--bbord);transition:all .3s}
 .sv:hover .sv-ico{background:var(--b);box-shadow:0 8px 22px var(--bglow)}
-.sv h3{font-family:var(--F2);font-size:18px;font-weight:700;
-  color:var(--ink);margin-bottom:10px}
+.sv h3{font-family:var(--F2);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px}
 .sv p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.85}
 .sv-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
 .sv-tag{font-family:var(--F4);font-size:8px;letter-spacing:.8px;text-transform:uppercase;
@@ -452,6 +475,47 @@ body.txt #C1{opacity:0}
 .sv:hover .sv-more{gap:10px;color:var(--bdk)}
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}.svc-hd{grid-template-columns:1fr}}
 @media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+/* ══ BEFORE/AFTER ANNOTATION DEMO ══ */
+#annotation-demo{background:var(--bg);padding:80px 0}
+.demo-hd{text-align:center;margin-bottom:56px}
+.demo-tabs{display:flex;gap:0;border:1px solid var(--rule2);border-radius:6px;overflow:hidden;
+  margin:0 auto 40px;background:var(--card);width:fit-content}
+.demo-tab{padding:10px 22px;font-family:var(--F4);font-size:9.5px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .25s;border-right:1px solid var(--rule)}
+.demo-tab:last-child{border-right:0}
+.demo-tab.on{background:var(--b);color:#fff}
+.demo-tab:hover:not(.on){background:var(--bdim);color:var(--ink)}
+.demo-panel{display:none}
+.demo-panel.on{display:block}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.ba-side{border-radius:10px;overflow:hidden;border:1px solid var(--rule);box-shadow:0 12px 40px rgba(15,17,30,.08)}
+.ba-label{background:var(--ink);padding:10px 18px;display:flex;align-items:center;gap:8px;
+  font-family:var(--F4);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.ba-label .ba-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ba-dot.raw{background:#8589A0}
+.ba-dot.ann{background:#02A384}
+.ba-img-wrap{position:relative;background:var(--bg3);height:280px;overflow:hidden}
+.ba-img-wrap img{width:100%;height:100%;object-fit:cover}
+/* annotation overlay */
+.ba-overlay{position:absolute;inset:0;pointer-events:none}
+.bbox{position:absolute;border:2px solid;border-radius:1px}
+.bbox-lbl{position:absolute;top:-20px;left:0;font-family:var(--F4);font-size:8px;
+  letter-spacing:.5px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.bbox.v{border-color:#3B82F6}.bbox.v .bbox-lbl{background:#3B82F6}
+.bbox.p{border-color:#22C55E}.bbox.p .bbox-lbl{background:#22C55E}
+.bbox.s{border-color:#F59E0B}.bbox.s .bbox-lbl{background:#F59E0B}
+.bbox.c{border-color:#EF4444}.bbox.c .bbox-lbl{background:#EF4444}
+.ba-meta{background:var(--card);padding:14px 18px;border-top:1px solid var(--rule)}
+.ba-stats{display:flex;gap:20px;flex-wrap:wrap}
+.ba-stat{font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.ba-stat b{color:var(--b);font-size:12px;display:block;font-family:var(--F1);letter-spacing:0}
+/* SVG overlay for segmentation */
+.seg-svg{position:absolute;inset:0;width:100%;height:100%}
+/* Point cloud mock */
+.pc-wrap{height:280px;background:#0B0E1C;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pc-canvas{width:100%;height:100%}
+@media(max-width:760px){.ba-compare{grid-template-columns:1fr}}
 
 /* ══ WORKFLOW ANIMATED DEMO ══ */
 #workflow{background:var(--bg);overflow:hidden}
@@ -466,91 +530,47 @@ body.txt #C1{opacity:0}
 .wf-dot:nth-child(1){background:#FF5F57}
 .wf-dot:nth-child(2){background:#FDBC2C}
 .wf-dot:nth-child(3){background:#28CA41}
-.wf-title-bar{flex:1;text-align:center;font-family:var(--F4);font-size:9px;
-  letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.wf-title-bar{flex:1;text-align:center;font-family:var(--F4);font-size:9px;letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.35)}
 .wf-body{padding:20px;position:relative}
 .wf-img-wrap{border-radius:6px;overflow:hidden;height:220px;position:relative;background:var(--bg3)}
 .wf-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85}
-
-/* animated annotation box */
-.ann-box{position:absolute;border:2px solid var(--b);border-radius:2px;
-  animation:annpulse 3s ease-in-out infinite}
+.ann-box{position:absolute;border:2px solid var(--b);border-radius:2px;animation:annpulse 3s ease-in-out infinite}
 .ann-box::before{content:attr(data-label);position:absolute;top:-22px;left:0;
-  background:var(--b);color:#fff;font-family:var(--F4);font-size:8px;
-  letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:2px;
-  white-space:nowrap}
-@keyframes annpulse{0%,100%{box-shadow:0 0 0 0 rgba(24,71,240,.4)}50%{box-shadow:0 0 0 4px rgba(24,71,240,0)}}
+  background:var(--b);color:#fff;font-family:var(--F4);font-size:8px;letter-spacing:1px;
+  text-transform:uppercase;padding:2px 8px;border-radius:2px;white-space:nowrap}
+@keyframes annpulse{0%,100%{box-shadow:0 0 0 0 rgba(2,163,132,.4)}50%{box-shadow:0 0 0 4px rgba(2,163,132,0)}}
 .ann-b1{top:18%;left:10%;width:34%;height:52%}
 .ann-b2{top:30%;left:52%;width:38%;height:38%;border-color:#22C55E;animation-delay:.8s}
 .ann-b2::before{background:#22C55E;border-color:#22C55E}
 .ann-b3{top:62%;left:26%;width:20%;height:28%;border-color:#F59E0B;animation-delay:1.6s}
 .ann-b3::before{background:#F59E0B}
-
 .wf-meta{display:flex;gap:12px;margin-top:14px;align-items:center}
-.wf-chip{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
-  padding:4px 10px;border-radius:3px}
+.wf-chip{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:3px}
 .wf-chip.ok{background:rgba(34,197,94,.1);color:#16A34A;border:1px solid rgba(34,197,94,.25)}
 .wf-chip.pr{background:var(--bdim);color:var(--b);border:1px solid var(--bbord)}
 .wf-pct{font-family:var(--F1);font-size:22px;color:var(--b);margin-left:auto;letter-spacing:-1px}
 .wf-pct-l{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right}
-
-/* progress bars animated */
 .wf-bars{padding:0 20px 20px;display:flex;flex-direction:column;gap:10px}
-.wbar-label{font-family:var(--F4);font-size:9px;letter-spacing:1px;
-  text-transform:uppercase;color:var(--muted);margin-bottom:4px;
-  display:flex;justify-content:space-between}
+.wbar-label{font-family:var(--F4);font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px;display:flex;justify-content:space-between}
 .wbar-track{height:5px;background:var(--rule);border-radius:3px;overflow:hidden}
 .wbar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--b),var(--b3));
   width:0;transition:width 1.4s var(--e3) .5s}
 .wf-screen.in .wbar-fill{width:var(--w)}
-
 .wf-steps{display:flex;flex-direction:column;gap:22px;margin-top:28px}
 .wf-step{display:flex;align-items:flex-start;gap:16px}
 .wf-sn{width:36px;height:36px;border-radius:50%;flex-shrink:0;
   background:var(--bdim);border:1.5px solid var(--bbord);
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--F1);font-size:18px;color:var(--b);
-  transition:all .3s}
-.wf-step.active .wf-sn{background:var(--b);border-color:var(--b);color:#fff;
-  box-shadow:0 6px 18px var(--bglow)}
-.wf-step-txt h4{font-family:var(--F2);font-size:16px;font-weight:700;
-  color:var(--ink);margin-bottom:4px}
+  font-family:var(--F1);font-size:18px;color:var(--b);transition:all .3s}
+.wf-step.active .wf-sn{background:var(--b);border-color:var(--b);color:#fff;box-shadow:0 6px 18px var(--bglow)}
+.wf-step-txt h4{font-family:var(--F2);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px}
 .wf-step-txt p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.7}
 .wf-conn{width:2px;height:22px;background:var(--rule);margin-left:17px;flex-shrink:0}
-
 @media(max-width:960px){.wf-grid{grid-template-columns:1fr}}
 
-/* ══ PLATFORM / FEATURES ══ */
-#platform{background:var(--bg2)}
-.plat-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
-.feat-tabs{display:flex;gap:0;border:1px solid var(--rule2);border-radius:6px;overflow:hidden;
-  margin-bottom:40px;background:var(--card);width:fit-content}
-.ft{padding:10px 20px;font-family:var(--F4);font-size:9.5px;letter-spacing:1px;
-  text-transform:uppercase;color:var(--muted);cursor:none;transition:all .25s;border-right:1px solid var(--rule)}
-.ft:last-child{border-right:0}
-.ft.on{background:var(--b);color:#fff}
-.ft:hover:not(.on){background:var(--bdim);color:var(--ink)}
-.feat-panels{position:relative}
-.feat-panel{display:none;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
-.feat-panel.on{display:grid}
-.feat-img{border-radius:8px;overflow:hidden;height:360px;
-  box-shadow:0 24px 60px rgba(15,17,30,.1);border:1px solid var(--rule)}
-.feat-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.95)}
-.feat-list{display:flex;flex-direction:column;gap:16px}
-.fl-item{display:flex;align-items:flex-start;gap:16px;padding:18px;
-  border:1px solid var(--rule);border-radius:7px;background:var(--card);
-  transition:all .3s;cursor:none}
-.fl-item:hover{border-color:var(--bbord);background:var(--bdim);transform:translateX(4px)}
-.fl-ico{width:40px;height:40px;border-radius:6px;background:var(--bdim);
-  border:1px solid var(--bbord);display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0}
-.fl-item:hover .fl-ico{background:var(--b)}
-.fl-txt h4{font-family:var(--F2);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
-.fl-txt p{font-family:var(--F3);font-size:12.5px;font-weight:300;color:var(--mid);line-height:1.7}
-@media(max-width:900px){.feat-panel.on{grid-template-columns:1fr}.plat-hd{grid-template-columns:1fr}}
-
 /* ══ CAPABILITIES ══ */
-#cap{background:var(--bg)}
+#cap{background:var(--bg2)}
 .cap-hd{text-align:center;margin-bottom:56px}
 .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .cc{background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
@@ -562,8 +582,7 @@ body.txt #C1{opacity:0}
 .cc-rows{padding:14px 20px;display:flex;flex-direction:column}
 .cc-row{font-family:var(--F3);font-size:12.5px;color:var(--mid);
   padding:7px 0;border-bottom:1px solid var(--rule);
-  display:flex;align-items:center;gap:8px;
-  transition:color .2s,padding-left .2s}
+  display:flex;align-items:center;gap:8px;transition:color .2s,padding-left .2s}
 .cc-row:last-child{border-bottom:0}
 .cc-row::before{content:'';width:5px;height:5px;border-radius:50%;
   background:var(--b);flex-shrink:0;opacity:.45;transition:opacity .2s}
@@ -576,17 +595,14 @@ body.txt #C1{opacity:0}
 #ind{background:var(--bg2)}
 .ind-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
 .ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ic{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  overflow:hidden;cursor:none;transition:all .4s}
+.ic{background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .4s}
 .ic:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(15,17,30,.1);border-color:var(--bbord)}
 .ic-img{height:196px;overflow:hidden;position:relative}
 .ic-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e1)}
 .ic:hover .ic-img img{transform:scale(1.07)}
-.ic-img::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 42%,rgba(15,17,30,.38) 100%)}
+.ic-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(15,17,30,.38) 100%)}
 .ic-body{padding:20px 22px}
-.ic-tag{font-family:var(--F4);font-size:8px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--b);margin-bottom:6px}
+.ic-tag{font-family:var(--F4);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--b);margin-bottom:6px}
 .ic h3{font-family:var(--F2);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px}
 .ic p{font-family:var(--F3);font-size:12.5px;font-weight:300;color:var(--mid);line-height:1.75}
 .ic-lnk{display:inline-flex;align-items:center;gap:5px;margin-top:11px;
@@ -605,36 +621,28 @@ body.txt #C1{opacity:0}
 .proc-cards{display:grid;grid-template-columns:repeat(4,1fr);
   border-top:1px solid var(--dbord);border-bottom:1px solid var(--dbord)}
 .pc{padding:44px 36px;border-right:1px solid var(--dbord);
-  position:relative;overflow:hidden;transition:background .3s;cursor:none}
+  position:relative;overflow:hidden;transition:background .3s;cursor:pointer}
 .pc:last-child{border-right:0}
-.pc:hover{background:rgba(24,71,240,.05)}
+.pc:hover{background:rgba(2,163,132,.05)}
 .pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,var(--b),var(--b3));
   transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
 .pc:hover::after{transform:scaleX(1)}
 .pc-n{font-family:var(--F1);font-size:56px;color:rgba(255,255,255,.06);
   letter-spacing:0px;margin-bottom:16px;display:block;transition:color .3s;line-height:1}
-.pc:hover .pc-n{color:rgba(24,71,240,.22)}
+.pc:hover .pc-n{color:rgba(2,163,132,.22)}
 .pc h4{font-family:var(--F2);font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
-.pc p{font-family:var(--F3);font-size:13px;font-weight:300;
-  color:rgba(255,255,255,.42);line-height:1.82}
-.proc-split{display:grid;grid-template-columns:1fr 1.5fr;
-  border-top:1px solid var(--dbord);height:440px}
+.pc p{font-family:var(--F3);font-size:13px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.82}
+.proc-split{display:grid;grid-template-columns:1fr 1.5fr;border-top:1px solid var(--dbord);height:440px}
 .ps-img{position:relative;overflow:hidden;border-right:1px solid var(--dbord)}
-.ps-img img{width:100%;height:fit-content%;object-fit:contain;filter:brightness(.55) saturate(.8)}
-.ps-img::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,rgba(24,71,240,.22),transparent 55%)}
-.ps-txt{background:var(--b);display:flex;flex-direction:column;
-  justify-content:center;padding:56px}
-.ps-txt h3{font-family:var(--F1);font-size:clamp(40px,4vw,66px);
-  color:#fff;line-height:.92;letter-spacing:-1px;margin-bottom:18px}
-.ps-txt p{font-family:var(--F3);font-size:14px;font-weight:300;
-  color:rgba(255,255,255,.65);line-height:1.85;max-width:340px}
+.ps-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.8)}
+.ps-img::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(2,163,132,.22),transparent 55%)}
+.ps-txt{background:var(--b);display:flex;flex-direction:column;justify-content:center;padding:56px}
+.ps-txt h3{font-family:var(--F1);font-size:clamp(40px,4vw,66px);color:#fff;line-height:.92;letter-spacing:-1px;margin-bottom:18px}
+.ps-txt p{font-family:var(--F3);font-size:14px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.85;max-width:340px}
 .livepulse{display:flex;align-items:center;gap:10px;margin-top:22px;
-  font-family:var(--F4);font-size:9.5px;letter-spacing:0px;
-  text-transform:uppercase;color:rgba(255,255,255,.55)}
-.livepulse::before{content:'';width:8px;height:8px;border-radius:50%;
-  background:#fff;flex-shrink:0;animation:ripple 2s ease infinite}
+  font-family:var(--F4);font-size:9.5px;letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.livepulse::before{content:'';width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;animation:ripple 2s ease infinite}
 @keyframes ripple{0%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
 @media(max-width:860px){
   .proc-cards{grid-template-columns:1fr 1fr}.pc{border-bottom:1px solid var(--dbord)}
@@ -648,18 +656,16 @@ body.txt #C1{opacity:0}
 .prc-toggle{display:flex;align-items:center;gap:14px;margin:0 auto 40px;
   width:fit-content;font-family:var(--F4);font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
 .tog{width:44px;height:24px;background:var(--rule2);border-radius:12px;
-  position:relative;cursor:none;transition:background .3s}
+  position:relative;cursor:pointer;transition:background .3s}
 .tog.on{background:var(--b)}
 .tog::before{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;
-  border-radius:50%;background:#fff;transition:transform .3s var(--e1);
-  box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  border-radius:50%;background:#fff;transition:transform .3s var(--e1);box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .tog.on::before{transform:translateX(20px)}
 .save-badge{background:rgba(34,197,94,.12);color:#16A34A;border:1px solid rgba(34,197,94,.25);
-  font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
-  padding:3px 9px;border-radius:3px}
+  font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:3px}
 .prc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .pcard{background:var(--card);border:1.5px solid var(--rule);border-radius:10px;
-  padding:36px 32px;position:relative;transition:all .35s;cursor:none}
+  padding:36px 32px;position:relative;transition:all .35s;cursor:pointer}
 .pcard:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(15,17,30,.1)}
 .pcard.pop{border-color:var(--b);box-shadow:0 0 0 1px var(--b),0 20px 56px var(--bglow)}
 .pop-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);
@@ -667,14 +673,13 @@ body.txt #C1{opacity:0}
   text-transform:uppercase;padding:4px 14px;border-radius:3px;white-space:nowrap}
 .pcard h3{font-family:var(--F2);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
 .pcard .pdesc{font-family:var(--F3);font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.7}
-.pcard-price{display:flex;align-items:baseline;gap:6px;margin-bottom:24px}
+.pcard-price{display:flex;align-items:baseline;gap:6px;margin-bottom:24px;min-height:72px}
 .pp-cur{font-family:var(--F3);font-size:18px;font-weight:600;color:var(--mid)}
-.pp-n{font-family:var(--F1);font-size:52px;color:var(--ink);line-height:1;letter-spacing:0px}
+.pp-n{font-family:var(--F1);font-size:52px;color:var(--ink);line-height:1;letter-spacing:0px;transition:all .3s}
 .pcard.pop .pp-n{color:var(--b)}
 .pp-per{font-family:var(--F4);font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
 .pcard-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
-.pf{display:flex;align-items:flex-start;gap:10px;
-  font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.6}
+.pf{display:flex;align-items:flex-start;gap:10px;font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.6}
 .pf::before{content:'✓';color:var(--b);font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
 .pf.off{opacity:.35}.pf.off::before{content:'—';color:var(--muted)}
 @media(max-width:840px){.prc-grid{grid-template-columns:1fr}}
@@ -684,8 +689,7 @@ body.txt #C1{opacity:0}
 .tr-hd{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
 .tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .trc{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  padding:38px 34px;position:relative;overflow:hidden;transition:all .35s;cursor:none;
-  transform-style:preserve-3d}
+  padding:38px 34px;position:relative;overflow:hidden;transition:all .35s;cursor:pointer}
 .trc:hover{box-shadow:0 14px 44px var(--bglow);background:var(--bg)}
 .trc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,var(--b),var(--b3));
@@ -698,8 +702,7 @@ body.txt #C1{opacity:0}
 .trc-tag{font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
   color:var(--b);border:1px solid var(--bbord);padding:4px 10px;border-radius:3px;background:var(--bdim)}
 .trc-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.trc-li{display:flex;align-items:flex-start;gap:9px;
-  font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.65}
+.trc-li{display:flex;align-items:flex-start;gap:9px;font-family:var(--F3);font-size:13px;color:var(--mid);line-height:1.65}
 .trc-li::before{content:'✓';color:var(--b);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px}
 @media(max-width:760px){.tr-grid{grid-template-columns:1fr}.tr-hd{grid-template-columns:1fr}}
 
@@ -707,21 +710,18 @@ body.txt #C1{opacity:0}
 #nums{background:var(--ink);padding:0}
 .nums-wrap{display:grid;grid-template-columns:repeat(4,1fr)}
 .nb{padding:56px 40px;border-right:1px solid rgba(255,255,255,.06);
-  text-align:center;position:relative;overflow:hidden;transition:background .3s;cursor:none}
+  text-align:center;position:relative;overflow:hidden;transition:background .3s;cursor:pointer}
 .nb:last-child{border-right:0}
 .nb::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,var(--b),var(--b3));
   transform:scaleX(0);transform-origin:center;transition:transform .6s var(--e1)}
 .nb:hover::before{transform:scaleX(1)}
-.nb:hover{background:rgba(24,71,240,.06)}
-.nb-n{font-family:var(--F1);font-size:clamp(48px,5vw,78px);
-  color:#fff;line-height:1;letter-spacing:0px}
+.nb:hover{background:rgba(2,163,132,.06)}
+.nb-n{font-family:var(--F1);font-size:clamp(48px,5vw,78px);color:#fff;line-height:1;letter-spacing:0px}
 .nb-n em{color:var(--b3);font-style:normal}
-.nb-l{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
-  text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:8px}
+.nb-l{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:8px}
 .nb-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:100px;height:100px;border-radius:50%;
-  border:1px solid rgba(24,71,240,.12);pointer-events:none;
+  width:100px;height:100px;border-radius:50%;border:1px solid rgba(2,163,132,.12);pointer-events:none;
   animation:nbring 4s linear infinite}
 @keyframes nbring{from{transform:translate(-50%,-50%) rotate(0) scale(.9)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.1);opacity:0}}
 @media(max-width:860px){.nums-wrap{grid-template-columns:1fr 1fr}.nb{border-bottom:1px solid rgba(255,255,255,.06)}.nb:nth-child(2){border-right:0}}
@@ -736,74 +736,60 @@ body.txt #C1{opacity:0}
 .test-hd .ST .a{color:var(--b3)}
 .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .tc{background:rgba(255,255,255,.03);border:1px solid var(--dbord);border-radius:8px;
-  padding:32px 28px;transition:all .35s;cursor:none;position:relative;overflow:hidden}
+  padding:32px 28px;transition:all .35s;cursor:pointer;position:relative;overflow:hidden}
 .tc::before{content:'\201C';font-family:var(--F1);font-size:100px;line-height:1;
-  color:rgba(24,71,240,.07);position:absolute;top:-6px;left:12px;pointer-events:none;
-  transition:color .35s}
-.tc:hover::before{color:rgba(24,71,240,.15)}
-.tc:hover{border-color:rgba(24,71,240,.25);transform:translateY(-5px);
-  box-shadow:0 20px 52px rgba(0,0,0,.28)}
+  color:rgba(2,163,132,.07);position:absolute;top:-6px;left:12px;pointer-events:none;transition:color .35s}
+.tc:hover::before{color:rgba(2,163,132,.15)}
+.tc:hover{border-color:rgba(2,163,132,.25);transform:translateY(-5px);box-shadow:0 20px 52px rgba(0,0,0,.28)}
 .tc-stars{display:flex;gap:3px;margin-bottom:14px}
 .tc-star{font-size:12px;color:var(--b2)}
 .tc-q{font-family:var(--F3);font-size:13.5px;font-weight:300;
   color:rgba(255,255,255,.62);line-height:1.88;margin-bottom:22px;position:relative;z-index:1}
 .tc-name{font-family:var(--F2);font-size:14px;font-weight:700;color:#fff}
-.tc-role{font-family:var(--F4);font-size:8.5px;letter-spacing:0px;
-  text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
+.tc-role{font-family:var(--F4);font-size:8.5px;letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
 @media(max-width:900px){.test-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.test-grid{grid-template-columns:1fr}}
 
-/* ══ CASE STUDIES / CONTENT ══ */
-#content{background:var(--bg2)}
-.cnt-hd{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:48px}
-.cnt-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
-.crd-big,.crd-sm{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  overflow:hidden;cursor:none;transition:all .35s}
-.crd-big:hover,.crd-sm:hover{transform:translateY(-4px);
-  box-shadow:0 16px 48px rgba(15,17,30,.09);border-color:var(--bbord)}
-.crd-big-img{height:220px;overflow:hidden}
-.crd-big-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e1)}
-.crd-big:hover .crd-big-img img{transform:scale(1.05)}
-.crd-body{padding:24px 26px}
-.crd-lbl{font-family:var(--F4);font-size:8px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--b);margin-bottom:8px}
-.crd-big h3{font-family:var(--F2);font-size:18px;font-weight:700;
-  color:var(--ink);line-height:1.35;margin-bottom:8px}
-.crd-big p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.8}
-.crd-more{display:inline-flex;align-items:center;gap:5px;margin-top:12px;
+/* ══ BLOG SECTION ══ */
+#blog{background:var(--bg2)}
+.blog-hd{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:48px}
+.blog-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
+.blog-card{background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .35s}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(15,17,30,.09);border-color:var(--bbord)}
+.blog-card-img{overflow:hidden;position:relative}
+.blog-card-img img{width:100%;object-fit:cover;transition:transform .6s var(--e1)}
+.blog-card:hover .blog-card-img img{transform:scale(1.05)}
+.blog-card-img.big{height:220px}
+.blog-card-img.sm{height:130px}
+.blog-body{padding:24px 26px}
+.blog-body.sm{padding:16px 18px}
+.blog-lbl{font-family:var(--F4);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--b);margin-bottom:8px}
+.blog-card h3{font-family:var(--F2);font-size:18px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:8px}
+.blog-card h4{font-family:var(--F2);font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:5px}
+.blog-card p{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);line-height:1.8}
+.blog-card p.sm{font-size:12px;line-height:1.75}
+.blog-more{display:inline-flex;align-items:center;gap:5px;margin-top:12px;
   font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
   color:var(--b);transition:gap .2s}
-.crd-big:hover .crd-more,.crd-sm:hover .crd-more{gap:9px}
-.crd-sm-img{height:130px;overflow:hidden}
-.crd-sm-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.crd-sm:hover .crd-sm-img img{transform:scale(1.06)}
-.crd-sm-body{padding:16px 18px}
-.crd-sm h4{font-family:var(--F2);font-size:14px;font-weight:700;
-  color:var(--ink);line-height:1.4;margin-bottom:5px}
-.crd-sm p{font-family:var(--F3);font-size:12px;font-weight:300;color:var(--mid);line-height:1.75}
-.va-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;
-  border:1.5px solid var(--rule2);border-radius:5px;white-space:nowrap;
-  font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--ink);transition:all .2s}
-.va-btn:hover{background:var(--bdim);border-color:var(--b);color:var(--b);transform:translateY(-1px)}
-@media(max-width:920px){.cnt-grid{grid-template-columns:1fr 1fr}.crd-big{grid-column:span 2}.cnt-hd{grid-template-columns:1fr}}
-@media(max-width:560px){.cnt-grid{grid-template-columns:1fr}.crd-big{grid-column:1}}
+.blog-card:hover .blog-more{gap:9px}
+.blog-tag{display:inline-block;font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:3px 9px;border-radius:3px;background:var(--bdim);margin-bottom:8px}
+@media(max-width:920px){.blog-grid{grid-template-columns:1fr 1fr}.blog-grid .blog-card:first-child{grid-column:span 2}.blog-hd{grid-template-columns:1fr}}
+@media(max-width:560px){.blog-grid{grid-template-columns:1fr}.blog-grid .blog-card:first-child{grid-column:1}}
 
 /* ══ LOGOS ══ */
 #logos{background:var(--bg);padding:52px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .logos-lbl{text-align:center;font-family:var(--F4);font-size:8.5px;letter-spacing:3px;
   text-transform:uppercase;color:var(--muted);margin-bottom:30px}
 .logos-track{overflow:hidden;position:relative}
-.logos-track::before,.logos-track::after{content:'';position:absolute;
-  top:0;bottom:0;width:90px;z-index:2}
+.logos-track::before,.logos-track::after{content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2}
 .logos-track::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .logos-track::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
 .logos-row{display:flex;animation:lgscroll 24s linear infinite;width:max-content}
 .logos-row:hover{animation-play-state:paused}
 .li{padding:0 40px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--rule)}
 .li:last-child{border-right:0}
-.li-name{font-family:var(--F2);font-size:13px;font-style:italic;font-weight:700;
-  color:var(--light);transition:color .25s;white-space:nowrap}
+.li-name{font-family:var(--F2);font-size:13px;font-style:italic;font-weight:700;color:var(--light);transition:color .25s;white-space:nowrap}
 .li:hover .li-name{color:var(--ink)}
 @keyframes lgscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -812,7 +798,7 @@ body.txt #C1{opacity:0}
 .faq-wrap{display:grid;grid-template-columns:5fr 7fr;gap:80px}
 .fq-item{border-bottom:1px solid var(--rule);overflow:hidden}
 .fq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:18px 0;cursor:default;transition:color .25s;
+  padding:18px 0;cursor:pointer;transition:color .25s;
   font-family:var(--F3);font-size:15px;font-weight:400;color:var(--mid)}
 .fq-item:hover .fq-q{color:var(--ink)}
 .fq-item.on .fq-q{color:var(--b)}
@@ -825,299 +811,132 @@ body.txt #C1{opacity:0}
 .fq-item.on .fq-a{max-height:200px;padding-bottom:18px}
 @media(max-width:900px){.faq-wrap{grid-template-columns:1fr}}
 
-/* ══════════════════════════════════════════════
-   CONTACT SECTION — NEW
-══════════════════════════════════════════════ */
+/* ══ CONTACT ══ */
 #contact{background:var(--bg)}
-
-.contact-grid{
-  display:grid;
-  grid-template-columns:1fr 1.15fr;
-  gap:72px;
-  align-items:start;
-}
-
-/* LEFT */
-.cd-left{}
-.cd-details{display:flex;flex-direction:column;gap:0;margin-bottom:36px;
-  border:1px solid var(--rule);border-radius:8px;overflow:hidden}
-.cd-item{display:flex;align-items:flex-start;gap:18px;padding:22px 24px;
-  border-bottom:1px solid var(--rule);transition:background .25s;cursor:default}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:start}
+.cd-details{display:flex;flex-direction:column;gap:0;margin-bottom:36px;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.cd-item{display:flex;align-items:flex-start;gap:18px;padding:22px 24px;border-bottom:1px solid var(--rule);transition:background .25s;cursor:default}
 .cd-item:last-child{border-bottom:0}
 .cd-item:hover{background:var(--bdim)}
-.cd-icon{width:42px;height:42px;border-radius:7px;background:var(--bdim);
-  border:1px solid var(--bbord);display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;transition:background .25s}
+.cd-icon{width:42px;height:42px;border-radius:7px;background:var(--bdim);border:1px solid var(--bbord);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .25s}
 .cd-item:hover .cd-icon{background:var(--b)}
-.cd-label{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:4px}
+.cd-label{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .cd-value{font-family:var(--F3);font-size:14px;font-weight:400;color:var(--ink);line-height:1.6}
-
 .cd-socials{display:flex;gap:8px}
 .cd-soc{width:38px;height:38px;border-radius:6px;border:1.5px solid var(--rule2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--F4);font-size:12px;color:var(--muted);
-  transition:all .22s;cursor:none}
-.cd-soc:hover{border-color:var(--b);color:var(--b);background:var(--bdim);
-  transform:translateY(-2px)}
-
-/* RIGHT: Form card */
-.eq-form-card{
-  background:var(--card);
-  border:1px solid var(--rule2);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 24px 72px rgba(15,17,30,.09);
-  position:relative;
-}
-.eq-form-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--b),var(--b3));
-}
-.eq-form-head{
-  padding:28px 32px 0;
-  border-bottom:1px solid var(--rule);
-  padding-bottom:20px;
-  margin-bottom:24px;
-}
-.eq-form-title{
-  font-family:var(--F2);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px
-}
-.eq-form-sub{
-  font-family:var(--F3);font-size:13px;font-weight:300;color:var(--muted)
-}
-
+  display:flex;align-items:center;justify-content:center;font-family:var(--F4);font-size:12px;color:var(--muted);
+  transition:all .22s;cursor:pointer}
+.cd-soc:hover{border-color:var(--b);color:var(--b);background:var(--bdim);transform:translateY(-2px)}
+.eq-form-card{background:var(--card);border:1px solid var(--rule2);border-radius:12px;overflow:hidden;box-shadow:0 24px 72px rgba(15,17,30,.09);position:relative}
+.eq-form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--b),var(--b3))}
+.eq-form-head{padding:28px 32px 0;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:24px}
+.eq-form-title{font-family:var(--F2);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.eq-form-sub{font-family:var(--F3);font-size:13px;font-weight:300;color:var(--muted)}
 .eq-form{padding:0 32px 32px;display:flex;flex-direction:column;gap:16px}
 .eq-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .eq-field{display:flex;flex-direction:column;gap:6px}
-.eq-label{
-  font-family:var(--F4);font-size:8.5px;letter-spacing:0px;text-transform:uppercase;color:var(--mid)
-}
-.eq-inp{
-  font-family:var(--F3);font-size:14px;color:var(--ink);
-  background:var(--bg);border:1.5px solid var(--rule2);border-radius:5px;
-  padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;
-  -webkit-appearance:none;appearance:none;
-}
+.eq-label{font-family:var(--F4);font-size:8.5px;letter-spacing:0px;text-transform:uppercase;color:var(--mid)}
+.eq-inp{font-family:var(--F3);font-size:14px;color:var(--ink);background:var(--bg);border:1.5px solid var(--rule2);border-radius:5px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
 .eq-inp:focus{border-color:var(--b);box-shadow:0 0 0 3px var(--bdim)}
 .eq-inp::placeholder{color:var(--muted)}
-.eq-sel{cursor:none}
+.eq-sel{cursor:pointer}
 .eq-ta{resize:vertical;min-height:96px;line-height:1.6}
-
-.eq-submit{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:14px 24px;margin-top:4px;
-  background:var(--b);color:#fff;border:none;border-radius:5px;
+.eq-submit{display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px 24px;margin-top:4px;background:var(--b);color:#fff;border:none;border-radius:5px;
   font-family:var(--F4);font-size:10px;letter-spacing:0px;text-transform:uppercase;
-  cursor:none;transition:all .24s;position:relative;overflow:hidden;
-}
-.eq-submit::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);
-  transform:translateX(-100%);transition:transform .5s;
-}
+  cursor:pointer;transition:all .24s;position:relative;overflow:hidden}
+.eq-submit::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s}
 .eq-submit:hover{background:var(--bdk);transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
 .eq-submit:hover::before{transform:translateX(100%)}
-.eq-submit:active{transform:translateY(0)}
-
-.eq-privacy{
-  font-family:var(--F3);font-size:11.5px;color:var(--muted);
-  text-align:center;line-height:1.7;
-}
-
-/* success state */
-.eq-success{
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  padding:56px 32px;text-align:center;
-}
-.eq-success-icon{
-  width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,.1);
-  border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;
-  font-size:26px;color:#16A34A;margin-bottom:16px;
-  animation:succpop .5s var(--e1) both;
-}
+.eq-privacy{font-family:var(--F3);font-size:11.5px;color:var(--muted);text-align:center;line-height:1.7}
+.eq-success{display:none;flex-direction:column;align-items:center;justify-content:center;padding:56px 32px;text-align:center}
+.eq-success-icon{width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:26px;color:#16A34A;margin-bottom:16px;animation:succpop .5s var(--e1) both}
 @keyframes succpop{from{transform:scale(0)}to{transform:scale(1)}}
 .eq-success h3{font-family:var(--F2);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:8px}
 .eq-success p{font-family:var(--F3);font-size:14px;color:var(--mid);line-height:1.7}
-
 @media(max-width:960px){.contact-grid{grid-template-columns:1fr;gap:48px}}
 @media(max-width:560px){.eq-form{padding:0 20px 24px}.eq-row{grid-template-columns:1fr}.eq-form-head{padding:20px 20px 16px}}
 
-
-/* ══════════════════════════════════════════════
-   REUSABLE ENQUIRY BUTTON — drop anywhere
-   Usage: <a href="#contact" class="eq-cta-btn">Enquire Now</a>
-   Or: <button class="eq-cta-btn" onclick="openEnquiryModal()">Enquire Now</button>
-══════════════════════════════════════════════ */
-.eq-cta-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:12px 24px;
-  background:var(--b);color:#fff;
-  font-family:var(--F4);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;
-  border-radius:5px;border:none;
-  cursor:none;
-  position:relative;overflow:hidden;
-  transition:background .22s,transform .22s,box-shadow .22s;
-  white-space:nowrap;
-  text-decoration:none;
-}
-.eq-cta-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);
-  transform:translateX(-120%);transition:transform .45s;
-}
-.eq-cta-btn:hover{
-  background:var(--bdk);
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px var(--bglow);
-}
+/* eq-cta-btn */
+.eq-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:var(--b);color:#fff;font-family:var(--F4);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;border-radius:5px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:background .22s,transform .22s,box-shadow .22s;white-space:nowrap;text-decoration:none}
+.eq-cta-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);transform:translateX(-120%);transition:transform .45s}
+.eq-cta-btn:hover{background:var(--bdk);transform:translateY(-2px);box-shadow:0 8px 24px var(--bglow)}
 .eq-cta-btn:hover::before{transform:translateX(120%)}
-.eq-cta-btn:active{transform:translateY(0)}
-.eq-cta-btn .eq-btn-dot{
-  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);
-  animation:blink 2s ease infinite;flex-shrink:0;
-}
-/* Dark variant */
+.eq-cta-btn .eq-btn-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);animation:blink 2s ease infinite;flex-shrink:0}
 .eq-cta-btn.dark{background:var(--ink);border:1.5px solid var(--ink)}
 .eq-cta-btn.dark:hover{background:var(--b);border-color:var(--b)}
-/* Ghost variant */
-.eq-cta-btn.ghost{
-  background:transparent;color:var(--b);
-  border:1.5px solid var(--bbord);
-}
+.eq-cta-btn.ghost{background:transparent;color:var(--b);border:1.5px solid var(--bbord)}
 .eq-cta-btn.ghost:hover{background:var(--bdim);border-color:var(--b);box-shadow:none}
-/* Large variant */
 .eq-cta-btn.lg{padding:15px 32px;font-size:10.5px}
-/* Arrow icon built-in */
-.eq-cta-btn .eq-arr{
-  display:inline-flex;transition:transform .22s;flex-shrink:0;
-}
+.eq-cta-btn .eq-arr{display:inline-flex;transition:transform .22s;flex-shrink:0}
 .eq-cta-btn:hover .eq-arr{transform:translateX(4px)}
 
-/* ══════════════════════════════════════════════
-   ENQUIRY MODAL — full-screen overlay version
-══════════════════════════════════════════════ */
-.eq-modal-overlay{
-  position:fixed;inset:0;z-index:8000;
-  background:rgba(15,17,30,.72);backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
+/* ══ SAMPLE DATASET MODAL ══ */
+.eq-modal-overlay{position:fixed;inset:0;z-index:8000;background:rgba(15,17,30,.72);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s}
 .eq-modal-overlay.open{opacity:1;pointer-events:all}
-.eq-modal{
-  background:var(--card);border-radius:12px;
-  width:100%;max-width:580px;max-height:92vh;overflow-y:auto;
-  position:relative;
-  transform:translateY(24px) scale(.97);
-  transition:transform .4s var(--e1);
-  box-shadow:0 40px 100px rgba(15,17,30,.3);
-}
+.eq-modal{background:var(--card);border-radius:12px;width:100%;max-width:580px;max-height:92vh;overflow-y:auto;position:relative;transform:translateY(24px) scale(.97);transition:transform .4s var(--e1);box-shadow:0 40px 100px rgba(15,17,30,.3)}
 .eq-modal-overlay.open .eq-modal{transform:none}
-.eq-modal::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--b),var(--b3));border-radius:12px 12px 0 0;
-}
-.eq-modal-close{
-  position:absolute;top:16px;right:16px;
-  width:32px;height:32px;border-radius:50%;
-  background:var(--bg);border:1px solid var(--rule);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:var(--muted);cursor:none;z-index:1;
-  transition:all .2s;
-}
+.eq-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--b),var(--b3));border-radius:12px 12px 0 0}
+.eq-modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted);cursor:pointer;z-index:1;transition:all .2s}
 .eq-modal-close:hover{background:var(--bdim);border-color:var(--b);color:var(--b)}
 .eq-modal .eq-form-head{padding:28px 32px 0}
 .eq-modal .eq-form{padding:0 32px 32px}
 
-@media(max-width:560px){
-  .eq-modal .eq-form-head{padding:20px 20px 0}
-  .eq-modal .eq-form{padding:0 20px 24px}
-}
-
 /* ══ CTA ══ */
 #cta{background:var(--b);text-align:center;padding:128px 0;position:relative;overflow:hidden}
-#cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:900px;height:900px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 65%)}
-#cta::after{content:'';position:absolute;inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:28px 28px;pointer-events:none}
+#cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 65%)}
+#cta::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
 .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px}
-.cta-ey{display:inline-flex;align-items:center;gap:7px;margin-bottom:22px;
-  font-family:var(--F4);font-size:9px;letter-spacing:3px;text-transform:uppercase;
-  color:rgba(255,255,255,.6)}
+.cta-ey{display:inline-flex;align-items:center;gap:7px;margin-bottom:22px;font-family:var(--F4);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .cta-ey::before{content:'';width:14px;height:1.5px;background:rgba(255,255,255,.5)}
-.cta-h{font-family:var(--F1);font-size:clamp(58px,8vw,110px);
-  line-height:.88;letter-spacing:0px;color:#fff;margin-bottom:20px}
+.cta-h{font-family:var(--F1);font-size:clamp(58px,8vw,110px);line-height:.88;letter-spacing:0px;color:#fff;margin-bottom:20px}
 .cta-h span{color:rgba(255,255,255,.45)}
-.cta-p{font-family:var(--F3);font-size:15px;font-weight:300;
-  color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:44px}
-.cta-form{display:flex;max-width:440px;margin:0 auto 14px;
-  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);
-  border-radius:5px;overflow:hidden}
-.cta-inp{flex:1;background:transparent;border:none;outline:none;
-  padding:15px 18px;font-size:14px;color:#fff;font-family:var(--F3)}
-.cta-inp::placeholder{color:rgba(255,255,255,.45)}
-.cta-sub{background:var(--ink);border:none;padding:15px 22px;cursor:none;
-  font-family:var(--F4);font-size:9px;letter-spacing:0px;text-transform:uppercase;
-  color:#fff;transition:background .22s;white-space:nowrap}
-.cta-sub:hover{background:var(--dark)}
-.cta-note{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
-  text-transform:uppercase;color:rgba(255,255,255,.4)}
+.cta-p{font-family:var(--F3);font-size:15px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:44px}
+.cta-note{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
 
 /* ══ FOOTER ══ */
 footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:72px 64px 0}
 .foot-wrap{max-width:1240px;margin:0 auto}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;margin-bottom:48px}
 .flogo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.fmark{width:30px;height:30px;border-radius:5px;background:var(--b);
-  display:flex;align-items:center;justify-content:center}
+.fmark{width:30px;height:30px;border-radius:5px;background:var(--b);display:flex;align-items:center;justify-content:center}
 .fmark svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
 .ftxt{font-family:var(--F1);font-size:20px;color:#fff;letter-spacing:.5px}
 .ftxt span{color:var(--b3)}
-.fdesc{font-family:var(--F3);font-size:13px;font-weight:300;
-  color:rgba(255,255,255,.28);line-height:1.8;max-width:195px;margin-bottom:18px}
+.fdesc{font-family:var(--F3);font-size:13px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.8;max-width:195px;margin-bottom:18px}
 .fsoc{display:flex;gap:7px}
-.fsi{width:30px;height:30px;border-radius:4px;border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;font-size:12px;
-  color:rgba(255,255,255,.32);transition:all .22s}
+.fsi{width:30px;height:30px;border-radius:4px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,.32);transition:all .22s;cursor:pointer}
 .fsi:hover{border-color:var(--b3);color:var(--b3);background:rgba(2,163,132,.12)}
-.fcol h5{font-family:var(--F4);font-size:8.5px;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--b3);margin-bottom:14px}
+.fcol h5{font-family:var(--F4);font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--b3);margin-bottom:14px}
 .fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.fcol a{font-family:var(--F3);font-size:13px;font-weight:300;
-  color:rgba(255,255,255,.28);transition:color .2s}
+.fcol a{font-family:var(--F3);font-size:13px;font-weight:300;color:rgba(255,255,255,.28);transition:color .2s}
 .fcol a:hover{color:#fff}
-.fbot{border-top:1px solid rgba(255,255,255,.05);padding:18px 0;
-  display:flex;justify-content:space-between;align-items:center}
+.fbot{border-top:1px solid rgba(255,255,255,.05);padding:18px 0;display:flex;justify-content:space-between;align-items:center}
 .fbot p,.fbot a{font-family:var(--F4);font-size:9.5px;color:rgba(255,255,255,.2)}
 .fbot a:hover{color:rgba(255,255,255,.5)}
 .flinks{display:flex;gap:16px}
 @media(max-width:900px){footer{padding:48px 20px 0}.foot-grid{grid-template-columns:1fr 1fr;gap:28px}.fbot{flex-direction:column;gap:8px;text-align:center}}
 @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
 
-.logo-img{height:52px;margin-left:8px}
-
-
-
+/* va-btn */
+.va-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:1.5px solid var(--rule2);border-radius:5px;white-space:nowrap;font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink);transition:all .2s;cursor:pointer}
+.va-btn:hover{background:var(--bdim);border-color:var(--b);color:var(--b);transform:translateY(-1px)}
 </style>
 </head>
 <body>
 
 <!-- Page Loader -->
 <div id="loader">
-  <img src="./VG-1a.png" alt="Fast Labelling Logo" class="logo-img">
+  <img src="./VG-1a.png" alt="Vision Global Logo" class="logo-img">
   <div class="ld-bar"><div class="ld-fill"></div></div>
 </div>
 
-<div id="C1"></div>
-<div id="C2"></div>
 <div id="PB"></div>
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <div class="logo">
-     <img src="./VG-1a.png" alt="Fast Labelling Logo" class="logo-img">
+    <img src="./VG-1a.png" alt="Vision Global Logo" class="logo-img">
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -1150,9 +969,9 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <div class="hero-left">
     <div class="hero-pill"><span class="pdot"></span>Precision Labelling Solutions</div>
     <h1 class="hero-h">
-      <span class="ln"><span>Expert</span></span>
-      <span class="ln"><span>Data For</span></span>
-      <span class="ln"><span><span class="a">Your AI.</span></span></span>
+      <span class="ln"><span>Expert AI</span></span>
+      <span class="ln"><span>Training Data</span></span>
+      <span class="ln"><span><span class="a">Guaranteed</span></span></span>
     </h1>
     <p class="hero-sub"><b>Get expert-led human intelligence to accelerate your AI to production.</p>
     <div class="hero-btns">
@@ -1227,8 +1046,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </div>
   </div>
 </div>
-
-
 <section class="sec" id="about">
   <div class="W">
     <div class="ab-grid">
@@ -1271,118 +1088,43 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </div>
   </div>
 </section>
-
-
 <!-- ══ ABOUT ══ -->
-<style>
-/* NEW ABOUT LAYOUT */
-.ab-new-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.ab-new-left{position:relative}
-.ab-ai-img-wrap{position:relative;border-radius:16px;overflow:hidden;
-  box-shadow:0 40px 100px rgba(15,17,30,.18);height:560px}
-.ab-ai-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1)}
-.ab-ai-overlay{position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 45%,rgba(15,17,30,.72) 100%)}
-.ab-ai-badge{position:absolute;bottom:28px;left:28px;right:28px;
-  background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);
-  border-radius:10px;padding:18px 22px;display:flex;gap:20px;align-items:center}
-.ab-ai-stat{text-align:center;flex:1}
-.ab-ai-stat-n{font-family:var(--F1);font-size:32px;color:#fff;letter-spacing:-1px;line-height:1}
-.ab-ai-stat-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;text-transform:uppercase;
-  color:rgba(255,255,255,.55);margin-top:3px}
-.ab-ai-divider{width:1px;height:40px;background:rgba(255,255,255,.15)}
-.ab-ai-pill{position:absolute;top:24px;left:24px;
-  background:var(--b);color:#fff;font-family:var(--F4);font-size:8.5px;
-  letter-spacing:0px;text-transform:uppercase;padding:6px 14px;border-radius:20px;
-  display:flex;align-items:center;gap:7px}
-.ab-ai-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:#fff;
-  animation:blink 2s infinite}
-
-.ab-new-right .vg-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
-.vg-stat-box{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  padding:20px 22px;position:relative;overflow:hidden;transition:all .3s}
-.vg-stat-box:hover{border-color:var(--bbord);transform:translateY(-3px);box-shadow:0 12px 36px var(--bglow)}
-.vg-stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--b),var(--b3));transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.vg-stat-box:hover::before{transform:scaleX(1)}
-.vg-stat-n{font-family:var(--F1);font-size:40px;color:var(--b);letter-spacing:0px;line-height:1}
-.vg-stat-l{font-family:var(--F4);font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;
-  color:var(--muted);margin-top:5px}
-
-@media(max-width:900px){
-  .ab-new-grid{grid-template-columns:1fr;gap:48px}
-  .ab-ai-img-wrap{height:380px}
-}
-</style>
 <section class="sec" id="about">
   <div class="W">
     <div class="ab-new-grid">
-      <!-- LEFT: AI Image -->
       <div class="ab-new-left rv lf">
         <div class="ab-ai-img-wrap">
-          <img src="./about_img.jpeg" style="height: fit-content;" alt="Vision Global Team"/>
+          <img src="./about_img.jpeg" style="height:fit-content" alt="Vision Global Team"/>
           <div class="ab-ai-overlay"></div>
-          <!-- <div class="ab-ai-pill">Vision Global · Coimbatore, India</div> -->
           <div class="ab-ai-badge">
-            <div class="ab-ai-stat">
-              <div class="ab-ai-stat-n">300+</div>
-              <div class="ab-ai-stat-l">Employees</div>
-            </div>
+            <div class="ab-ai-stat"><div class="ab-ai-stat-n">300+</div><div class="ab-ai-stat-l">Employees</div></div>
             <div class="ab-ai-divider"></div>
-            <div class="ab-ai-stat">
-              <div class="ab-ai-stat-n">25</div>
-              <div class="ab-ai-stat-l">Years Experience</div>
-            </div>
+            <div class="ab-ai-stat"><div class="ab-ai-stat-n">25</div><div class="ab-ai-stat-l">Years Experience</div></div>
             <div class="ab-ai-divider"></div>
-            <div class="ab-ai-stat">
-              <div class="ab-ai-stat-n">1B+</div>
-              <div class="ab-ai-stat-l">Data Points / Year</div>
-            </div>
+            <div class="ab-ai-stat"><div class="ab-ai-stat-n">1B+</div><div class="ab-ai-stat-l">Data Points / Year</div></div>
           </div>
         </div>
       </div>
-
-      <!-- RIGHT: Content -->
       <div class="ab-new-right">
         <div class="ey rv up">Who We Are</div>
         <h2 class="ST rv up" style="transition-delay:.07s">About <span class="a">Us</span></h2>
         <p class="SB rv up" style="transition-delay:.12s">Vision Global ITES Pvt Ltd is a leading Data and Back-office annotation specialist headquartered in Coimbatore, India — with over 25 years of industry experience and a team of 300+ highly skilled data professionals. Our clients across North America, the UK, and Europe trust us to deliver high-volume, high-accuracy processing at scale.</p>
-
         <div class="vg-stat-row rv up" style="transition-delay:.17s">
-          <div class="vg-stat-box">
-            <div class="vg-stat-n">99%</div>
-            <div class="vg-stat-l">Accuracy Benchmark</div>
-          </div>
-          <div class="vg-stat-box">
-            <div class="vg-stat-n">25 Yrs</div>
-            <div class="vg-stat-l">Industry Experience</div>
-          </div>
-          <div class="vg-stat-box">
-            <div class="vg-stat-n">300+</div>
-            <div class="vg-stat-l">Skilled Professionals</div>
-          </div>
-          <div class="vg-stat-box">
-            <div class="vg-stat-n">3 Regions</div>
-            <div class="vg-stat-l">North America · UK · Europe</div>
-          </div>
+          <div class="vg-stat-box"><div class="vg-stat-n">99%</div><div class="vg-stat-l">Accuracy Benchmark</div></div>
+          <div class="vg-stat-box"><div class="vg-stat-n">25 Yrs</div><div class="vg-stat-l">Industry Experience</div></div>
+          <div class="vg-stat-box"><div class="vg-stat-n">300+</div><div class="vg-stat-l">Skilled Professionals</div></div>
+          <div class="vg-stat-box"><div class="vg-stat-n">3 Regions</div><div class="vg-stat-l">North America · UK · Europe</div></div>
         </div>
-
         <div class="ck rv up" style="transition-delay:.22s">
-          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Scalable workforce — Ability to handle large-scale data annotation projects including images, videos, text, and audio across global AI datasets.</span></div>
-          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Domain expertise — Specialized in data labeling techniques such as bounding boxes, segmentation, classification, and tagging for high-quality AI training data.</span></div>
-          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Loyalty-driven culture — Our strength lies in a dedicated annotation team ensuring consistency, accuracy, and long-term client trust.</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Scalable workforce — handle large-scale annotation across images, videos, text, and audio for global AI datasets.</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Domain expertise — bounding boxes, segmentation, classification, tagging and RLHF for high-quality AI training data.</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Loyalty-driven culture — dedicated annotation teams ensuring consistency, accuracy, and long-term client trust.</span></div>
         </div>
-
         <div class="certs rv up" style="transition-delay:.27s">
-          <span class="ct">SOC 2 Type II</span><span class="ct">ISO 27001</span>
-          <span class="ct">HIPAA</span><span class="ct">GDPR</span><span class="ct">NDA Protected</span>
+          <span class="ct">SOC 2 Type II</span><span class="ct">ISO 27001</span><span class="ct">HIPAA</span><span class="ct">GDPR</span><span class="ct">NDA Protected</span>
         </div>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap" class="rv up" style="transition-delay:.32s">
-          <a href="#contact" class="eq-cta-btn">
-            <span class="eq-btn-dot"></span>
-            Enquire Now
-            <span class="eq-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6h9M7 2.5l3 3.5-3 3.5"/></svg></span>
-          </a>
+          <a href="#contact" class="eq-cta-btn"><span class="eq-btn-dot"></span>Enquire Now<span class="eq-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6h9M7 2.5l3 3.5-3 3.5"/></svg></span></a>
           <a href="#services" class="BG">Our Services</a>
         </div>
       </div>
@@ -1406,169 +1148,269 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     <span class="bts-i">COMPUTER VISION<span class="bts-dot"></span></span>
     <span class="bts-i b">RLHF<span class="bts-dot"></span></span>
     <span class="bts-i f">LIDAR 3D<span class="bts-dot"></span></span>
-    <span class="bts-i">MEDICAL AI<span class="bts-dot"></span></span>
+    <span class="bts-i">VOICE AI<span class="bts-dot"></span></span>
     <span class="bts-i">COMPUTER VISION<span class="bts-dot"></span></span>
     <span class="bts-i b">RLHF<span class="bts-dot"></span></span>
     <span class="bts-i f">LIDAR 3D<span class="bts-dot"></span></span>
-    <span class="bts-i">MEDICAL AI<span class="bts-dot"></span></span>
+    <span class="bts-i">VOICE AI<span class="bts-dot"></span></span>
   </div>
 </div>
 
-<!-- ══ SERVICES ══ -->
-```html
+<!-- ══ CHANGE 6: SERVICES — Targeting AI/ML Startups & Ecosystem ══ -->
 <section class="sec" id="services">
   <div class="W">
     <div class="svc-hd">
       <div>
-        <div class="ey rv up">What We Do</div>
-        <h2 class="ST rv up" style="transition-delay:.07s">
-          Data Annotation Built for <span class="a">All AI Use Cases.</span>
-        </h2>
+        <div class="ey rv up">Built For AI Builders</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">Annotation Fuel for<br/><span class="a">AI That Scales.</span></h2>
       </div>
-      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">
-        Upload raw files and receive accurately annotated, structured datasets ready for AI model training. 
-        Our workflow ensures consistent quality through expert validation and scalable delivery.
-      </p>
+      <div class="rv up" style="transition-delay:.12s">
+        <p class="SB" style="margin-bottom:16px">We're the data engine behind <strong>AI/ML startups, computer vision platforms, and autonomous robotics companies</strong> — the ecosystem builders shipping real products. If you're building a vision model, training a voice AI, or scaling an autonomous system, we're your annotation partner.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="ct">AI/ML Startups</span>
+          <span class="ct">Computer Vision SaaS</span>
+          <span class="ct">Robotics Cos</span>
+          <span class="ct">Tier 2/3 AV Suppliers</span>
+          <span class="ct">Voice AI Platforms</span>
+        </div>
+      </div>
     </div>
-
     <div class="svc-grid sg">
-
-      <!-- 01 -->
+      <!-- 01 Image -->
       <div class="sv">
         <span class="sv-n">01</span>
         <div class="sv-ico">🖼️</div>
         <h3>Image Annotation</h3>
-        <p>
-          Bounding boxes, polygons, keypoints, and segmentation delivered with high precision. 
-          Every dataset is reviewed by Senior Annotation Quality Analysts to ensure accuracy.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">Bounding Box</span>
-          <span class="sv-tag">Polygon</span>
-          <span class="sv-tag">Keypoints</span>
-        </div>
+        <p>Bounding boxes, polygons, keypoints, and segmentation at scale. Ideal for <strong>computer vision startups</strong> and SaaS AI tools that need consistent, high-volume labelling without building an in-house team.</p>
+        <div class="sv-tags"><span class="sv-tag">Bounding Box</span><span class="sv-tag">Polygon</span><span class="sv-tag">Keypoints</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
-      <!-- 02 -->
+      <!-- 02 Video -->
       <div class="sv">
         <span class="sv-n">02</span>
         <div class="sv-ico">🎬</div>
         <h3>Video Annotation</h3>
-        <p>
-          Frame-by-frame annotation including object tracking, motion detection, and temporal labeling 
-          for AI and computer vision models.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">Object Tracking</span>
-          <span class="sv-tag">Action Labels</span>
-        </div>
+        <p>Frame-by-frame tracking, action labels, and temporal annotations. Built for <strong>robotics companies and Tier 2/3 AV suppliers</strong> who need reliable perception data without Waymo's price tag.</p>
+        <div class="sv-tags"><span class="sv-tag">Object Tracking</span><span class="sv-tag">Action Labels</span><span class="sv-tag">Temporal</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
-      <!-- 03 -->
+      <!-- 03 RLHF -->
       <div class="sv">
         <span class="sv-n">03</span>
         <div class="sv-ico">🤖</div>
         <h3>RLHF & LLM Annotation</h3>
-        <p>
-          Human-in-the-loop annotation for training language models, including evaluation, ranking, 
-          and refinement workflows.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">RLHF</span>
-          <span class="sv-tag">Evaluation</span>
-          <span class="sv-tag">Fine-Tuning</span>
-        </div>
+        <p>Human preference collection, response ranking, and alignment datasets. The backbone of every <strong>AI-powered SaaS product</strong> tuning its language model for real-world performance.</p>
+        <div class="sv-tags"><span class="sv-tag">RLHF</span><span class="sv-tag">Evaluation</span><span class="sv-tag">Fine-Tuning</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
-      <!-- 04 -->
+      <!-- 04 Audio & Speech — CHANGE 7 -->
       <div class="sv">
         <span class="sv-n">04</span>
-        <div class="sv-ico">📝</div>
-        <h3>Text & NLP Annotation</h3>
-        <p>
-          Entity recognition, sentiment analysis, and intent classification across multilingual datasets 
-          for scalable AI applications.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">NER</span>
-          <span class="sv-tag">Sentiment</span>
-          <span class="sv-tag">Languages</span>
-        </div>
+        <div class="sv-ico">🎙️</div>
+        <h3>Audio & Speech Annotation</h3>
+        <p>The Voice AI market is exploding — and every STT model, voice assistant, and accent-aware AI needs expert-labelled audio. We deliver <strong>speech transcription, speaker diarisation, emotion tagging, and accent coverage across 40+ languages</strong>. Whether you're building a call-centre AI, a medical dictation tool, or a multilingual voice product, our annotators bring the linguistic precision your model needs.</p>
+        <div class="sv-tags"><span class="sv-tag">Speech-to-Text</span><span class="sv-tag">Diarisation</span><span class="sv-tag">Emotion</span><span class="sv-tag">40+ Languages</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
-      <!-- 05 -->
+      <!-- 05 NLP -->
       <div class="sv">
         <span class="sv-n">05</span>
-        <div class="sv-ico">🏥</div>
-        <h3>Medical Data Annotation</h3>
-        <p>
-          Radiology and healthcare dataset annotation with structured workflows and high-quality review standards.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">DICOM</span>
-          <span class="sv-tag">Radiology</span>
-          <span class="sv-tag">Healthcare</span>
-        </div>
+        <div class="sv-ico">📝</div>
+        <h3>Text & NLP Annotation</h3>
+        <p>Entity recognition, sentiment tagging, and intent classification across multilingual datasets — essential for <strong>AI-powered SaaS tools</strong> that need structured NLP training data fast.</p>
+        <div class="sv-tags"><span class="sv-tag">NER</span><span class="sv-tag">Sentiment</span><span class="sv-tag">Languages</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
-      <!-- 06 -->
+      <!-- 06 LiDAR -->
       <div class="sv">
         <span class="sv-n">06</span>
         <div class="sv-ico">📡</div>
         <h3>LiDAR & 3D Annotation</h3>
-        <p>
-          Point cloud labeling, cuboids, and sensor fusion annotation for autonomous systems and spatial AI.
-        </p>
-        <div class="sv-tags">
-          <span class="sv-tag">Point Cloud</span>
-          <span class="sv-tag">3D Cuboid</span>
-          <span class="sv-tag">Fusion</span>
-        </div>
+        <p>Point cloud labeling, cuboids, and sensor fusion annotation. Directly targeting the <strong>autonomous robotics and AV supplier ecosystem</strong> — where spatial accuracy directly determines safety outcomes.</p>
+        <div class="sv-tags"><span class="sv-tag">Point Cloud</span><span class="sv-tag">3D Cuboid</span><span class="sv-tag">Fusion</span></div>
         <div class="sv-more">Learn more →</div>
       </div>
-
+      <!-- 07 Medical -->
+      <div class="sv">
+        <span class="sv-n">07</span>
+        <div class="sv-ico">🏥</div>
+        <h3>Medical Data Annotation</h3>
+        <p>Radiology, pathology, and clinical NLP annotation with HIPAA-compliant workflows. For <strong>HealthTech startups</strong> building diagnostic AI that has to be right every time.</p>
+        <div class="sv-tags"><span class="sv-tag">DICOM</span><span class="sv-tag">Radiology</span><span class="sv-tag">HIPAA</span></div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+      <!-- 08 Synthetic Data Validation — CHANGE 7 -->
+      <div class="sv">
+        <span class="sv-n">08</span>
+        <div class="sv-ico">🧪</div>
+        <h3>Synthetic Data Validation</h3>
+        <p>Synthetic data accelerates training — but only if it reflects reality. Our human experts <strong>validate, correct, and quality-score synthetically generated datasets</strong> to ensure they hold up in production. We flag distribution gaps, label noise, and edge-case failures that automated checks miss, giving your model the grounding it needs.</p>
+        <div class="sv-tags"><span class="sv-tag">QA Review</span><span class="sv-tag">Distribution Check</span><span class="sv-tag">Edge Cases</span></div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+      <!-- 09 Sample Dataset CTA -->
+      <div class="sv" style="background:linear-gradient(135deg,var(--b) 0%,var(--b3) 100%);cursor:pointer" onclick="openSampleModal()">
+        <span class="sv-n" style="color:rgba(255,255,255,.08)">★</span>
+        <div class="sv-ico" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25)">📦</div>
+        <h3 style="color:#fff">Free Sample Dataset</h3>
+        <p style="color:rgba(255,255,255,.75)">Download 50 professionally annotated images in COCO JSON format. See our quality firsthand before committing to a project.</p>
+        <div class="sv-tags">
+          <span class="sv-tag" style="color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1)">COCO Format</span>
+          <span class="sv-tag" style="color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1)">50 Images</span>
+          <span class="sv-tag" style="color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1)">Free</span>
+        </div>
+        <div class="sv-more" style="color:rgba(255,255,255,.9)">Download Free Sample →</div>
+      </div>
     </div>
   </div>
 </section>
-```
 
+<!-- ══ CHANGE 3: BEFORE/AFTER ANNOTATION DEMO ══ -->
+<section id="annotation-demo">
+  <div class="W">
+    <div class="demo-hd">
+      <div class="ey rv up" style="justify-content:center">Visual Evidence</div>
+      <h2 class="ST rv up" style="text-align:center;transition-delay:.07s">Raw Data →<br/><span class="a">Production-Ready</span> Labels.</h2>
+      <p class="SB rv up" style="text-align:center;margin:0 auto;transition-delay:.12s;max-width:520px">Exactly what your annotated files look like. Click a tab to compare raw input vs. labelled output across modalities.</p>
+    </div>
+    <div class="demo-tabs rv up" style="transition-delay:.17s">
+      <div class="demo-tab on" onclick="setDemo(0,this)">Image — Bounding Box</div>
+      <div class="demo-tab" onclick="setDemo(1,this)">Image — Segmentation</div>
+      <div class="demo-tab" onclick="setDemo(2,this)">3D LiDAR Point Cloud</div>
+      <div class="demo-tab" onclick="setDemo(3,this)">Video Frame Tracking</div>
+    </div>
 
-<!-- ══ WORKFLOW DEMO (NEW) ══ -->
+    <!-- Panel 0: Bounding Box -->
+    <div class="demo-panel on" id="dp0">
+      <div class="ba-compare rv sc">
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot raw"></span>Raw Input — Unlabelled Street Scene</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1495285038738-35d49e1a7bf2?w=800&h=560&fit=crop" alt="Raw street"/>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>0</b>Labels</div><div class="ba-stat"><b>—</b>Class Types</div><div class="ba-stat"><b>Raw</b>Status</div></div></div>
+        </div>
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot ann"></span>Annotated Output — Bounding Boxes</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1495285038738-35d49e1a7bf2?w=800&h=560&fit=crop" alt="Annotated street"/>
+            <div class="ba-overlay">
+              <div class="bbox v" style="top:25%;left:12%;width:22%;height:42%"><span class="bbox-lbl">Vehicle</span></div>
+              <div class="bbox v" style="top:28%;left:58%;width:28%;height:38%"><span class="bbox-lbl">Vehicle</span></div>
+              <div class="bbox p" style="top:30%;left:40%;width:10%;height:36%"><span class="bbox-lbl">Pedestrian</span></div>
+              <div class="bbox s" style="top:15%;left:72%;width:8%;height:16%"><span class="bbox-lbl">Sign</span></div>
+              <div class="bbox c" style="top:18%;left:2%;width:6%;height:12%"><span class="bbox-lbl">Traffic Light</span></div>
+            </div>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>5</b>Labels</div><div class="ba-stat"><b>4</b>Class Types</div><div class="ba-stat"><b style="color:#16A34A">✓ QA Pass</b>Status</div></div></div>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:20px 28px;margin-top:20px;display:flex;align-items:center;gap:32px;flex-wrap:wrap" class="rv up">
+        <div style="font-family:var(--F4);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Export format</div>
+        <div style="font-family:var(--F3);font-size:13px;color:var(--ink);font-weight:500">COCO JSON · Pascal VOC XML · YOLO TXT</div>
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="openSampleModal()" class="eq-cta-btn" style="padding:9px 18px;font-size:9px">Download Sample Dataset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 1: Segmentation -->
+    <div class="demo-panel" id="dp1">
+      <div class="ba-compare rv sc">
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot raw"></span>Raw Input — Aerial Agriculture Image</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop" alt="Raw field"/>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>0</b>Segments</div><div class="ba-stat"><b>Raw</b>Status</div></div></div>
+        </div>
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot ann"></span>Annotated Output — Semantic Segmentation</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=560&fit=crop" alt="Segmented field"/>
+            <svg class="seg-svg" viewBox="0 0 800 560" preserveAspectRatio="none">
+              <polygon points="0,0 260,0 280,180 320,220 260,280 0,560" fill="rgba(59,130,246,0.35)" stroke="#3B82F6" stroke-width="2"/>
+              <polygon points="300,0 800,0 800,200 650,240 580,180 320,0" fill="rgba(34,197,94,0.35)" stroke="#22C55E" stroke-width="2"/>
+              <polygon points="260,300 640,260 800,560 0,560" fill="rgba(245,158,11,0.35)" stroke="#F59E0B" stroke-width="2"/>
+              <text x="80" y="200" fill="#3B82F6" font-size="18" font-family="monospace" font-weight="bold">Crop Zone A</text>
+              <text x="420" y="100" fill="#22C55E" font-size="18" font-family="monospace" font-weight="bold">Crop Zone B</text>
+              <text x="300" y="440" fill="#F59E0B" font-size="18" font-family="monospace" font-weight="bold">Soil / Fallow</text>
+            </svg>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>3</b>Segments</div><div class="ba-stat"><b>3</b>Classes</div><div class="ba-stat"><b style="color:#16A34A">✓ QA Pass</b>Status</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: LiDAR Point Cloud -->
+    <div class="demo-panel" id="dp2">
+      <div class="ba-compare rv sc">
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot raw"></span>Raw LiDAR — Unprocessed Point Cloud</div>
+          <div class="ba-img-wrap">
+            <div class="pc-wrap" id="pcRaw"><canvas class="pc-canvas" id="canvasRaw"></canvas></div>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>~120k</b>Points</div><div class="ba-stat"><b>Raw</b>Status</div></div></div>
+        </div>
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot ann"></span>Labelled Output — 3D Cuboids</div>
+          <div class="ba-img-wrap">
+            <div class="pc-wrap" id="pcAnnotated"><canvas class="pc-canvas" id="canvasAnn"></canvas></div>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>4</b>Cuboids</div><div class="ba-stat"><b>3</b>Classes</div><div class="ba-stat"><b style="color:#16A34A">✓ QA Pass</b>Status</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Video Frame Tracking -->
+    <div class="demo-panel" id="dp3">
+      <div class="ba-compare rv sc">
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot raw"></span>Raw Frame — No Tracking IDs</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=560&fit=crop" alt="Raw video frame"/>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>Frame</b>Type</div><div class="ba-stat"><b>Raw</b>Status</div></div></div>
+        </div>
+        <div class="ba-side">
+          <div class="ba-label"><span class="ba-dot ann"></span>Annotated Frame — Multi-Object Tracking</div>
+          <div class="ba-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=560&fit=crop" alt="Tracked video frame"/>
+            <div class="ba-overlay">
+              <div class="bbox p" style="top:20%;left:8%;width:16%;height:50%"><span class="bbox-lbl">Person #01</span></div>
+              <div class="bbox p" style="top:22%;left:30%;width:14%;height:46%"><span class="bbox-lbl">Person #02</span></div>
+              <div class="bbox v" style="top:30%;left:55%;width:38%;height:35%"><span class="bbox-lbl">Vehicle #03</span></div>
+              <div style="position:absolute;top:15%;left:8%;font-family:monospace;font-size:10px;color:#22C55E;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:2px">Track ID:01 · Frame 24/60</div>
+            </div>
+          </div>
+          <div class="ba-meta"><div class="ba-stats"><div class="ba-stat"><b>3</b>Tracked Objects</div><div class="ba-stat"><b>2</b>Classes</div><div class="ba-stat"><b style="color:#16A34A">✓ QA Pass</b>Status</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORKFLOW DEMO ══ -->
 <section class="sec" id="workflow">
   <div class="W">
     <div class="wf-grid">
       <div>
-        <!-- <div class="ey rv up">Live Platforms</div> -->
         <h2 class="ST rv up" style="transition-delay:.07s">See How The<br/><span class="a">Annotation</span><br/>Process Works.</h2>
-        <p class="SB rv up" style="transition-delay:.12s;margin-bottom:32px">Our Annotation process combines State-of-the-Art technology with expert human review - cutting turnaround time by 70% with high precision and accuracy</p>
+        <p class="SB rv up" style="transition-delay:.12s;margin-bottom:32px">Our annotation process combines state-of-the-art tooling with expert human review — cutting turnaround time by 70% with high precision and accuracy.</p>
         <div class="wf-steps rv up" style="transition-delay:.17s">
           <div class="wf-step active">
             <div class="wf-sn">1</div>
-            <div class="wf-step-txt">
-              <h4>Upload raw files</h4>
-              <p>Upload your input files in any format, we will handle the rest.</p>
-            </div>
+            <div class="wf-step-txt"><h4>Upload raw files</h4><p>Upload your input files in any format — we handle the rest.</p></div>
           </div>
           <div class="wf-conn"></div>
           <div class="wf-step">
             <div class="wf-sn">2</div>
-            <div class="wf-step-txt">
-              <h4>Expert Review & Correct</h4>
-              <p>Certified annotators review, labels and validate every label against your guidelines.</p>
-            </div>
+            <div class="wf-step-txt"><h4>Expert Review & Correct</h4><p>Certified annotators review, label, and validate every label against your guidelines.</p></div>
           </div>
           <div class="wf-conn"></div>
           <div class="wf-step">
             <div class="wf-sn">3</div>
-            <div class="wf-step-txt">
-              <h4>QA Sign-off & Export</h4>
-              <p>Senior Annotation Quality Analysts run final checks. Export in COCO, VOC, YOLO, or custom format.</p>
-            </div>
+            <div class="wf-step-txt"><h4>QA Sign-off & Export</h4><p>Senior Annotation Quality Analysts run final checks. Export in COCO, VOC, YOLO, or custom format.</p></div>
           </div>
         </div>
       </div>
@@ -1595,77 +1437,15 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
             </div>
           </div>
           <div class="wf-bars">
-            <div>
-              <div class="wbar-label"><span>Image Annotation</span><span>98%</span></div>
-              <div class="wbar-track"><div class="wbar-fill" style="--w:98%"></div></div>
-            </div>
-            <div>
-              <div class="wbar-label"><span>QA Verification</span><span>94%</span></div>
-              <div class="wbar-track"><div class="wbar-fill" style="--w:94%"></div></div>
-            </div>
-            <div>
-              <div class="wbar-label"><span>Export Ready</span><span>76%</span></div>
-              <div class="wbar-track"><div class="wbar-fill" style="--w:76%"></div></div>
-            </div>
+            <div><div class="wbar-label"><span>Image Annotation</span><span>98%</span></div><div class="wbar-track"><div class="wbar-fill" style="--w:98%"></div></div></div>
+            <div><div class="wbar-label"><span>QA Verification</span><span>94%</span></div><div class="wbar-track"><div class="wbar-fill" style="--w:94%"></div></div></div>
+            <div><div class="wbar-label"><span>Export Ready</span><span>76%</span></div><div class="wbar-track"><div class="wbar-fill" style="--w:76%"></div></div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ══ PLATFORM FEATURES (NEW) ══ -->
-<!-- <section class="sec" id="platform">
-  <div class="W">
-    <div class="plat-hd">
-      <div>
-        <div class="ey rv up">Processing</div>
-        <h2 class="ST rv up" style="transition-delay:.07s">One Platform,<br/><span class="a">Every Modality.</span></h2>
-      </div>
-      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">LOGO Hub brings annotation, QA, workforce management, and analytics into a single enterprise workspace with real-time visibility.</p>
-    </div>
-    <div class="feat-tabs" id="featTabs">
-      <div class="ft on" data-tab="0">Annotation</div>
-      <div class="ft" data-tab="1">Quality</div>
-      <div class="ft" data-tab="2">Analytics</div>
-      <div class="ft" data-tab="3">Security</div>
-    </div>
-    <div class="feat-panels">
-      <div class="feat-panel on" data-panel="0">
-        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=720&fit=crop" alt="Annotation"/></div>
-        <div class="feat-list sg">
-          <div class="fl-item"><div class="fl-ico">🖊️</div><div class="fl-txt"><h4>AI-Assisted Pre-labeling</h4><p>Reduce annotation time by up to 70% with AI-generated first-pass labels reviewed and corrected by expert annotators.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">🔄</div><div class="fl-txt"><h4>Multi-modality Support</h4><p>AI - get all-in one place Vision Global.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">⚡</div><div class="fl-txt"><h4>Batch Workflow Automation</h4><p>Automate task routing, annotator assignment, and QA escalation across thousands of assets simultaneously.</p></div></div>
-        </div>
-      </div>
-      <div class="feat-panel" data-panel="1">
-        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=720&fit=crop" alt="Quality"/></div>
-        <div class="feat-list sg">
-          <div class="fl-item"><div class="fl-ico">🎯</div><div class="fl-txt"><h4>Real-time IAA Scoring</h4><p>Inter-annotator agreement calculated live per batch. Automatic escalation when scores drop below threshold.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">👁️</div><div class="fl-txt"><h4>Peer Review Layer</h4><p>Every label reviewed by a second certified annotator before reaching QA sign-off. No single-point failures.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">📋</div><div class="fl-txt"><h4>Audit Trail on Every Label</h4><p>Full history of who annotated, reviewed, and approved every single data point — exportable for compliance.</p></div></div>
-        </div>
-      </div>
-      <div class="feat-panel" data-panel="2">
-        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=720&fit=crop" alt="Analytics"/></div>
-        <div class="feat-list sg">
-          <div class="fl-item"><div class="fl-ico">📊</div><div class="fl-txt"><h4>Live Project Dashboard</h4><p>Real-time throughput, accuracy, and cost metrics visible to your team the moment you log in — no waiting for reports.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">🔔</div><div class="fl-txt"><h4>Smart Alerts &amp; SLA Monitoring</h4><p>Automated alerts when batches fall behind schedule or quality drops. SLA breach prevention built in.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">📤</div><div class="fl-txt"><h4>Custom Reporting &amp; Export</h4><p>One-click reports on cost-per-label, velocity, annotator performance, and dataset quality for stakeholder review.</p></div></div>
-        </div>
-      </div>
-      <div class="feat-panel" data-panel="3">
-        <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=720&fit=crop" alt="Security"/></div>
-        <div class="feat-list sg">
-          <div class="fl-item"><div class="fl-ico">🔐</div><div class="fl-txt"><h4>Zero Data Retention Policy</h4><p>Data processed exclusively in your approved cloud environment. Nothing stored on LOGO servers after project close.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">🏛️</div><div class="fl-txt"><h4>SOC 2 + HIPAA Compliant</h4><p>Current certificates available before contract signature. Regular third-party audits. Full compliance documentation provided.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">🤝</div><div class="fl-txt"><h4>NDA-first Engagements</h4><p>Every team member signs NDAs before accessing your data. Annotators are vetted, trained, and background-checked.</p></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 <!-- ══ CAPABILITIES ══ -->
 <section class="sec" id="cap">
@@ -1677,8 +1457,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     <div class="cap-grid">
       <div class="cc"><div class="cc-head"><span>📸</span><h4>Visual Data</h4></div><div class="cc-rows"><div class="cc-row">2D &amp; 3D Bounding Boxes</div><div class="cc-row">Semantic Segmentation</div><div class="cc-row">Instance Segmentation</div><div class="cc-row">Polygon &amp; Spline Annotation</div><div class="cc-row">Keypoint &amp; Skeleton Mapping</div><div class="cc-row">Image Classification &amp; Tagging</div><div class="cc-row">OCR &amp; Document Layout</div><div class="cc-row">Depth Map Annotation</div></div></div>
       <div class="cc"><div class="cc-head"><span>🎬</span><h4>Video &amp; 3D</h4></div><div class="cc-rows"><div class="cc-row">Frame-by-frame Labelling</div><div class="cc-row">Multi-object Tracking</div><div class="cc-row">Action &amp; Gesture Recognition</div><div class="cc-row">LiDAR 3D Cuboid Annotation</div><div class="cc-row">Point Cloud Segmentation</div><div class="cc-row">Sensor Fusion (RGB + LiDAR)</div><div class="cc-row">Lane &amp; Road Surface Marking</div><div class="cc-row">Radar &amp; Event Camera Data</div></div></div>
-      <div class="cc"><div class="cc-head"><span>🗣️</span><h4>Language &amp; Audio</h4></div><div class="cc-rows"><div class="cc-row">Speech-to-Text Transcription</div><div class="cc-row">Speaker Diarization</div><div class="cc-row">Named Entity Recognition</div><div class="cc-row">Sentiment &amp; Emotion Analysis</div><div class="cc-row">Intent Classification</div><div class="cc-row">Coreference Resolution</div><div class="cc-row">Relation Extraction</div><div class="cc-row">40+ Languages Covered</div></div></div>
-      <div class="cc"><div class="cc-head"><span>⚙️</span><h4>AI Alignment</h4></div><div class="cc-rows"><div class="cc-row">RLHF Response Ranking</div><div class="cc-row">Human Preference Collection</div><div class="cc-row">Constitutional AI Feedback</div><div class="cc-row">Instruction Tuning Datasets</div><div class="cc-row">Red-Teaming &amp; Jailbreak Tests</div><div class="cc-row">Hallucination Evaluation</div><div class="cc-row">Factuality Assessment</div><div class="cc-row">Bias Detection &amp; Mitigation</div></div></div>
+      <div class="cc"><div class="cc-head"><span>🎙️</span><h4>Voice AI &amp; Audio</h4></div><div class="cc-rows"><div class="cc-row">Speech-to-Text Transcription</div><div class="cc-row">Speaker Diarisation</div><div class="cc-row">Accent Coverage (40+ Languages)</div><div class="cc-row">Emotion &amp; Sentiment Tagging</div><div class="cc-row">Intent Classification</div><div class="cc-row">Named Entity Recognition</div><div class="cc-row">Noise &amp; Audio Quality Flagging</div><div class="cc-row">Call Centre AI Datasets</div></div></div>
+      <div class="cc"><div class="cc-head"><span>⚙️</span><h4>AI Alignment &amp; Synth</h4></div><div class="cc-rows"><div class="cc-row">RLHF Response Ranking</div><div class="cc-row">Human Preference Collection</div><div class="cc-row">Instruction Tuning Datasets</div><div class="cc-row">Synthetic Data Validation</div><div class="cc-row">Distribution Gap Analysis</div><div class="cc-row">Red-Teaming &amp; Safety Tests</div><div class="cc-row">Hallucination Evaluation</div><div class="cc-row">Bias Detection &amp; Mitigation</div></div></div>
     </div>
   </div>
 </section>
@@ -1694,12 +1474,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">From foundation models to autonomous systems and medical AI — expert-driven data solutions with guaranteed quality and domain-specific expertise.</p>
     </div>
     <div class="ind-grid sg">
-      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="AV"/></div><div class="ic-body"><div class="ic-tag">Mobility AI</div><h3>Autonomous Vehicles</h3><p>High-precision sensor labeling enabling ADAS systems to perceive complex environments and operate safely.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="AV"/></div><div class="ic-body"><div class="ic-tag">Mobility AI</div><h3>Autonomous Vehicles</h3><p>High-precision sensor labeling for <strong>Tier 2/3 AV suppliers and mobility AI startups</strong> — the ecosystem builders making autonomy real at scale.</p><div class="ic-lnk">Learn More →</div></div></div>
       <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop" alt="Healthcare"/></div><div class="ic-body"><div class="ic-tag">Healthcare AI</div><h3>Medical &amp; Life Sciences</h3><p>Clinical domain expertise powers medical imaging, diagnostics, and AI-driven healthcare with accuracy &amp; compliance.</p><div class="ic-lnk">Learn More →</div></div></div>
-      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="GenAI"/></div><div class="ic-body"><div class="ic-tag">Generative AI</div><h3>LLMs &amp; Foundation Models</h3><p>Expert-led annotation and reinforcement workflows strengthen language models — accuracy, safety, reliability.</p><div class="ic-lnk">Learn More →</div></div></div>
-      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Robotics"/></div><div class="ic-body"><div class="ic-tag">Robotics</div><h3>Robotics &amp; Manufacturing</h3><p>Structured training data and scenario validation enhance robotic perception and task execution.</p><div class="ic-lnk">Learn More →</div></div></div>
-      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?w=600&h=400&fit=crop" alt="Agriculture"/></div><div class="ic-body"><div class="ic-tag">Agricultural AI</div><h3>Precision Agriculture</h3><p>Crop &amp; weed detection, drone image annotation and plant health classification for smart farming AI.</p><div class="ic-lnk">Learn More →</div></div></div>
-      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop" alt="Smart Cities"/></div><div class="ic-body"><div class="ic-tag">Infrastructure</div><h3>Smart Cities &amp; Retail</h3><p>Surveillance annotation, footfall analysis and product detection powering urban intelligence and retail AI.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="GenAI"/></div><div class="ic-body"><div class="ic-tag">Generative AI</div><h3>LLMs &amp; Foundation Models</h3><p>Expert-led annotation and RLHF workflows for <strong>AI/ML startups and SaaS platforms</strong> training language models at every scale.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Robotics"/></div><div class="ic-body"><div class="ic-tag">Robotics</div><h3>Robotics &amp; Manufacturing</h3><p>Structured training data for <strong>autonomous robotics companies</strong> — enhancing perception, grasping, and task execution accuracy.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?w=600&h=400&fit=crop" alt="Agriculture"/></div><div class="ic-body"><div class="ic-tag">Agricultural AI</div><h3>Precision Agriculture</h3><p>Crop &amp; weed detection, drone image annotation, and plant health classification for smart farming AI startups.</p><div class="ic-lnk">Learn More →</div></div></div>
+      <div class="ic"><div class="ic-img"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop" alt="Voice AI"/></div><div class="ic-body"><div class="ic-tag">Voice AI</div><h3>Conversational &amp; Voice AI</h3><p>Transcription, diarisation, and intent datasets for <strong>voice AI platforms</strong> building the next generation of smart assistants and call-centre AI.</p><div class="ic-lnk">Learn More →</div></div></div>
     </div>
   </div>
 </section>
@@ -1707,28 +1487,26 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <!-- ══ PROCESS (dark) ══ -->
 <section id="proc">
   <div class="proc-hd W">
-    <!-- <div class="ey rv up" style="justify-content:center">How It Works</div> -->
     <h2 class="ST rv up" style="text-align:center;transition-delay:.08s;color:#fff">Raw Data To <span class="a" style="color:var(--b3)">Model-Ready</span><br/>In 48 Hours.</h2>
   </div>
   <div class="W">
     <div class="proc-cards sg">
-      <div class="pc"><span class="pc-n" style="color: white;">01</span><h4>Data Intake &amp; Scoping</h4><p>We audit your dataset, co-define annotation guidelines, set quality benchmarks, and launch a shared dashboard before a single label is placed.</p></div>
-      <div class="pc"><span class="pc-n" style="color: white;">02</span><h4>Expert Team Assignment</h4><p>Domain-matched annotators pass a qualification test on your specific task. Medical data? Only certified SMEs. No generalists, ever.</p></div>
-      <div class="pc"><span class="pc-n" style="color: white;">03</span><h4>Annotation + Multi-Layer QA</h4><p>Every label passes automated validation, peer review, and senior sign-off. IAA scores tracked and reported per batch — always.</p></div>
-      <div class="pc"><span class="pc-n" style="color: white;">04</span><h4>Delivery &amp; Iteration</h4><p>Datasets in your preferred format, on time. We stay engaged for model feedback loops, edge-case expansion, and relabelling.</p></div>
+      <div class="pc"><span class="pc-n" style="color:white">01</span><h4>Data Intake &amp; Scoping</h4><p>We audit your dataset, co-define annotation guidelines, set quality benchmarks, and launch a shared dashboard before a single label is placed.</p></div>
+      <div class="pc"><span class="pc-n" style="color:white">02</span><h4>Expert Team Assignment</h4><p>Domain-matched annotators pass a qualification test on your specific task. Medical data? Only certified SMEs. No generalists, ever.</p></div>
+      <div class="pc"><span class="pc-n" style="color:white">03</span><h4>Annotation + Multi-Layer QA</h4><p>Every label passes automated validation, peer review, and senior sign-off. IAA scores tracked and reported per batch — always.</p></div>
+      <div class="pc"><span class="pc-n" style="color:white">04</span><h4>Delivery &amp; Iteration</h4><p>Datasets in your preferred format, on time. We stay engaged for model feedback loops, edge-case expansion, and relabelling.</p></div>
     </div>
   </div>
   <div class="proc-split rv sc" style="margin-top:2px">
     <div class="ps-img"><img src="./vision_img.jpeg" alt="Process"/></div>
     <div class="ps-txt">
       <h3>48-Hour<br/>Project Launch.</h3>
-      <p> From brief to first annotations in two business days. No delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs</p>
-      <!-- <div class="livepulse">Live quality dashboard access</div> -->
+      <p>From brief to first annotations in two business days. No delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs.</p>
     </div>
   </div>
 </section>
 
-<!-- ══ PRICING (NEW) ══ -->
+<!-- ══ CHANGE 1: PRICING — Toggle actually changes prices ══ -->
 <section class="sec" id="pricing">
   <div class="W">
     <div class="prc-hd">
@@ -1738,7 +1516,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </div>
     <div class="prc-toggle">
       <span>Monthly</span>
-      <div class="tog on" id="billingTog"></div>
+      <div class="tog" id="billingTog"></div>
       <span>Annual</span>
       <span class="save-badge">Save 20%</span>
     </div>
@@ -1746,8 +1524,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="pcard">
         <h3>Starter</h3>
         <p class="pdesc">Ideal for small teams and proof-of-concept projects up to 50K labels.</p>
-        <p class="pp-per">Price Starts From </p>
-        <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">2,400</span><span class="pp-per">/mo</span></div>
+        <p class="pp-per" style="margin-bottom:4px">Price Starts From</p>
+        <div class="pcard-price">
+          <span class="pp-cur" id="cur0">$</span>
+          <span class="pp-n" id="price0">2,400</span>
+          <span class="pp-per">/mo</span>
+        </div>
         <div class="pcard-feats">
           <div class="pf">Up to 50,000 labels / month</div>
           <div class="pf">Image &amp; video annotation</div>
@@ -1764,8 +1546,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <div class="pop-badge">Most Popular</div>
         <h3>Professional</h3>
         <p class="pdesc">For growing teams with ongoing annotation needs and multi-modality requirements.</p>
-        <p class="pp-per">Price Starts From </p>
-        <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">7,900</span><span class="pp-per">/mo</span></div>
+        <p class="pp-per" style="margin-bottom:4px">Price Starts From</p>
+        <div class="pcard-price">
+          <span class="pp-cur" id="cur1">$</span>
+          <span class="pp-n" id="price1">7,900</span>
+          <span class="pp-per">/mo</span>
+        </div>
         <div class="pcard-feats">
           <div class="pf">Up to 250,000 labels / month</div>
           <div class="pf">All annotation modalities</div>
@@ -1781,8 +1567,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="pcard">
         <h3>Enterprise</h3>
         <p class="pdesc">Custom volume, RLHF/LLM data, medical AI and full pipeline management.</p>
-        <pre> </pre>
-        <div class="pcard-price"><span class="pp-cur"></span><span class="pp-n">Custom</span></div>
+        <p class="pp-per" style="margin-bottom:4px">&nbsp;</p>
+        <div class="pcard-price">
+          <span class="pp-cur" id="cur2"></span>
+          <span class="pp-n" id="price2">Custom</span>
+          <span class="pp-per"></span>
+        </div>
         <div class="pcard-feats">
           <div class="pf">Unlimited labels</div>
           <div class="pf">All annotation modalities</div>
@@ -1799,19 +1589,19 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </section>
 
-<section id="logos">
+<!-- ══ LOGOS (Tools) ══ -->
+<section id="logos" style="background:var(--bg2)">
   <div class="logos-lbl">Smart Tools for Accurate Data Labeling</div>
   <div class="logos-track">
     <div class="logos-row">
-      <div class="li"><span class="li-name"></span></div>
-      <div class="li"><span class="li-name"></span></div>
-      <div class="li"><span class="li-name"><img src="sign-box.png" height="80px"></span></div>
-      <div class="li"><span class="li-name"><img src="./philosys.png" height="60px"></span></div>
-      <div class="li"><span class="li-name"><img src="./koc.webp" height="40px"></span></div>
-      <div class="li"><span class="li-name"><img src="./tel.png" height="60px"></span></div>
-      <div class="li"><span class="li-name"><img src="./gt-protocol.png" height="60px"></span></div>
-      <!-- <div class="li"><span class="li-name"><img src="./philosys.png" height="60px"></span></div> -->
-      <div class="li"><span class="li-name"></span></div>
+      <div class="li"><span class="li-name"><img src="sign-box.png" height="80px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./philosys.png" height="60px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./koc.webp" height="40px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./tel.png" height="60px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./gt-protocol.png" height="60px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="sign-box.png" height="80px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./philosys.png" height="60px" alt=""/></span></div>
+      <div class="li"><span class="li-name"><img src="./koc.webp" height="40px" alt=""/></span></div>
     </div>
   </div>
 </section>
@@ -1875,95 +1665,100 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </section>
 
-<!-- ══ RESOURCES ══ -->
-<section class="sec" id="content">
+<!-- ══ CHANGE 4: REAL BLOG SECTION ══ -->
+<section class="sec" id="blog">
   <div class="W">
-    <div class="cnt-hd">
+    <div class="blog-hd">
       <div>
         <div class="ey rv up">Resources &amp; Insights</div>
-        <h2 class="ST rv up" style="transition-delay:.07s">Featured <span class="a">Content.</span></h2>
+        <h2 class="ST rv up" style="transition-delay:.07s">From The <span class="a">Lab.</span></h2>
       </div>
-      <a href="#" class="va-btn rv up">View All →</a>
+      <a href="#" class="va-btn rv up">View All Articles →</a>
     </div>
-    <div class="cnt-grid sg">
-      <div class="crd-big">
-        <div class="crd-big-img"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=440&fit=crop" alt="CV"/></div>
-        <div class="crd-body">
-          <div class="crd-lbl">Blog Post</div>
-          <h3>How Context Improves Annotation Accuracy in Computer Vision Models</h3>
-          <p>Why environmental context shapes annotation decisions — and why it matters for model performance at the edges.</p>
-          <div class="crd-more">Read More →</div>
+    <div class="blog-grid sg">
+      <!-- Big card -->
+      <div class="blog-card">
+        <div class="blog-card-img big"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=440&fit=crop" alt="COCO vs YOLO"/></div>
+        <div class="blog-body">
+          <div class="blog-lbl">Deep Dive · Annotation Formats</div>
+          <h3>COCO vs YOLO: Which Annotation Format Is Right for Your Pipeline?</h3>
+          <p>COCO JSON gives you rich structure and polygon support — YOLO TXT is lean, fast, and loved by real-time inference models. We break down exactly when to choose each, the conversion gotchas no one warns you about, and why getting this decision wrong costs you days of reformatting before your first training run.</p>
+          <div class="blog-more">Read Article →</div>
         </div>
       </div>
-      <div class="crd-sm">
-        <div class="crd-sm-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=280&fit=crop" alt="LiDAR"/></div>
-        <div class="crd-sm-body">
-          <div class="crd-lbl">Guide</div>
-          <h4>29 Free Image Datasets for Computer Vision Workflows</h4>
-          <p>A curated list of open datasets to bootstrap your training pipeline.</p>
-          <div class="crd-more">Read More →</div>
+      <!-- Small card 1 -->
+      <div class="blog-card">
+        <div class="blog-card-img sm"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=280&fit=crop" alt="Annotation Guidelines"/></div>
+        <div class="blog-body sm">
+          <div class="blog-lbl">Best Practice · Team Management</div>
+          <h4>How to Write Annotation Guidelines Your Team Will Actually Follow</h4>
+          <p class="sm">Vague guidelines = inconsistent labels = a broken model. Here's the exact framework we use for every client project — with real examples from image, audio, and LiDAR tasks.</p>
+          <div class="blog-more">Read Article →</div>
         </div>
       </div>
-      <div class="crd-sm">
-        <div class="crd-sm-img"><img src="https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=500&h=280&fit=crop" alt="RLHF"/></div>
-        <div class="crd-sm-body">
-          <div class="crd-lbl">Research</div>
-          <h4>How Edge Cases Hinder Autonomous Vehicle Development</h4>
-          <p>Why rare scenarios disproportionately impact AV model reliability.</p>
-          <div class="crd-more">Read More →</div>
+      <!-- Small card 2 -->
+      <div class="blog-card">
+        <div class="blog-card-img sm"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=280&fit=crop" alt="IAA Score"/></div>
+        <div class="blog-body sm">
+          <div class="blog-lbl">Quality · RLHF</div>
+          <h4>What is Inter-Annotator Agreement (IAA) — And Why 95% Isn't Enough</h4>
+          <p class="sm">IAA is the single most important number in your annotation pipeline. We explain Cohen's Kappa, Fleiss' Kappa, and why even a 98% IAA can hide dangerous label noise in edge cases your model will encounter first.</p>
+          <div class="blog-more">Read Article →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary blog cards row -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px" class="sg">
+      <div class="blog-card" style="display:flex;flex-direction:row;gap:0;height:120px">
+        <div style="width:100px;flex-shrink:0;overflow:hidden"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=240&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div class="blog-body sm" style="padding:14px 16px">
+          <div class="blog-lbl">AV</div>
+          <h4 style="font-size:13px;line-height:1.3">Why Edge Cases Kill AV Models — And How to Label Them</h4>
+          <div class="blog-more" style="font-size:8.5px">Read →</div>
+        </div>
+      </div>
+      <div class="blog-card" style="display:flex;flex-direction:row;gap:0;height:120px">
+        <div style="width:100px;flex-shrink:0;overflow:hidden"><img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=200&h=240&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div class="blog-body sm" style="padding:14px 16px">
+          <div class="blog-lbl">Voice AI</div>
+          <h4 style="font-size:13px;line-height:1.3">Speaker Diarisation: The Unsung Hero of Conversational AI</h4>
+          <div class="blog-more" style="font-size:8.5px">Read →</div>
+        </div>
+      </div>
+      <div class="blog-card" style="display:flex;flex-direction:row;gap:0;height:120px">
+        <div style="width:100px;flex-shrink:0;overflow:hidden"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=200&h=240&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div class="blog-body sm" style="padding:14px 16px">
+          <div class="blog-lbl">Synthetic Data</div>
+          <h4 style="font-size:13px;line-height:1.3">Synthetic Data Is Only as Good as Its Human Validation Layer</h4>
+          <div class="blog-more" style="font-size:8.5px">Read →</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ LOGOS ══ -->
-<section id="logos">
-  <div class="logos-lbl">Trusted by top AI innovators worldwide</div>
-
-  <div class="logos-track">
+<!-- ══ CLIENT LOGOS ══ -->
+<section id="logos" style="background:var(--bg)">
+  <div class="logos-lbl">Trusted by clients worldwide</div>
+  <div class="logos-track" style="--bg:var(--bg)">
     <div class="logos-row">
-
-      <div class="li">
-        <img src="hype.png" alt="Hype">
-      </div>
-
-      <div class="li">
-        <img src="reference-line.png" alt="Reference Line">
-      </div>
-
-      <div class="li">
-        <img src="omeda.png" alt="Omeda">
-      </div>
-
-      <div class="li">
-        <img src="medialocate.png" alt="Medialocate">
-      </div>
-
-      <div class="li">
-        <img src="lockstock.png" alt="Lockstock">
-      </div>
-
-      <div class="li">
-        <img src="united-commerce.png" alt="United Commerce">
-      </div>
-
-      <div class="li">
-        <img src="park-square.png" alt="Park Square">
-      </div>
-
-      <div class="li">
-        <img src="jls.png" alt="JLS">
-      </div>
-
-      <div class="li">
-        <img src="joor.png" alt="JOOR">
-      </div>
-
-      <div class="li">
-        <img src="betmar.png" alt="Betmar">
-      </div>
-
+      <div class="li"><img src="hype.png" alt="Hype" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="reference-line.png" alt="Reference Line" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="omeda.png" alt="Omeda" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="medialocate.png" alt="Medialocate" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="lockstock.png" alt="Lockstock" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="united-commerce.png" alt="United Commerce" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="park-square.png" alt="Park Square" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="jls.png" alt="JLS" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="joor.png" alt="JOOR" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <div class="li"><img src="betmar.png" alt="Betmar" style="height:40px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6"></div>
+      <!-- duplicate for loop -->
+      <div class="li"><img src="hype.png" alt="" style="height:40px;opacity:.6"></div>
+      <div class="li"><img src="reference-line.png" alt="" style="height:40px;opacity:.6"></div>
+      <div class="li"><img src="omeda.png" alt="" style="height:40px;opacity:.6"></div>
+      <div class="li"><img src="medialocate.png" alt="" style="height:40px;opacity:.6"></div>
+      <div class="li"><img src="lockstock.png" alt="" style="height:40px;opacity:.6"></div>
     </div>
   </div>
 </section>
@@ -1982,39 +1777,23 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <div class="fq-item on"><div class="fq-q">How quickly can you start a new project? <span class="fq-ic">+</span></div><div class="fq-a">Most projects onboard within 48 hours. We review your dataset, agree on guidelines, assign annotators, and begin labelling — all within two business days of your brief.</div></div>
         <div class="fq-item"><div class="fq-q">What accuracy level do you guarantee? <span class="fq-ic">+</span></div><div class="fq-a">We guarantee a minimum 99% IAA on standard tasks. For specialist domains we agree a custom threshold — and offer free rework if it's not met. No exceptions.</div></div>
         <div class="fq-item"><div class="fq-q">How do you handle sensitive or confidential data? <span class="fq-ic">+</span></div><div class="fq-a">Every engagement starts with a signed NDA. Data never leaves your approved cloud storage. Annotators work in your environment or our SOC 2-certified platform with full audit trails.</div></div>
-       <div class="fq-item">
-  <div class="fq-q">
-    Can you scale quickly for large surge projects? 
-    <span class="fq-ic">+</span>
-  </div>
-  <div class="fq-a">
-    Yes. We have a team of 300+ vetted annotators across multiple domains. 
-    For large-scale surges we can scale within 72 hours without quality compromise, 
-    backed by contractual SLAs.
-  </div>
-</div>
+        <div class="fq-item"><div class="fq-q">Can you scale quickly for large surge projects? <span class="fq-ic">+</span></div><div class="fq-a">Yes. We have a team of 300+ vetted annotators across multiple domains. For large-scale surges we can scale within 72 hours without quality compromise, backed by contractual SLAs.</div></div>
         <div class="fq-item"><div class="fq-q">What annotation formats do you deliver in? <span class="fq-ic">+</span></div><div class="fq-a">COCO JSON, Pascal VOC XML, YOLO TXT, CSV, DICOM, and any custom schema your pipeline requires. We match your toolchain, not the other way around.</div></div>
-        <div class="fq-item"><div class="fq-q">Do you offer a pilot or proof-of-concept? <span class="fq-ic">+</span></div><div class="fq-a">Yes — we always recommend a small paid pilot so you can evaluate quality firsthand. Most clients proceed to full scale after 500–1,000 labels.</div></div>
+        <div class="fq-item"><div class="fq-q">Do you support Voice AI and audio annotation? <span class="fq-ic">+</span></div><div class="fq-a">Absolutely — this is one of our fastest-growing service areas. We handle speech-to-text transcription, speaker diarisation, emotion tagging, accent identification, and intent labelling across 40+ languages. Whether you're training a voice assistant, a call-centre AI, or a multilingual speech model, we have the annotators for it.</div></div>
+        <div class="fq-item"><div class="fq-q">Do you offer a pilot or proof-of-concept? <span class="fq-ic">+</span></div><div class="fq-a">Yes — we always recommend a small paid pilot so you can evaluate quality firsthand. Most clients proceed to full scale after 500–1,000 labels. You can also download our free 50-image sample dataset above to see quality before any commitment.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-
-
-<!-- ══════════════════════════════════════════════
-   CONTACT & ENQUIRY FORM SECTION  ← NEW
-══════════════════════════════════════════════ -->
+<!-- ══ CONTACT ══ -->
 <section class="sec" id="contact">
   <div class="W">
     <div class="contact-grid">
-
-      <!-- LEFT: Contact Details -->
       <div class="cd-left rv lf">
         <div class="ey">Get In Touch</div>
         <h2 class="ST" style="margin-bottom:16px">Let's Talk<br/><span class="a">Data.</span></h2>
         <p class="SB" style="margin-bottom:32px">Have a project in mind? Our specialists are ready to scope, quote, and onboard you within 48 hours. No commitment needed.</p>
-
         <div class="cd-details rv up" style="transition-delay:.1s">
           <div class="cd-item">
             <div class="cd-icon">📍</div>
@@ -2034,78 +1813,47 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
             <div class="cd-icon">📞</div>
             <div class="cd-info">
               <div class="cd-label">Call Us</div>
-              <div class="cd-value"><a href="tel:+918012345678" style="color:var(--b)">+1 (408)-878-6865</a></div>
+              <div class="cd-value"><a href="tel:+14088786865" style="color:var(--b)">+1 (408)-878-6865</a></div>
             </div>
           </div>
-          <!-- <div class="cd-item">
-            <div class="cd-icon">🕐</div>
-            <div class="cd-info">
-              <div class="cd-label">Business Hours</div>
-              <div class="cd-value">Mon–Fri: 9:00 AM – 7:00 PM IST<br/>Enterprise clients: 24/7 support</div>
-            </div>
-          </div> -->
         </div>
-
         <div class="cd-socials rv up" style="transition-delay:.2s;margin-top:24px">
           <a href="#" class="cd-soc" title="LinkedIn">in</a>
           <a href="#" class="cd-soc" title="Twitter/X">𝕏</a>
           <a href="#" class="cd-soc" title="YouTube">▶</a>
-          <a href="mailto:info@visionglobal.in" class="cd-soc" title="Email">✉</a>
+          <a href="mailto:info@visionglobalbpo.com" class="cd-soc" title="Email">✉</a>
         </div>
       </div>
-
-      <!-- RIGHT: Enquiry Form -->
-     <div class="cd-right rv rt" style="transition-delay:.12s">
+      <div class="cd-right rv rt" style="transition-delay:.12s">
         <div class="eq-form-card">
           <div class="eq-form-head">
             <div class="eq-form-title">Send An Enquiry</div>
             <div class="eq-form-sub">We respond within 24 hours, guaranteed.</div>
           </div>
-
           <form class="eq-form" id="contactForm" onsubmit="submitEnquiry(event,this)">
             <div class="eq-row">
-              <div class="eq-field">
-                <label class="eq-label">First Name *</label>
-                <input class="eq-inp" type="text" name="first_name" placeholder="John" required/>
-              </div>
-              <div class="eq-field">
-                <label class="eq-label">Last Name *</label>
-                <input class="eq-inp" type="text" name="last_name" placeholder="Smith" required/>
-              </div>
+              <div class="eq-field"><label class="eq-label">First Name *</label><input class="eq-inp" type="text" name="first_name" placeholder="John" required/></div>
+              <div class="eq-field"><label class="eq-label">Last Name *</label><input class="eq-inp" type="text" name="last_name" placeholder="Smith" required/></div>
             </div>
-            <div class="eq-field">
-              <label class="eq-label">Work Email *</label>
-              <input class="eq-inp" type="email" name="email" placeholder="john@company.com" required/>
-            </div>
-            <div class="eq-field">
-              <label class="eq-label">Company</label>
-              <input class="eq-inp" type="text" name="company" placeholder="Your Company Name"/>
-            </div>
-            <div class="eq-field">
-              <label class="eq-label">Service Needed *</label>
+            <div class="eq-field"><label class="eq-label">Work Email *</label><input class="eq-inp" type="email" name="email" placeholder="john@company.com" required/></div>
+            <div class="eq-field"><label class="eq-label">Company</label><input class="eq-inp" type="text" name="company" placeholder="Your Company Name"/></div>
+            <div class="eq-field"><label class="eq-label">Service Needed *</label>
               <select class="eq-inp eq-sel" name="service" required>
                 <option value="" disabled selected>Select a service...</option>
-                <option>Image Annotation</option>
-                <option>Video Annotation</option>
-                <option>RLHF &amp; LLM Alignment</option>
-                <option>NLP &amp; Text Annotation</option>
-                <option>Medical Imaging</option>
-                <option>LiDAR &amp; 3D Annotation</option>
+                <option>Image Annotation</option><option>Video Annotation</option>
+                <option>RLHF &amp; LLM Alignment</option><option>NLP &amp; Text Annotation</option>
+                <option>Audio &amp; Speech Annotation</option><option>Medical Imaging</option>
+                <option>LiDAR &amp; 3D Annotation</option><option>Synthetic Data Validation</option>
                 <option>Custom / Multiple Services</option>
               </select>
             </div>
-            <div class="eq-field">
-              <label class="eq-label">Tell Us About Your Project</label>
-              <textarea class="eq-inp eq-ta" name="message" rows="4" placeholder="Describe your dataset, use case, or any specific requirements..."></textarea>
-            </div>
+            <div class="eq-field"><label class="eq-label">Tell Us About Your Project</label><textarea class="eq-inp eq-ta" name="message" rows="4" placeholder="Describe your dataset, use case, or any specific requirements..."></textarea></div>
             <button type="submit" class="eq-submit" id="contactSubmitBtn">
               <span class="eq-btn-txt">Send Enquiry</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg>
             </button>
-            <p class="eq-err" id="contactError" style="display:none;color:#e53e3e;font-family:var(--F4);font-size:9px;letter-spacing:1px;margin-top:10px;text-transform:uppercase"></p>
             <p class="eq-privacy">🔒 Your data is protected by our NDA and Privacy Policy. We never share your information.</p>
           </form>
-
           <div class="eq-success" id="formSuccess">
             <div class="eq-success-icon">✓</div>
             <h3>Enquiry Sent!</h3>
@@ -2113,7 +1861,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -2129,105 +1876,124 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <span class="eq-btn-dot" style="background:var(--b)"></span>Send an Enquiry
         <span class="eq-arr" style="color:var(--b)"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg></span>
       </a>
-      <button class="eq-cta-btn" onclick="openEnquiryModal()" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3)">
-        Quick Modal Form ↗
+      <button class="eq-cta-btn" onclick="openSampleModal()" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3)">
+        Download Sample Dataset ↗
       </button>
     </div>
-    <p class="cta-note">No commitment · 24hr response · Free pilot available</p>
+    <p class="cta-note">No commitment · 24hr response · Free sample dataset available</p>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
-<!-- ENQUIRY MODAL -->
-<div class="eq-modal-overlay" id="enquiryModal" onclick="if(event.target===this)closeEnquiryModal()">
-  <div class="eq-modal">
-    <button class="eq-modal-close" onclick="closeEnquiryModal()">✕</button>
-    <div class="eq-form-head">
-      <div class="eq-form-title">Quick Enquiry</div>
-      <div class="eq-form-sub">We respond within 24 hours, guaranteed.</div>
-    </div>
-    <form class="eq-form" onsubmit="this.closest('.eq-modal-overlay').classList.remove('open');return false;">
-      <div class="eq-row">
-        <div class="eq-field"><label class="eq-label">First Name *</label><input class="eq-inp" type="text" placeholder="John" required/></div>
-        <div class="eq-field"><label class="eq-label">Last Name *</label><input class="eq-inp" type="text" placeholder="Smith" required/></div>
-      </div>
-      <div class="eq-field"><label class="eq-label">Work Email *</label><input class="eq-inp" type="email" placeholder="john@company.com" required/></div>
-      <div class="eq-field"><label class="eq-label">Service Needed *</label>
-        <select class="eq-inp eq-sel" required>
-          <option value="" disabled selected>Select a service...</option>
-          <option>Image Annotation</option><option>Video Annotation</option>
-          <option>RLHF &amp; LLM Alignment</option><option>NLP &amp; Text Annotation</option>
-          <option>Medical Imaging</option><option>LiDAR &amp; 3D Annotation</option>
-          <option>Custom / Multiple Services</option>
-        </select>
-      </div>
-      <div class="eq-field"><label class="eq-label">Message</label><textarea class="eq-inp eq-ta" rows="3" placeholder="Tell us about your project..."></textarea></div>
-      <button type="submit" class="eq-submit"><span class="eq-btn-txt">Send Enquiry</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg></button>
-    </form>
-  </div>
-</div>
 <!-- <footer>
   <div class="foot-wrap">
     <div class="foot-grid">
       <div>
         <div class="flogo">
-          <div class="fmark"><svg viewBox="0 0 18 18"><path d="M3 9h12M9 3v12" stroke-width="2"/></svg></div>
-          <span class="ftxt">LOGO<span>X</span></span>
+          <img src="./VG-1a.png" alt="Vision Global" style="height:36px">
         </div>
-        <p class="fdesc">Precision data labelling and annotation for the world's most demanding AI teams.</p>
+        <p class="fdesc">Expert AI data annotation for the world's most ambitious AI teams — from ML startups to enterprise.</p>
         <div class="fsoc">
           <a href="#" class="fsi">in</a>
           <a href="#" class="fsi">𝕏</a>
-          <a href="#" class="fsi">✉</a>
+          <a href="mailto:info@visionglobalbpo.com" class="fsi">✉</a>
         </div>
       </div>
-      <div class="fcol"><h5>Services</h5><ul><li><a href="#services">Image Annotation</a></li><li><a href="#services">Video Annotation</a></li><li><a href="#services">RLHF &amp; LLMs</a></li><li><a href="#services">NLP &amp; Text</a></li><li><a href="#services">Medical Imaging</a></li><li><a href="#services">LiDAR &amp; 3D</a></li></ul></div>
-      <div class="fcol"><h5>Company</h5><ul><li><a href="#about">About Us</a></li><li><a href="#workflow">Platform Demo</a></li><li><a href="#ind">Industries</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#content">Resources</a></li><li><a href="#cta">Contact Us</a></li></ul></div>
-      <div class="fcol"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">AI Ethics Policy</a></li><li><a href="#">Compliance</a></li></ul></div>
+      <div class="fcol"><h5>Services</h5><ul>
+        <li><a href="#services">Image Annotation</a></li>
+        <li><a href="#services">Video Annotation</a></li>
+        <li><a href="#services">Audio &amp; Speech AI</a></li>
+        <li><a href="#services">RLHF &amp; LLMs</a></li>
+        <li><a href="#services">Medical Imaging</a></li>
+        <li><a href="#services">LiDAR &amp; 3D</a></li>
+        <li><a href="#services">Synthetic Data Validation</a></li>
+      </ul></div>
+      <div class="fcol"><h5>Company</h5><ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#workflow">Platform Demo</a></li>
+        <li><a href="#ind">Industries</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul></div>
+      <div class="fcol"><h5>Legal</h5><ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">AI Ethics Policy</a></li>
+        <li><a href="#">Compliance</a></li>
+      </ul></div>
     </div>
     <div class="fbot">
-      <p>© 2025 LOGO. All rights reserved.</p>
+      <p>© 2025 Vision Global ITES Pvt Ltd. All rights reserved.</p>
       <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
     </div>
   </div>
 </footer> -->
 
+<!-- ══ CHANGE 2: SAMPLE DATASET MODAL ══ -->
+<div class="eq-modal-overlay" id="sampleModal" onclick="if(event.target===this)closeSampleModal()">
+  <div class="eq-modal">
+    <button class="eq-modal-close" onclick="closeSampleModal()">✕</button>
+    <div class="eq-form-head" style="padding:28px 32px 16px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="width:44px;height:44px;background:var(--bdim);border:1px solid var(--bbord);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px">📦</div>
+        <div>
+          <div class="eq-form-title" style="margin-bottom:0">Free Sample Dataset</div>
+          <div style="font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--b);margin-top:2px">50 Annotated Images · COCO JSON Format</div>
+        </div>
+      </div>
+      <div class="eq-form-sub">Enter your details and we'll email you the dataset link within a few minutes.</div>
+    </div>
+    <form class="eq-form" id="sampleForm" onsubmit="submitSampleForm(event)">
+      <div class="eq-row">
+        <div class="eq-field"><label class="eq-label">First Name *</label><input class="eq-inp" type="text" name="first_name" placeholder="John" required/></div>
+        <div class="eq-field"><label class="eq-label">Last Name *</label><input class="eq-inp" type="text" name="last_name" placeholder="Smith" required/></div>
+      </div>
+      <div class="eq-field"><label class="eq-label">Work Email *</label><input class="eq-inp" type="email" name="email" placeholder="john@company.com" required/></div>
+      <div class="eq-field"><label class="eq-label">Mobile Number *</label><input class="eq-inp" type="tel" name="phone" placeholder="+1 234 567 8900" required/></div>
+      <div class="eq-field"><label class="eq-label">Country *</label>
+        <select class="eq-inp eq-sel" name="country" required>
+          <option value="" disabled selected>Select your country...</option>
+          <option>United States</option><option>United Kingdom</option><option>Canada</option>
+          <option>Australia</option><option>Germany</option><option>France</option>
+          <option>Netherlands</option><option>Sweden</option><option>India</option>
+          <option>Singapore</option><option>Japan</option><option>South Korea</option>
+          <option>UAE</option><option>Other</option>
+        </select>
+      </div>
+      <div class="eq-field"><label class="eq-label">Company / Organisation</label><input class="eq-inp" type="text" name="company" placeholder="Your startup or company name"/></div>
+      <div class="eq-field"><label class="eq-label">What are you building?</label>
+        <select class="eq-inp eq-sel" name="use_case">
+          <option value="" disabled selected>Select your use case...</option>
+          <option>Computer Vision Model</option><option>Autonomous Vehicle System</option>
+          <option>Robotics Perception</option><option>Voice / Speech AI</option>
+          <option>LLM / NLP Model</option><option>Medical AI</option>
+          <option>Other AI Application</option>
+        </select>
+      </div>
+      <button type="submit" class="eq-submit">
+        <span>📩 Send Me The Sample Dataset</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg>
+      </button>
+      <p id="sampleErr" style="display:none;color:#e53e3e;font-family:var(--F4);font-size:9px;letter-spacing:1px;margin-top:10px;text-transform:uppercase"></p>
+      <p class="eq-privacy">🔒 We only use this to send you the dataset and follow up once. No spam, ever.</p>
+    </form>
+    <div class="eq-success" id="sampleSuccess">
+      <div class="eq-success-icon">📦</div>
+      <h3>Dataset On Its Way!</h3>
+      <p>Check your inbox — we've sent the 50-image COCO JSON dataset to your email. A member of our team may follow up to discuss your project.</p>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ══ LOADER — always dismisses, never stuck ══ */
-function dismissLoader(){
-  const l=document.getElementById('loader');
-  if(l)l.classList.add('out');
-}
-// Dismiss after 1.6s no matter what (handles failed external scripts)
+/* ══ LOADER ══ */
+function dismissLoader(){const l=document.getElementById('loader');if(l)l.classList.add('out');}
 setTimeout(dismissLoader,1600);
-// Also on load if it fires faster
 window.addEventListener('load',()=>setTimeout(dismissLoader,400));
-document.addEventListener('DOMContentLoaded',()=>setTimeout(dismissLoader,1600));
 
-/* ══ CURSOR ══ */
-const C1=document.getElementById('C1'),C2=document.getElementById('C2');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  C1.style.left=mx+'px';C1.style.top=my+'px';
-},{passive:true});
-document.addEventListener('mousedown',()=>document.body.classList.add('clk'));
-document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));
-(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
-  C2.style.left=rx+'px';C2.style.top=ry+'px';
-  requestAnimationFrame(loop);})();
-/* hover state */
-document.querySelectorAll('a,button,.sv,.ic,.tc,.pc,.trc,.cc,.crd-big,.crd-sm,.pcard,.fl-item,.hs').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
-});
-/* text cursor */
-document.querySelectorAll('p,h1,h2,h3,h4,.SB').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('txt'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('txt'));
-});
-
-/* ══ PROGRESS ══ */
+/* ══ PROGRESS BAR ══ */
 window.addEventListener('scroll',()=>{
   document.getElementById('PB').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
 },{passive:true});
@@ -2270,10 +2036,7 @@ document.querySelectorAll('.cu').forEach(el=>cio.observe(el));
 document.querySelectorAll('.cap-grid .cc').forEach((card,i)=>{
   const o=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){
-        setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*90);
-        o.unobserve(e.target);
-      }
+      if(e.isIntersecting){setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*90);o.unobserve(e.target);}
     });
   },{threshold:.1});
   o.observe(card);
@@ -2288,110 +2051,202 @@ document.querySelectorAll('.fq-item').forEach(item=>{
   });
 });
 
-/* ══ PLATFORM TABS ══ */
-document.querySelectorAll('.ft').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    const idx=+tab.dataset.tab;
-    document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));
-    document.querySelectorAll('.feat-panel').forEach(p=>p.classList.remove('on'));
-    tab.classList.add('on');
-    document.querySelector(`.feat-panel[data-panel="${idx}"]`).classList.add('on');
-    // re-trigger reveal
-    document.querySelectorAll('.feat-panel.on .rv,.feat-panel.on .sg').forEach(el=>{
-      el.classList.remove('in');
-      setTimeout(()=>el.classList.add('in'),50);
-    });
-  });
-});
-
 /* ══ HERO PARALLAX ══ */
 const hImg=document.querySelector('.hero-right img');
 window.addEventListener('scroll',()=>{
-  if(scrollY<window.innerHeight&&hImg)
-    hImg.style.transform=`scale(1) translateY(${scrollY*.1}px)`;
+  if(scrollY<window.innerHeight&&hImg)hImg.style.transform=`scale(1) translateY(${scrollY*.1}px)`;
 },{passive:true});
-
-/* ══ MAGNETIC BUTTONS ══ */
-document.querySelectorAll('.BP,.BG,.BB,.nav-cta').forEach(b=>{
-  b.addEventListener('mousemove',e=>{
-    const r=b.getBoundingClientRect();
-    b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.14}px,${(e.clientY-r.top-r.height/2)*.14}px) translateY(-2px)`;
-  });
-  b.addEventListener('mouseleave',()=>b.style.transform='');
-});
-
-/* ══ 3D TILT on trust + pricing cards ══ */
-document.querySelectorAll('.trc,.pcard').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`;
-  });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
-});
-
-/* ══ BILLING TOGGLE ══ */
-const tog=document.getElementById('billingTog');
-if(tog){
-  tog.addEventListener('click',()=>{
-    tog.classList.toggle('on');
-    // animate price numbers (simulate toggle effect)
-    document.querySelectorAll('.pp-n').forEach(n=>{
-      n.style.transform='scale(1.08)';
-      n.style.color=tog.classList.contains('on')?'var(--b)':'var(--ink)';
-      setTimeout(()=>n.style.transform='',300);
-    });
-  });
-}
 
 /* ══ WORKFLOW STEP CYCLER ══ */
 let wfStep=0;
 const wfSteps=document.querySelectorAll('.wf-step');
-if(wfSteps.length){
-  setInterval(()=>{
-    wfSteps.forEach(s=>s.classList.remove('active'));
-    wfStep=(wfStep+1)%wfSteps.length;
-    wfSteps[wfStep].classList.add('active');
-  },2400);
-}
+if(wfSteps.length){setInterval(()=>{wfSteps.forEach(s=>s.classList.remove('active'));wfStep=(wfStep+1)%wfSteps.length;wfSteps[wfStep].classList.add('active');},2400);}
 
 /* ══ HERO TITLE HOVER BREATHE ══ */
 const hh=document.querySelector('.hero-h');
-if(hh){
-  hh.addEventListener('mouseenter',()=>{hh.style.letterSpacing='-3px';});
-  hh.addEventListener('mouseleave',()=>{hh.style.letterSpacing='';});
-  hh.style.transition='letter-spacing .4s';
+if(hh){hh.addEventListener('mouseenter',()=>{hh.style.letterSpacing='-3px';});hh.addEventListener('mouseleave',()=>{hh.style.letterSpacing='';});hh.style.transition='letter-spacing .4s';}
+
+/* ══ CHANGE 3: ANNOTATION DEMO TABS ══ */
+function setDemo(idx,el){
+  document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.demo-panel').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('dp'+idx).classList.add('on');
+  if(idx===2)setTimeout(drawPointClouds,100);
 }
 
-/* ══ NAV LINK ACTIVE HIGHLIGHT ══ */
-const sections=document.querySelectorAll('section[id],div[id]');
-const navAs=document.querySelectorAll('.nav-links a');
-const actIO=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      navAs.forEach(a=>{
-        a.style.color=a.getAttribute('href')==='#'+etarget.id?'var(--b)':'';
-      });
+/* ══ CHANGE 3: LIDAR POINT CLOUD CANVAS ══ */
+function drawPointClouds(){
+  drawRawCloud();drawAnnotatedCloud();
+}
+function drawRawCloud(){
+  const c=document.getElementById('canvasRaw');if(!c)return;
+  const ctx=c.getContext('2d'),w=c.offsetWidth,h=c.offsetHeight;
+  c.width=w;c.height=h;
+  ctx.fillStyle='#0B0E1C';ctx.fillRect(0,0,w,h);
+  // random dot field
+  for(let i=0;i<2400;i++){
+    const x=Math.random()*w,y=Math.random()*h;
+    const d=Math.abs(x-w/2)/w;
+    const g=Math.floor(80+d*120);
+    ctx.fillStyle=`rgb(${g},${g},${g+30})`;
+    ctx.beginPath();ctx.arc(x,y,Math.random()*1.2+.3,0,Math.PI*2);ctx.fill();
+  }
+}
+function drawAnnotatedCloud(){
+  const c=document.getElementById('canvasAnn');if(!c)return;
+  const ctx=c.getContext('2d'),w=c.offsetWidth,h=c.offsetHeight;
+  c.width=w;c.height=h;
+  ctx.fillStyle='#0B0E1C';ctx.fillRect(0,0,w,h);
+  // random dots coloured by cluster
+  const clusters=[
+    {cx:w*.28,cy:h*.45,rx:80,ry:60,col:'rgba(59,130,246,0.9)'},
+    {cx:w*.62,cy:h*.40,rx:90,ry:65,col:'rgba(34,197,94,0.9)'},
+    {cx:w*.75,cy:h*.6,rx:60,ry:50,col:'rgba(34,197,94,0.9)'},
+    {cx:w*.45,cy:h*.65,rx:50,ry:40,col:'rgba(245,158,11,0.9)'},
+  ];
+  for(let i=0;i<2400;i++){
+    const x=Math.random()*w,y=Math.random()*h;
+    let col='rgba(100,100,110,.35)';
+    for(const cl of clusters){
+      const dx=(x-cl.cx)/cl.rx,dy=(y-cl.cy)/cl.ry;
+      if(dx*dx+dy*dy<1){col=cl.col;break;}
     }
-  });
-},{threshold:.3});
-sections.forEach(s=>actIO.observe(s));
+    ctx.fillStyle=col;
+    ctx.beginPath();ctx.arc(x,y,Math.random()*1.5+.4,0,Math.PI*2);ctx.fill();
+  }
+  // draw wireframe cuboids
+  drawCuboid(ctx,w*.2,h*.35,w*.16,h*.22,'#3B82F6','Vehicle');
+  drawCuboid(ctx,w*.55,h*.32,w*.2,h*.24,'#22C55E','Vehicle');
+  drawCuboid(ctx,w*.7,h*.52,w*.12,h*.2,'#22C55E','Vehicle');
+  drawCuboid(ctx,w*.38,h*.56,w*.14,h*.16,'#F59E0B','Cyclist');
+}
+function drawCuboid(ctx,x,y,w,h,col,label){
+  const d=10;
+  ctx.strokeStyle=col;ctx.lineWidth=1.5;
+  // front face
+  ctx.strokeRect(x,y,w,h);
+  // back face offset
+  ctx.strokeRect(x+d,y-d,w,h);
+  // connecting lines
+  ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+d,y-d);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x+w,y);ctx.lineTo(x+w+d,y-d);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x,y+h);ctx.lineTo(x+d,y+h-d);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x+w,y+h);ctx.lineTo(x+w+d,y+h-d);ctx.stroke();
+  // label
+  ctx.fillStyle=col;
+  const lw=ctx.measureText(label).width+12;
+  ctx.fillRect(x,y-26,lw,18);
+  ctx.fillStyle='#fff';ctx.font='bold 9px monospace';
+  ctx.fillText(label,x+6,y-12);
+}
 
-/* ══ FORM SUBMIT ══ */
-function handleFormSubmit(e){
+/* ══ CHANGE 1: PRICING TOGGLE WITH REAL PRICE CHANGES ══ */
+const monthlyPrices=[
+  {id:'price0',val:'2,400',cur:'$',per:'/mo'},
+  {id:'price1',val:'7,900',cur:'$',per:'/mo'},
+  {id:'price2',val:'Custom',cur:'',per:''},
+];
+const annualPrices=[
+  {id:'price0',val:'1,920',cur:'$',per:'/mo',note:'Billed annually — save $5,760/yr'},
+  {id:'price1',val:'6,320',cur:'$',per:'/mo',note:'Billed annually — save $19,080/yr'},
+  {id:'price2',val:'Custom',cur:'',per:'',note:''},
+];
+let isAnnual=false;
+const tog=document.getElementById('billingTog');
+if(tog){
+  tog.addEventListener('click',()=>{
+    isAnnual=!isAnnual;
+    tog.classList.toggle('on',isAnnual);
+    const prices=isAnnual?annualPrices:monthlyPrices;
+    prices.forEach(p=>{
+      const el=document.getElementById(p.id);
+      if(el){
+        el.style.transform='scale(1.1)';
+        el.style.color=isAnnual?'var(--b)':'';
+        setTimeout(()=>{el.textContent=p.val;el.style.transform='';},140);
+      }
+    });
+    // Update all "per" labels dynamically
+    document.querySelectorAll('.pp-per').forEach((el,i)=>{
+      if(prices[i]){
+        const note=prices[i].note||'';
+        // Only update /mo indicators
+      }
+    });
+    // Show annual savings hint below Professional
+    const hint=document.getElementById('annual-hint');
+    if(hint)hint.style.display=isAnnual?'block':'none';
+  });
+}
+
+/* ══ CHANGE 2: SAMPLE MODAL ══ */
+function openSampleModal(){
+  const m=document.getElementById('sampleModal');
+  if(m){m.classList.add('open');document.body.style.overflow='hidden';}
+}
+function closeSampleModal(){
+  const m=document.getElementById('sampleModal');
+  if(m){m.classList.remove('open');document.body.style.overflow='';}
+}
+function submitSampleForm(e){
   e.preventDefault();
-  document.getElementById('contactForm').style.display='none';
-  document.getElementById('formSuccess').style.display='flex';
+  const form=e.target;
+  const btn=form.querySelector('button[type=submit]');
+  btn.textContent='Sending...';btn.disabled=true;
+  // Simulate async submit — in production connect to PHP mailer
+  setTimeout(()=>{
+    form.style.display='none';
+    document.getElementById('sampleSuccess').style.display='flex';
+    // PHP integration note: POST form data to sample-download.php
+    // which validates fields, logs the lead, and emails the dataset link
+  },1200);
 }
-function openEnquiryModal(){
-  const m=document.getElementById('enquiryModal');
-  if(m){m.classList.add('on');document.body.style.overflow='hidden';}
+
+/* ══ CONTACT FORM SUBMIT ══ */
+function submitEnquiry(e,form){
+  e.preventDefault();
+  const btn=document.getElementById('contactSubmitBtn');
+  btn.disabled=true;btn.querySelector('.eq-btn-txt').textContent='Sending...';
+  setTimeout(()=>{
+    form.style.display='none';
+    document.getElementById('formSuccess').style.display='flex';
+  },1000);
 }
-function closeEnquiryModal(){
-  const m=document.getElementById('enquiryModal');
-  if(m){m.classList.remove('on');document.body.style.overflow='';}
-}
+
+/* Keyboard close for modals */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeSampleModal();}
+});
 </script>
+
+<!-- PHP Integration Reference (sample-download.php) -->
+<!--
+<?php
+// sample-download.php
+// POST fields: first_name, last_name, email, phone, country, company, use_case
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  $to = 'info@visionglobalbpo.com';
+  $first = htmlspecialchars($_POST['first_name'] ?? '');
+  $last  = htmlspecialchars($_POST['last_name']  ?? '');
+  $email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+  $phone = htmlspecialchars($_POST['phone']   ?? '');
+  $country = htmlspecialchars($_POST['country'] ?? '');
+  $company = htmlspecialchars($_POST['company'] ?? '');
+  $use_case = htmlspecialchars($_POST['use_case'] ?? '');
+  if(!$email){ http_response_code(400); echo json_encode(['error'=>'Invalid email']); exit; }
+  // Internal notification
+  $subject = "New Sample Dataset Request — $first $last";
+  $body = "Name: $first $last\nEmail: $email\nPhone: $phone\nCountry: $country\nCompany: $company\nUse Case: $use_case";
+  mail($to, $subject, $body, "From: noreply@visionglobalbpo.com");
+  // Send dataset link to user
+  $user_subject = "Your Free Sample Annotated Dataset — Vision Global";
+  $user_body = "Hi $first,\n\nThank you for your interest! Here is your download link for the 50-image COCO JSON sample dataset:\n\n[INSERT DOWNLOAD LINK HERE]\n\nIf you have any questions or want to discuss your annotation project, reply to this email or call us at +1 (408)-878-6865.\n\nBest,\nVision Global Team";
+  mail($email, $user_subject, $user_body, "From: info@visionglobalbpo.com");
+  http_response_code(200); echo json_encode(['success'=>true]);
+}
+?>
+-->
+
 </body>
 </html>

@@ -74,7 +74,7 @@ body.txt #C1{opacity:0}
 @keyframes pbshine{0%{background-position:0%}100%{background-position:200%}}
 
 /* ══ PAGE LOADER ══ */
-#loader{position:fixed;inset:0;background:var(--ink0);z-index:99999;
+#loader{position:fixed;inset:0;background:var(--b);z-index:99999;
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
   transition:opacity .5s,transform .5s}
 #loader.out{opacity:0;transform:translateY(-100%);pointer-events:none}
@@ -145,7 +145,7 @@ body.txt #C1{opacity:0}
 }
 
 /* ══ SHARED ══ */
-.sec{padding:120px 0;position:relative}
+.sec{padding:60px 0;position:relative}
 .W{max-width:1240px;margin:0 auto;padding:0 64px}
 @media(max-width:768px){.W{padding:0 20px}.sec{padding:80px 0}}
 .ey{display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;
@@ -240,7 +240,7 @@ body.txt #C1{opacity:0}
 
 .hero-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;
   padding:6px 14px;border:1px solid var(--bbord);border-radius:20px;
-  background:var(--bdim);font-family:var(--F4);font-size:9px;letter-spacing:2px;
+  background:var(--bdim);font-family:var(--F4);font-size:12px;letter-spacing:2px; font-weight: 700;
   text-transform:uppercase;color:var(--b);width:fit-content;
   opacity:0;animation:fup .7s .1s var(--e1) both}
 .hero-pill .pdot{width:6px;height:6px;border-radius:50%;background:var(--b);
@@ -249,7 +249,7 @@ body.txt #C1{opacity:0}
 @keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 .hero-h{font-family:var(--F1);font-size:clamp(72px,8.5vw,136px);
-  line-height:.88;letter-spacing:-1.5px;color:var(--ink);margin-bottom:28px}
+  line-height:.88;letter-spacing:0px;color:var(--ink);margin-bottom:28px}
 .hero-h .ln{display:block;overflow:hidden}
 .hero-h .ln span{display:block;transform:translateY(110%);
   animation:lnup .95s var(--e1) both}
@@ -319,7 +319,7 @@ body.txt #C1{opacity:0}
   background:var(--b);border-radius:8px;padding:12px 16px;
   box-shadow:0 12px 32px rgba(24,71,240,.4);
   opacity:0;animation:fup .9s 1.2s var(--e1) both}
-.hfc3-label{font-family:var(--F4);font-size:9px;letter-spacing:1.5px;
+.hfc3-label{font-family:var(--F4);font-size:9px;letter-spacing:0px;
   text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:5px}
 .hfc3-list{display:flex;flex-direction:column;gap:4px}
 .hfc3-row{display:flex;align-items:center;gap:8px}
@@ -363,7 +363,7 @@ body.txt #C1{opacity:0}
 .mq-row{display:flex;animation:mqscroll 26s linear infinite;width:max-content;white-space:nowrap}
 .mq-row:hover{animation-play-state:paused}
 .mq-i{display:inline-flex;align-items:center;gap:14px;padding:0 24px;
-  font-family:var(--F4);font-size:10px;letter-spacing:1.5px;
+  font-family:var(--F4);font-size:10px;letter-spacing:0px;
   text-transform:uppercase;color:rgba(255,255,255,.7)}
 .mq-sep{color:rgba(255,255,255,.3);font-size:14px}
 @keyframes mqscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -372,13 +372,13 @@ body.txt #C1{opacity:0}
 #about{background:var(--bg)}
 .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .ab-left{position:relative;height:580px}
-.ab-img1{position:absolute;top:0;left:0;width:62%;height:78%;
+.ab-img1{position:absolute;top:0;left:0;width: 80%;height:78%;
   border-radius:6px;overflow:hidden;border:1px solid var(--rule);
   box-shadow:0 24px 64px rgba(15,17,30,.11)}
 .ab-img1 img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e1)}
 .ab-img1:hover img{transform:scale(1.04)}
-.ab-img2{position:absolute;right:0;top:18%;width:44%;height:42%;
-  border-radius:6px;overflow:hidden;border:1px solid var(--rule);
+.ab-img2{position:absolute;right:0;top:18%;width:88%;height:80%;
+  border-radius:50%;overflow:hidden;
   box-shadow:0 16px 44px rgba(15,17,30,.1)}
 .ab-img2 img{width:100%;height:100%;object-fit:cover}
 .ab-img3{position:absolute;bottom:0;right:8%;width:36%;height:26%;
@@ -388,7 +388,7 @@ body.txt #C1{opacity:0}
 .ab-badge{position:absolute;bottom:80px;left:40%;z-index:3;
   background:var(--b);border-radius:8px;padding:16px 22px;
   box-shadow:0 20px 52px rgba(24,71,240,.38)}
-.ab-badge-n{font-family:var(--F1);font-size:40px;color:#fff;line-height:1;letter-spacing:-2px}
+.ab-badge-n{font-family:var(--F1);font-size:40px;color:#fff;line-height:1;letter-spacing:2px}
 .ab-badge-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;
   text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px}
 
@@ -400,7 +400,7 @@ body.txt #C1{opacity:0}
   display:flex;align-items:center;justify-content:center}
 .ck-i svg{width:9px;height:9px;stroke:var(--b);fill:none;stroke-width:2.5;stroke-linecap:round}
 .certs{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-.ct{font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
+.ct{font-family:var(--F4);font-size:8px;letter-spacing:0px;text-transform:uppercase;
   color:var(--b);border:1px solid var(--bbord);padding:4px 10px;
   border-radius:3px;background:var(--bdim)}
 
@@ -414,7 +414,7 @@ body.txt #C1{opacity:0}
 .bts-i{font-family:var(--F1);font-size:clamp(68px,7.5vw,108px);
   padding:0 20px;display:flex;align-items:center;gap:20px;line-height:1;
   color:transparent;-webkit-text-stroke:1.5px rgba(15,17,30,.1);
-  letter-spacing:-2px}
+  letter-spacing:0px}
 .bts-i.f{color:var(--ink);-webkit-text-stroke:0}
 .bts-i.b{color:var(--b);-webkit-text-stroke:0}
 .bts-dot{width:9px;height:9px;border-radius:50%;background:var(--b);flex-shrink:0}
@@ -467,7 +467,7 @@ body.txt #C1{opacity:0}
 .wf-dot:nth-child(2){background:#FDBC2C}
 .wf-dot:nth-child(3){background:#28CA41}
 .wf-title-bar{flex:1;text-align:center;font-family:var(--F4);font-size:9px;
-  letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+  letter-spacing:0px;text-transform:uppercase;color:rgba(255,255,255,.35)}
 .wf-body{padding:20px;position:relative}
 .wf-img-wrap{border-radius:6px;overflow:hidden;height:220px;position:relative;background:var(--bg3)}
 .wf-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85}
@@ -613,15 +613,15 @@ body.txt #C1{opacity:0}
   transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e1)}
 .pc:hover::after{transform:scaleX(1)}
 .pc-n{font-family:var(--F1);font-size:56px;color:rgba(255,255,255,.06);
-  letter-spacing:-2px;margin-bottom:16px;display:block;transition:color .3s;line-height:1}
+  letter-spacing:0px;margin-bottom:16px;display:block;transition:color .3s;line-height:1}
 .pc:hover .pc-n{color:rgba(24,71,240,.22)}
 .pc h4{font-family:var(--F2);font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
 .pc p{font-family:var(--F3);font-size:13px;font-weight:300;
   color:rgba(255,255,255,.42);line-height:1.82}
-.proc-split{display:grid;grid-template-columns:1fr 1fr;
+.proc-split{display:grid;grid-template-columns:1fr 1.5fr;
   border-top:1px solid var(--dbord);height:440px}
 .ps-img{position:relative;overflow:hidden;border-right:1px solid var(--dbord)}
-.ps-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.8)}
+.ps-img img{width:100%;height:fit-content%;object-fit:contain;filter:brightness(.55) saturate(.8)}
 .ps-img::after{content:'';position:absolute;inset:0;
   background:linear-gradient(120deg,rgba(24,71,240,.22),transparent 55%)}
 .ps-txt{background:var(--b);display:flex;flex-direction:column;
@@ -631,7 +631,7 @@ body.txt #C1{opacity:0}
 .ps-txt p{font-family:var(--F3);font-size:14px;font-weight:300;
   color:rgba(255,255,255,.65);line-height:1.85;max-width:340px}
 .livepulse{display:flex;align-items:center;gap:10px;margin-top:22px;
-  font-family:var(--F4);font-size:9.5px;letter-spacing:1.5px;
+  font-family:var(--F4);font-size:9.5px;letter-spacing:0px;
   text-transform:uppercase;color:rgba(255,255,255,.55)}
 .livepulse::before{content:'';width:8px;height:8px;border-radius:50%;
   background:#fff;flex-shrink:0;animation:ripple 2s ease infinite}
@@ -669,7 +669,7 @@ body.txt #C1{opacity:0}
 .pcard .pdesc{font-family:var(--F3);font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.7}
 .pcard-price{display:flex;align-items:baseline;gap:6px;margin-bottom:24px}
 .pp-cur{font-family:var(--F3);font-size:18px;font-weight:600;color:var(--mid)}
-.pp-n{font-family:var(--F1);font-size:52px;color:var(--ink);line-height:1;letter-spacing:-2px}
+.pp-n{font-family:var(--F1);font-size:52px;color:var(--ink);line-height:1;letter-spacing:0px}
 .pcard.pop .pp-n{color:var(--b)}
 .pp-per{font-family:var(--F4);font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
 .pcard-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
@@ -715,7 +715,7 @@ body.txt #C1{opacity:0}
 .nb:hover::before{transform:scaleX(1)}
 .nb:hover{background:rgba(24,71,240,.06)}
 .nb-n{font-family:var(--F1);font-size:clamp(48px,5vw,78px);
-  color:#fff;line-height:1;letter-spacing:-2px}
+  color:#fff;line-height:1;letter-spacing:0px}
 .nb-n em{color:var(--b3);font-style:normal}
 .nb-l{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
   text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:8px}
@@ -748,7 +748,7 @@ body.txt #C1{opacity:0}
 .tc-q{font-family:var(--F3);font-size:13.5px;font-weight:300;
   color:rgba(255,255,255,.62);line-height:1.88;margin-bottom:22px;position:relative;z-index:1}
 .tc-name{font-family:var(--F2);font-size:14px;font-weight:700;color:#fff}
-.tc-role{font-family:var(--F4);font-size:8.5px;letter-spacing:1.5px;
+.tc-role{font-family:var(--F4);font-size:8.5px;letter-spacing:0px;
   text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
 @media(max-width:900px){.test-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.test-grid{grid-template-columns:1fr}}
@@ -891,7 +891,7 @@ body.txt #C1{opacity:0}
 .eq-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .eq-field{display:flex;flex-direction:column;gap:6px}
 .eq-label{
-  font-family:var(--F4);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)
+  font-family:var(--F4);font-size:8.5px;letter-spacing:0px;text-transform:uppercase;color:var(--mid)
 }
 .eq-inp{
   font-family:var(--F3);font-size:14px;color:var(--ink);
@@ -908,7 +908,7 @@ body.txt #C1{opacity:0}
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:14px 24px;margin-top:4px;
   background:var(--b);color:#fff;border:none;border-radius:5px;
-  font-family:var(--F4);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  font-family:var(--F4);font-size:10px;letter-spacing:0px;text-transform:uppercase;
   cursor:none;transition:all .24s;position:relative;overflow:hidden;
 }
 .eq-submit::before{
@@ -1048,7 +1048,7 @@ body.txt #C1{opacity:0}
   color:rgba(255,255,255,.6)}
 .cta-ey::before{content:'';width:14px;height:1.5px;background:rgba(255,255,255,.5)}
 .cta-h{font-family:var(--F1);font-size:clamp(58px,8vw,110px);
-  line-height:.88;letter-spacing:-2px;color:#fff;margin-bottom:20px}
+  line-height:.88;letter-spacing:0px;color:#fff;margin-bottom:20px}
 .cta-h span{color:rgba(255,255,255,.45)}
 .cta-p{font-family:var(--F3);font-size:15px;font-weight:300;
   color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:44px}
@@ -1059,7 +1059,7 @@ body.txt #C1{opacity:0}
   padding:15px 18px;font-size:14px;color:#fff;font-family:var(--F3)}
 .cta-inp::placeholder{color:rgba(255,255,255,.45)}
 .cta-sub{background:var(--ink);border:none;padding:15px 22px;cursor:none;
-  font-family:var(--F4);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  font-family:var(--F4);font-size:9px;letter-spacing:0px;text-transform:uppercase;
   color:#fff;transition:background .22s;white-space:nowrap}
 .cta-sub:hover{background:var(--dark)}
 .cta-note{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
@@ -1097,6 +1097,9 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
 
 .logo-img{height:52px;margin-left:8px}
+
+
+
 </style>
 </head>
 <body>
@@ -1118,8 +1121,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#platform">Platform</a></li>
+    <li><a href="#cap">Services</a></li>
+    <li><a href="#services">Processing</a></li>
     <li><a href="#ind">Industries</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -1129,8 +1132,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </nav>
 <nav class="mob-nav" id="mobnav">
   <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#platform">Platform</a>
+  <a href="#cap">Services</a>
+  <a href="#services">Processing</a>
   <a href="#ind">Industries</a>
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
@@ -1147,11 +1150,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <div class="hero-left">
     <div class="hero-pill"><span class="pdot"></span>Precision Labelling Solutions</div>
     <h1 class="hero-h">
-      <span class="ln"><span>Expert</span></span>
-      <span class="ln"><span>Data For</span></span>
-      <span class="ln"><span><span class="a">Your AI.</span></span></span>
+      <span class="ln"><span>Expert AI</span></span>
+      <span class="ln"><span>Training Data</span></span>
+      <span class="ln"><span><span class="a">Guaranteed</span></span></span>
     </h1>
-    <p class="hero-sub"><b>VISION GLOBAL</b> delivers mission-critical data annotation and model fine-tuning — combining expert-led human intelligence with rigorous QA to accelerate your AI to production.</p>
+    <p class="hero-sub"><b>Get expert-led human intelligence to accelerate your AI to production.</p>
     <div class="hero-btns">
       <a href="#cta" class="BP">Talk to an Expert <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg></a>
       <a href="#workflow" class="BG">See It In Action →</a>
@@ -1192,7 +1195,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <div class="hero-stats">
   <div class="hs"><div class="hs-n"><span class="cu" data-v="500">0</span><em>M+</em></div><div class="hs-l">Labels Delivered</div></div>
   <div class="hs"><div class="hs-n"><span class="cu" data-v="99">0</span><em>.2%</em></div><div class="hs-l">Accuracy Rate</div></div>
-  <div class="hs"><div class="hs-n"><span class="cu" data-v="5000">0</span><em>+</em></div><div class="hs-l">Vetted Annotators</div></div>
+  <div class="hs"><div class="hs-n"><span class="cu" data-v="300">0</span><em>+</em></div><div class="hs-l">Vetted Annotators</div></div>
   <div class="hs"><div class="hs-n"><span class="cu" data-v="150">0</span><em>+</em></div><div class="hs-l">Enterprise Clients</div></div>
   <div class="hs"><div class="hs-n"><span class="cu" data-v="48">0</span><em>h</em></div><div class="hs-l">Avg. Onboarding</div></div>
 </div>
@@ -1225,14 +1228,14 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </div>
 
-<!-- ══ ABOUT ══ -->
+
 <section class="sec" id="about">
   <div class="W">
     <div class="ab-grid">
       <div class="ab-left rv lf">
-        <div class="ab-img1"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1000&fit=crop" alt="Expert team"/></div>
-        <div class="ab-img2"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=380&fit=crop" alt="Annotator"/></div>
-        <div class="ab-img3"><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=360&h=220&fit=crop" alt="QA"/></div>
+        <div class="ab-img1"><img src="data-label-ann.png" alt="Expert team"/></div>
+        <!-- <div class="ab-img2"><img src="./circle.png" style="background-color: inherit !important;" alt="Annotator"/></div> -->
+        <div class="ab-img3"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1000&fit=crop" alt="QA"/></div>
         <div class="ab-badge">
           <div class="ab-badge-n"><span class="cu" data-v="100">0</span>M+</div>
           <div class="ab-badge-l">Images Labelled</div>
@@ -1241,7 +1244,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div>
         <div class="ey rv up">High Quality Data At Scale</div>
         <h2 class="ST rv up" style="transition-delay:.07s">Mission&#8209;Critical<br/><span class="a">AI Data.</span></h2>
-        <p class="SB rv up" style="transition-delay:.12s">Trusted by leading model innovators for domain expertise and consistently high quality. VISION GLOBAL delivers expert-driven data solutions powering the world's most advanced AI — from foundation models to autonomous systems and medical AI.</p>
+        <p class="SB rv up" style="transition-delay:.12s">Trusted by leading model innovators for domain expertise and consistently high quality, VISION GLOBAL delivers expert-driven data solutions powering the world's most advanced AI — from foundation models to autonomous systems and medical AI.</p>
         <div class="ck rv up" style="transition-delay:.17s">
           <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Actively manage experts — global SMEs for GenAI, RLHF, multimodal SFT &amp; alignment</span></div>
           <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Domain knowledge — Computer Vision, Audio, LiDAR &amp; Sensor Fusion with guaranteed quality</span></div>
@@ -1262,6 +1265,124 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </svg>
   </span>
 </a>
+          <a href="#services" class="BG">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ ABOUT ══ -->
+<style>
+/* NEW ABOUT LAYOUT */
+.ab-new-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ab-new-left{position:relative}
+.ab-ai-img-wrap{position:relative;border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(15,17,30,.18);height:560px}
+.ab-ai-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1)}
+.ab-ai-overlay{position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(15,17,30,.72) 100%)}
+.ab-ai-badge{position:absolute;bottom:28px;left:28px;right:28px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;padding:18px 22px;display:flex;gap:20px;align-items:center}
+.ab-ai-stat{text-align:center;flex:1}
+.ab-ai-stat-n{font-family:var(--F1);font-size:32px;color:#fff;letter-spacing:-1px;line-height:1}
+.ab-ai-stat-l{font-family:var(--F4);font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-top:3px}
+.ab-ai-divider{width:1px;height:40px;background:rgba(255,255,255,.15)}
+.ab-ai-pill{position:absolute;top:24px;left:24px;
+  background:var(--b);color:#fff;font-family:var(--F4);font-size:8.5px;
+  letter-spacing:0px;text-transform:uppercase;padding:6px 14px;border-radius:20px;
+  display:flex;align-items:center;gap:7px}
+.ab-ai-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:#fff;
+  animation:blink 2s infinite}
+
+.ab-new-right .vg-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+.vg-stat-box{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:20px 22px;position:relative;overflow:hidden;transition:all .3s}
+.vg-stat-box:hover{border-color:var(--bbord);transform:translateY(-3px);box-shadow:0 12px 36px var(--bglow)}
+.vg-stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--b),var(--b3));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.vg-stat-box:hover::before{transform:scaleX(1)}
+.vg-stat-n{font-family:var(--F1);font-size:40px;color:var(--b);letter-spacing:0px;line-height:1}
+.vg-stat-l{font-family:var(--F4);font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--muted);margin-top:5px}
+
+@media(max-width:900px){
+  .ab-new-grid{grid-template-columns:1fr;gap:48px}
+  .ab-ai-img-wrap{height:380px}
+}
+</style>
+<section class="sec" id="about">
+  <div class="W">
+    <div class="ab-new-grid">
+      <!-- LEFT: AI Image -->
+      <div class="ab-new-left rv lf">
+        <div class="ab-ai-img-wrap">
+          <img src="./about_img.jpeg" style="height: fit-content;" alt="Vision Global Team"/>
+          <div class="ab-ai-overlay"></div>
+          <!-- <div class="ab-ai-pill">Vision Global · Coimbatore, India</div> -->
+          <div class="ab-ai-badge">
+            <div class="ab-ai-stat">
+              <div class="ab-ai-stat-n">300+</div>
+              <div class="ab-ai-stat-l">Employees</div>
+            </div>
+            <div class="ab-ai-divider"></div>
+            <div class="ab-ai-stat">
+              <div class="ab-ai-stat-n">25</div>
+              <div class="ab-ai-stat-l">Years Experience</div>
+            </div>
+            <div class="ab-ai-divider"></div>
+            <div class="ab-ai-stat">
+              <div class="ab-ai-stat-n">1B+</div>
+              <div class="ab-ai-stat-l">Data Points / Year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="ab-new-right">
+        <div class="ey rv up">Who We Are</div>
+        <h2 class="ST rv up" style="transition-delay:.07s">About <span class="a">Us</span></h2>
+        <p class="SB rv up" style="transition-delay:.12s">Vision Global ITES Pvt Ltd is a leading Data and Back-office annotation specialist headquartered in Coimbatore, India — with over 25 years of industry experience and a team of 300+ highly skilled data professionals. Our clients across North America, the UK, and Europe trust us to deliver high-volume, high-accuracy processing at scale.</p>
+
+        <div class="vg-stat-row rv up" style="transition-delay:.17s">
+          <div class="vg-stat-box">
+            <div class="vg-stat-n">99%</div>
+            <div class="vg-stat-l">Accuracy Benchmark</div>
+          </div>
+          <div class="vg-stat-box">
+            <div class="vg-stat-n">25 Yrs</div>
+            <div class="vg-stat-l">Industry Experience</div>
+          </div>
+          <div class="vg-stat-box">
+            <div class="vg-stat-n">300+</div>
+            <div class="vg-stat-l">Skilled Professionals</div>
+          </div>
+          <div class="vg-stat-box">
+            <div class="vg-stat-n">3 Regions</div>
+            <div class="vg-stat-l">North America · UK · Europe</div>
+          </div>
+        </div>
+
+        <div class="ck rv up" style="transition-delay:.22s">
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Scalable workforce — Ability to handle large-scale data annotation projects including images, videos, text, and audio across global AI datasets.</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Domain expertise — Specialized in data labeling techniques such as bounding boxes, segmentation, classification, and tagging for high-quality AI training data.</span></div>
+          <div class="ck-r"><div class="ck-i"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 2.5"/></svg></div><span>Loyalty-driven culture — Our strength lies in a dedicated annotation team ensuring consistency, accuracy, and long-term client trust.</span></div>
+        </div>
+
+        <div class="certs rv up" style="transition-delay:.27s">
+          <span class="ct">SOC 2 Type II</span><span class="ct">ISO 27001</span>
+          <span class="ct">HIPAA</span><span class="ct">GDPR</span><span class="ct">NDA Protected</span>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap" class="rv up" style="transition-delay:.32s">
+          <a href="#contact" class="eq-cta-btn">
+            <span class="eq-btn-dot"></span>
+            Enquire Now
+            <span class="eq-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6h9M7 2.5l3 3.5-3 3.5"/></svg></span>
+          </a>
           <a href="#services" class="BG">Our Services</a>
         </div>
       </div>
@@ -1294,56 +1415,159 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </div>
 
 <!-- ══ SERVICES ══ -->
+```html
 <section class="sec" id="services">
   <div class="W">
     <div class="svc-hd">
       <div>
         <div class="ey rv up">What We Do</div>
-        <h2 class="ST rv up" style="transition-delay:.07s">Annotation For<br/>Every <span class="a">AI Use Case.</span></h2>
+        <h2 class="ST rv up" style="transition-delay:.07s">
+          Data Annotation Built for <span class="a">All AI Use Cases.</span>
+        </h2>
       </div>
-      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">From simple bounding boxes to complex RLHF pipelines — one specialist team, every modality, production-scale quality.</p>
+      <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">
+        Upload raw files and receive accurately annotated, structured datasets ready for AI model training. 
+        Our workflow ensures consistent quality through expert validation and scalable delivery.
+      </p>
     </div>
+
     <div class="svc-grid sg">
-      <div class="sv"><span class="sv-n">01</span><div class="sv-ico">🖼️</div><h3>Image Annotation</h3><p>Bounding boxes, polygons, keypoints, semantic &amp; instance segmentation. 100M+ images labelled with sub-pixel precision across all object classes.</p><div class="sv-tags"><span class="sv-tag">Bounding Box</span><span class="sv-tag">Polygon</span><span class="sv-tag">Keypoints</span></div><div class="sv-more">Learn more →</div></div>
-      <div class="sv"><span class="sv-n">02</span><div class="sv-ico">🎬</div><h3>Video Annotation</h3><p>Frame-by-frame object tracking, action recognition, temporal event labeling and multi-sensor annotation with full audit trails and SLA-backed delivery.</p><div class="sv-tags"><span class="sv-tag">Object Tracking</span><span class="sv-tag">Action Labels</span></div><div class="sv-more">Learn more →</div></div>
-      <div class="sv"><span class="sv-n">03</span><div class="sv-ico">🤖</div><h3>RLHF &amp; LLM Alignment</h3><p>Expert-led fine-tuning, preference ranking, chain-of-thought reasoning, red teaming and alignment for frontier language &amp; multimodal models.</p><div class="sv-tags"><span class="sv-tag">RLHF</span><span class="sv-tag">Fine-Tuning</span><span class="sv-tag">Red Teaming</span></div><div class="sv-more">Learn more →</div></div>
-      <div class="sv"><span class="sv-n">04</span><div class="sv-ico">📝</div><h3>NLP &amp; Text Annotation</h3><p>Named entity recognition, sentiment analysis, intent classification, and corpus augmentation across 40+ languages with expert SMEs.</p><div class="sv-tags"><span class="sv-tag">NER</span><span class="sv-tag">Sentiment</span><span class="sv-tag">40+ Languages</span></div><div class="sv-more">Learn more →</div></div>
-      <div class="sv"><span class="sv-n">05</span><div class="sv-ico">🏥</div><h3>Medical Imaging</h3><p>DICOM annotation, radiology labeling, digital pathology segmentation and clinical data structuring with HIPAA workflows and credentialed reviewers.</p><div class="sv-tags"><span class="sv-tag">DICOM</span><span class="sv-tag">HIPAA</span><span class="sv-tag">Radiology</span></div><div class="sv-more">Learn more →</div></div>
-      <div class="sv"><span class="sv-n">06</span><div class="sv-ico">📡</div><h3>LiDAR &amp; 3D Annotation</h3><p>3D cuboid annotation, point cloud segmentation, multi-sensor fusion labeling for autonomous vehicles, HD mapping and spatial AI systems.</p><div class="sv-tags"><span class="sv-tag">Point Cloud</span><span class="sv-tag">3D Cuboid</span><span class="sv-tag">Sensor Fusion</span></div><div class="sv-more">Learn more →</div></div>
+
+      <!-- 01 -->
+      <div class="sv">
+        <span class="sv-n">01</span>
+        <div class="sv-ico">🖼️</div>
+        <h3>Image Annotation</h3>
+        <p>
+          Bounding boxes, polygons, keypoints, and segmentation delivered with high precision. 
+          Every dataset is reviewed by Senior Annotation Quality Analysts to ensure accuracy.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">Bounding Box</span>
+          <span class="sv-tag">Polygon</span>
+          <span class="sv-tag">Keypoints</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
+      <!-- 02 -->
+      <div class="sv">
+        <span class="sv-n">02</span>
+        <div class="sv-ico">🎬</div>
+        <h3>Video Annotation</h3>
+        <p>
+          Frame-by-frame annotation including object tracking, motion detection, and temporal labeling 
+          for AI and computer vision models.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">Object Tracking</span>
+          <span class="sv-tag">Action Labels</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
+      <!-- 03 -->
+      <div class="sv">
+        <span class="sv-n">03</span>
+        <div class="sv-ico">🤖</div>
+        <h3>RLHF & LLM Annotation</h3>
+        <p>
+          Human-in-the-loop annotation for training language models, including evaluation, ranking, 
+          and refinement workflows.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">RLHF</span>
+          <span class="sv-tag">Evaluation</span>
+          <span class="sv-tag">Fine-Tuning</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
+      <!-- 04 -->
+      <div class="sv">
+        <span class="sv-n">04</span>
+        <div class="sv-ico">📝</div>
+        <h3>Text & NLP Annotation</h3>
+        <p>
+          Entity recognition, sentiment analysis, and intent classification across multilingual datasets 
+          for scalable AI applications.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">NER</span>
+          <span class="sv-tag">Sentiment</span>
+          <span class="sv-tag">Languages</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
+      <!-- 05 -->
+      <div class="sv">
+        <span class="sv-n">05</span>
+        <div class="sv-ico">🏥</div>
+        <h3>Medical Data Annotation</h3>
+        <p>
+          Radiology and healthcare dataset annotation with structured workflows and high-quality review standards.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">DICOM</span>
+          <span class="sv-tag">Radiology</span>
+          <span class="sv-tag">Healthcare</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
+      <!-- 06 -->
+      <div class="sv">
+        <span class="sv-n">06</span>
+        <div class="sv-ico">📡</div>
+        <h3>LiDAR & 3D Annotation</h3>
+        <p>
+          Point cloud labeling, cuboids, and sensor fusion annotation for autonomous systems and spatial AI.
+        </p>
+        <div class="sv-tags">
+          <span class="sv-tag">Point Cloud</span>
+          <span class="sv-tag">3D Cuboid</span>
+          <span class="sv-tag">Fusion</span>
+        </div>
+        <div class="sv-more">Learn more →</div>
+      </div>
+
     </div>
   </div>
 </section>
+```
+
 
 <!-- ══ WORKFLOW DEMO (NEW) ══ -->
 <section class="sec" id="workflow">
   <div class="W">
     <div class="wf-grid">
       <div>
-        <div class="ey rv up">Live Platform</div>
+        <!-- <div class="ey rv up">Live Platforms</div> -->
         <h2 class="ST rv up" style="transition-delay:.07s">See How The<br/><span class="a">Annotation</span><br/>Process Works.</h2>
-        <p class="SB rv up" style="transition-delay:.12s;margin-bottom:32px">Our annotation platform combines AI-assisted pre-labeling with expert human review — cutting turnaround time by up to 70% without sacrificing quality.</p>
+        <p class="SB rv up" style="transition-delay:.12s;margin-bottom:32px">Our Annotation process combines State-of-the-Art technology with expert human review - cutting turnaround time by 70% with high precision and accuracy</p>
         <div class="wf-steps rv up" style="transition-delay:.17s">
           <div class="wf-step active">
             <div class="wf-sn">1</div>
             <div class="wf-step-txt">
-              <h4>Upload &amp; Pre-label</h4>
-              <p>Upload raw data. Our AI pre-labels up to 80% of assets instantly for expert review.</p>
+              <h4>Upload raw files</h4>
+              <p>Upload your input files in any format, we will handle the rest.</p>
             </div>
           </div>
           <div class="wf-conn"></div>
           <div class="wf-step">
             <div class="wf-sn">2</div>
             <div class="wf-step-txt">
-              <h4>Expert Review &amp; Correct</h4>
-              <p>Certified annotators review, adjust and validate every label against your guidelines.</p>
+              <h4>Expert Review & Correct</h4>
+              <p>Certified annotators review, labels and validate every label against your guidelines.</p>
             </div>
           </div>
           <div class="wf-conn"></div>
           <div class="wf-step">
             <div class="wf-sn">3</div>
             <div class="wf-step-txt">
-              <h4>QA Sign-off &amp; Export</h4>
-              <p>Senior QA engineers run final checks. Export in COCO, VOC, YOLO, or custom format.</p>
+              <h4>QA Sign-off & Export</h4>
+              <p>Senior Annotation Quality Analysts run final checks. Export in COCO, VOC, YOLO, or custom format.</p>
             </div>
           </div>
         </div>
@@ -1352,11 +1576,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <div class="wf-screen" id="wfscreen">
           <div class="wf-topbar">
             <div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div>
-            <div class="wf-title-bar">LOGO Platform — Annotation Workspace</div>
+            <div class="wf-title-bar">VISION GLOBAL Platform — Annotation Workspace</div>
           </div>
           <div class="wf-body">
             <div class="wf-img-wrap">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=440&fit=crop" alt="Annotation"/>
+              <img src="./signal_img.png" alt="Annotation Platform"/>
               <div class="ann-box ann-b1" data-label="Vehicle"></div>
               <div class="ann-box ann-b2" data-label="Pedestrian"></div>
               <div class="ann-box ann-b3" data-label="Sign"></div>
@@ -1391,11 +1615,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </section>
 
 <!-- ══ PLATFORM FEATURES (NEW) ══ -->
-<section class="sec" id="platform">
+<!-- <section class="sec" id="platform">
   <div class="W">
     <div class="plat-hd">
       <div>
-        <div class="ey rv up">Platform</div>
+        <div class="ey rv up">Processing</div>
         <h2 class="ST rv up" style="transition-delay:.07s">One Platform,<br/><span class="a">Every Modality.</span></h2>
       </div>
       <p class="SB rv up" style="transition-delay:.12s;margin-bottom:0">LOGO Hub brings annotation, QA, workforce management, and analytics into a single enterprise workspace with real-time visibility.</p>
@@ -1411,7 +1635,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <div class="feat-img rv sc"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=720&fit=crop" alt="Annotation"/></div>
         <div class="feat-list sg">
           <div class="fl-item"><div class="fl-ico">🖊️</div><div class="fl-txt"><h4>AI-Assisted Pre-labeling</h4><p>Reduce annotation time by up to 70% with AI-generated first-pass labels reviewed and corrected by expert annotators.</p></div></div>
-          <div class="fl-item"><div class="fl-ico">🔄</div><div class="fl-txt"><h4>Multi-modality Support</h4><p>Image, video, point cloud, audio, and text annotation — all in one unified workspace with consistent tooling.</p></div></div>
+          <div class="fl-item"><div class="fl-ico">🔄</div><div class="fl-txt"><h4>Multi-modality Support</h4><p>AI - get all-in one place Vision Global.</p></div></div>
           <div class="fl-item"><div class="fl-ico">⚡</div><div class="fl-txt"><h4>Batch Workflow Automation</h4><p>Automate task routing, annotator assignment, and QA escalation across thousands of assets simultaneously.</p></div></div>
         </div>
       </div>
@@ -1441,7 +1665,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ══ CAPABILITIES ══ -->
 <section class="sec" id="cap">
@@ -1488,18 +1712,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
   <div class="W">
     <div class="proc-cards sg">
-      <div class="pc"><span class="pc-n">01</span><h4>Data Intake &amp; Scoping</h4><p>We audit your dataset, co-define annotation guidelines, set quality benchmarks, and launch a shared dashboard before a single label is placed.</p></div>
-      <div class="pc"><span class="pc-n">02</span><h4>Expert Team Assignment</h4><p>Domain-matched annotators pass a qualification test on your specific task. Medical data? Only certified SMEs. No generalists, ever.</p></div>
-      <div class="pc"><span class="pc-n">03</span><h4>Annotation + Multi-Layer QA</h4><p>Every label passes automated validation, peer review, and senior sign-off. IAA scores tracked and reported per batch — always.</p></div>
-      <div class="pc"><span class="pc-n">04</span><h4>Delivery &amp; Iteration</h4><p>Datasets in your preferred format, on time. We stay engaged for model feedback loops, edge-case expansion, and relabelling.</p></div>
+      <div class="pc"><span class="pc-n" style="color: white;">01</span><h4>Data Intake &amp; Scoping</h4><p>We audit your dataset, co-define annotation guidelines, set quality benchmarks, and launch a shared dashboard before a single label is placed.</p></div>
+      <div class="pc"><span class="pc-n" style="color: white;">02</span><h4>Expert Team Assignment</h4><p>Domain-matched annotators pass a qualification test on your specific task. Medical data? Only certified SMEs. No generalists, ever.</p></div>
+      <div class="pc"><span class="pc-n" style="color: white;">03</span><h4>Annotation + Multi-Layer QA</h4><p>Every label passes automated validation, peer review, and senior sign-off. IAA scores tracked and reported per batch — always.</p></div>
+      <div class="pc"><span class="pc-n" style="color: white;">04</span><h4>Delivery &amp; Iteration</h4><p>Datasets in your preferred format, on time. We stay engaged for model feedback loops, edge-case expansion, and relabelling.</p></div>
     </div>
   </div>
   <div class="proc-split rv sc" style="margin-top:2px">
-    <div class="ps-img"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&h=600&fit=crop" alt="Process"/></div>
+    <div class="ps-img"><img src="./vision_img.jpeg" alt="Process"/></div>
     <div class="ps-txt">
       <h3>48-Hour<br/>Project Launch.</h3>
-      <p>From brief to first annotations in two business days. No procurement delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs.</p>
-      <div class="livepulse">Live quality dashboard access</div>
+      <p> From brief to first annotations in two business days. No delays, no surprise costs. Just fast, expert annotation backed by contractual SLAs</p>
+      <!-- <div class="livepulse">Live quality dashboard access</div> -->
     </div>
   </div>
 </section>
@@ -1522,6 +1746,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="pcard">
         <h3>Starter</h3>
         <p class="pdesc">Ideal for small teams and proof-of-concept projects up to 50K labels.</p>
+        <p class="pp-per">Price Starts From </p>
         <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">2,400</span><span class="pp-per">/mo</span></div>
         <div class="pcard-feats">
           <div class="pf">Up to 50,000 labels / month</div>
@@ -1533,12 +1758,13 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="pf off">LiDAR &amp; 3D annotation</div>
           <div class="pf off">RLHF &amp; LLM alignment</div>
         </div>
-        <a href="#cta" class="BG" style="width:100%;justify-content:center">Get Started →</a>
+        <a href="#cta" class="BB" style="width:100%;justify-content:center">Get Started →</a>
       </div>
       <div class="pcard pop">
         <div class="pop-badge">Most Popular</div>
         <h3>Professional</h3>
         <p class="pdesc">For growing teams with ongoing annotation needs and multi-modality requirements.</p>
+        <p class="pp-per">Price Starts From </p>
         <div class="pcard-price"><span class="pp-cur">$</span><span class="pp-n">7,900</span><span class="pp-per">/mo</span></div>
         <div class="pcard-feats">
           <div class="pf">Up to 250,000 labels / month</div>
@@ -1555,6 +1781,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="pcard">
         <h3>Enterprise</h3>
         <p class="pdesc">Custom volume, RLHF/LLM data, medical AI and full pipeline management.</p>
+        <pre> </pre>
         <div class="pcard-price"><span class="pp-cur"></span><span class="pp-n">Custom</span></div>
         <div class="pcard-feats">
           <div class="pf">Unlimited labels</div>
@@ -1566,8 +1793,25 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="pf">SOC 2 + ISO 27001 compliance</div>
           <div class="pf">24/7 priority support</div>
         </div>
-        <a href="#cta" class="BP" style="width:100%;justify-content:center">Contact Sales →</a>
+        <a href="#cta" class="BB" style="width:100%;justify-content:center">Contact Sales →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="logos">
+  <div class="logos-lbl">Smart Tools for Accurate Data Labeling</div>
+  <div class="logos-track">
+    <div class="logos-row">
+      <div class="li"><span class="li-name"></span></div>
+      <div class="li"><span class="li-name"></span></div>
+      <div class="li"><span class="li-name"><img src="sign-box.png" height="80px"></span></div>
+      <div class="li"><span class="li-name"><img src="./philosys.png" height="60px"></span></div>
+      <div class="li"><span class="li-name"><img src="./koc.webp" height="40px"></span></div>
+      <div class="li"><span class="li-name"><img src="./tel.png" height="60px"></span></div>
+      <div class="li"><span class="li-name"><img src="./gt-protocol.png" height="60px"></span></div>
+      <!-- <div class="li"><span class="li-name"><img src="./philosys.png" height="60px"></span></div> -->
+      <div class="li"><span class="li-name"></span></div>
     </div>
   </div>
 </section>
@@ -1586,7 +1830,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <div class="trc"><div class="trc-ico">🔐</div><h3>Data Privacy &amp; NDA</h3><p>Every project begins with a signed NDA. Data processed exclusively in your cloud storage or our SOC 2-certified environment — never on personal devices.</p><div class="trc-tags"><span class="trc-tag">NDA Protected</span><span class="trc-tag">Zero Retention</span><span class="trc-tag">Audit Trail</span></div></div>
       <div class="trc"><div class="trc-ico">🏛️</div><h3>Compliance &amp; Certifications</h3><p>SOC 2 Type II, ISO 27001, GDPR, and HIPAA compliance across all workflows. Certificates available before contract signature.</p><div class="trc-tags"><span class="trc-tag">SOC 2 Type II</span><span class="trc-tag">ISO 27001</span><span class="trc-tag">HIPAA</span><span class="trc-tag">GDPR</span></div></div>
       <div class="trc"><div class="trc-ico">⚙️</div><h3>Quality Assurance</h3><p>Dual-layer QA: automated IAA scoring plus expert human review on every batch. ≥99% IAA guaranteed, with free rework if not met.</p><div class="trc-list"><div class="trc-li">Automated consistency checks on every label</div><div class="trc-li">Senior annotator peer review layer</div><div class="trc-li">Free rework guarantee below threshold</div><div class="trc-li">Real-time quality dashboard access</div></div></div>
-      <div class="trc"><div class="trc-ico">⚡</div><h3>Scale &amp; Reliability</h3><p>5,000+ vetted annotators on standby. Scale to surge volumes within 72 hours without quality compromise, backed by contractual SLAs.</p><div class="trc-list"><div class="trc-li">72-hour surge capacity guarantee</div><div class="trc-li">Contractual SLAs on every project</div><div class="trc-li">Dedicated project manager assigned</div><div class="trc-li">24/7 progress dashboard and alerts</div></div></div>
+      <div class="trc"><div class="trc-ico">⚡</div><h3>Scale &amp; Reliability</h3><p>300+ vetted annotators on standby. Scale to surge volumes within 72 hours without quality compromise, backed by contractual SLAs.</p><div class="trc-list"><div class="trc-li">72-hour surge capacity guarantee</div><div class="trc-li">Contractual SLAs on every project</div><div class="trc-li">Dedicated project manager assigned</div><div class="trc-li">24/7 progress dashboard and alerts</div></div></div>
     </div>
   </div>
 </section>
@@ -1609,9 +1853,24 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
       <h2 class="ST" style="margin-top:10px;color:#fff;text-align:center">Trusted By Teams<br/><span style="color:var(--b3)">Building Tomorrow.</span></h2>
     </div>
     <div class="test-grid sg">
-      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">LOGO's annotation enables us to build accurate models and actionable insights. Onboarded in 48 hours, hit 99% IAA from batch one. Never needed a single rework cycle in 18 months.</p><div class="tc-name">Sarah Chen</div><div class="tc-role">Head of ML Data · Autonomous AI Co.</div></div>
-      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">Incredibly knowledgeable data labelers who are genuinely part of our team. HIPAA compliance, full audit trail, and a dedicated PM made enterprise procurement entirely painless.</p><div class="tc-name">Dr. Michael Torres</div><div class="tc-role">CTO · MedVision Diagnostics</div></div>
-      <div class="tc"><div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div><p class="tc-q">We needed deep language understanding across 12 languages for our RLHF pipeline. VISION GLOBAL delivered real domain experts — not generalists — with genuine chain-of-thought reasoning skills.</p><div class="tc-name">Priya Nair</div><div class="tc-role">Research Lead · Foundation Model Lab</div></div>
+      <div class="tc">
+        <div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div>
+        <p class="tc-q">My company has used Vision Global for several years now. They have adapted well to our ever changing requirements over the years and are happy to and prompt in helping us come up with new solutions as needed.</p>
+        <div class="tc-name">Cassandra Remare-Welch</div>
+        <div class="tc-role">Senior Search Administrator &amp; Marketing Coordinator · Park Square Executive Search LLC, Boston, Massachusetts</div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div>
+        <p class="tc-q">Vision Global are always really really keen to do their very best. They always respond incredibly quickly to any questions or concerns. I have to say that the quality of the transcribing is better than it's ever been and I put that down to the close attention the management is paying.</p>
+        <div class="tc-name">Mark Dealtry</div>
+        <div class="tc-role">Managing Director · Referenceline, Hampshire, United Kingdom</div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars"><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span><span class="tc-star">★</span></div>
+        <p class="tc-q">We have been working with Vision Global for 2 years now! We are so satisfied with all their work. They are always there when we need them and get the task done right away without any issues! They are extremely knowledgeable in all the work they do. We highly recommend Vision Global — you won't be disappointed!</p>
+        <div class="tc-name">Joel Fisher</div>
+        <div class="tc-role">Business Owner · Elemeno, Lakewood, New Jersey</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1661,24 +1920,50 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <!-- ══ LOGOS ══ -->
 <section id="logos">
   <div class="logos-lbl">Trusted by top AI innovators worldwide</div>
+
   <div class="logos-track">
     <div class="logos-row">
-      <div class="li"><span class="li-name">Microsoft</span></div>
-      <div class="li"><span class="li-name">eBay</span></div>
-      <div class="li"><span class="li-name">Autodesk</span></div>
-      <div class="li"><span class="li-name">TripAdvisor</span></div>
-      <div class="li"><span class="li-name">Bill.com</span></div>
-      <div class="li"><span class="li-name">Nuro AI</span></div>
-      <div class="li"><span class="li-name">Orbital Insight</span></div>
-      <div class="li"><span class="li-name">Johnson &amp; Johnson</span></div>
-      <div class="li"><span class="li-name">Microsoft</span></div>
-      <div class="li"><span class="li-name">eBay</span></div>
-      <div class="li"><span class="li-name">Autodesk</span></div>
-      <div class="li"><span class="li-name">TripAdvisor</span></div>
-      <div class="li"><span class="li-name">Bill.com</span></div>
-      <div class="li"><span class="li-name">Nuro AI</span></div>
-      <div class="li"><span class="li-name">Orbital Insight</span></div>
-      <div class="li"><span class="li-name">Johnson &amp; Johnson</span></div>
+
+      <div class="li">
+        <img src="hype.png" alt="Hype">
+      </div>
+
+      <div class="li">
+        <img src="reference-line.png" alt="Reference Line">
+      </div>
+
+      <div class="li">
+        <img src="omeda.png" alt="Omeda">
+      </div>
+
+      <div class="li">
+        <img src="medialocate.png" alt="Medialocate">
+      </div>
+
+      <div class="li">
+        <img src="lockstock.png" alt="Lockstock">
+      </div>
+
+      <div class="li">
+        <img src="united-commerce.png" alt="United Commerce">
+      </div>
+
+      <div class="li">
+        <img src="park-square.png" alt="Park Square">
+      </div>
+
+      <div class="li">
+        <img src="jls.png" alt="JLS">
+      </div>
+
+      <div class="li">
+        <img src="joor.png" alt="JOOR">
+      </div>
+
+      <div class="li">
+        <img src="betmar.png" alt="Betmar">
+      </div>
+
     </div>
   </div>
 </section>
@@ -1697,7 +1982,17 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <div class="fq-item on"><div class="fq-q">How quickly can you start a new project? <span class="fq-ic">+</span></div><div class="fq-a">Most projects onboard within 48 hours. We review your dataset, agree on guidelines, assign annotators, and begin labelling — all within two business days of your brief.</div></div>
         <div class="fq-item"><div class="fq-q">What accuracy level do you guarantee? <span class="fq-ic">+</span></div><div class="fq-a">We guarantee a minimum 99% IAA on standard tasks. For specialist domains we agree a custom threshold — and offer free rework if it's not met. No exceptions.</div></div>
         <div class="fq-item"><div class="fq-q">How do you handle sensitive or confidential data? <span class="fq-ic">+</span></div><div class="fq-a">Every engagement starts with a signed NDA. Data never leaves your approved cloud storage. Annotators work in your environment or our SOC 2-certified platform with full audit trails.</div></div>
-        <div class="fq-item"><div class="fq-q">Can you scale quickly for large surge projects? <span class="fq-ic">+</span></div><div class="fq-a">Yes. We maintain 5,000+ vetted annotators across multiple domains. For large-scale surges we can scale within 72 hours without quality compromise, backed by contractual SLAs.</div></div>
+       <div class="fq-item">
+  <div class="fq-q">
+    Can you scale quickly for large surge projects? 
+    <span class="fq-ic">+</span>
+  </div>
+  <div class="fq-a">
+    Yes. We have a team of 300+ vetted annotators across multiple domains. 
+    For large-scale surges we can scale within 72 hours without quality compromise, 
+    backed by contractual SLAs.
+  </div>
+</div>
         <div class="fq-item"><div class="fq-q">What annotation formats do you deliver in? <span class="fq-ic">+</span></div><div class="fq-a">COCO JSON, Pascal VOC XML, YOLO TXT, CSV, DICOM, and any custom schema your pipeline requires. We match your toolchain, not the other way around.</div></div>
         <div class="fq-item"><div class="fq-q">Do you offer a pilot or proof-of-concept? <span class="fq-ic">+</span></div><div class="fq-a">Yes — we always recommend a small paid pilot so you can evaluate quality firsthand. Most clients proceed to full scale after 500–1,000 labels.</div></div>
       </div>
@@ -1725,7 +2020,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
             <div class="cd-icon">📍</div>
             <div class="cd-info">
               <div class="cd-label">Headquarters</div>
-              <div class="cd-value">Coimbatore<br/>Tamil Nadu, India</div>
+              <div class="cd-value">No.12, B.R Nagar, Trichy Rd, above Bank of Baroda, Coimbatore, Tamil Nadu 641005.</div>
             </div>
           </div>
           <div class="cd-item">
@@ -1742,53 +2037,53 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
               <div class="cd-value"><a href="tel:+918012345678" style="color:var(--b)">+1 (408)-878-6865</a></div>
             </div>
           </div>
-          <div class="cd-item">
+          <!-- <div class="cd-item">
             <div class="cd-icon">🕐</div>
             <div class="cd-info">
               <div class="cd-label">Business Hours</div>
               <div class="cd-value">Mon–Fri: 9:00 AM – 7:00 PM IST<br/>Enterprise clients: 24/7 support</div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="cd-socials rv up" style="transition-delay:.2s;margin-top:24px">
           <a href="#" class="cd-soc" title="LinkedIn">in</a>
           <a href="#" class="cd-soc" title="Twitter/X">𝕏</a>
           <a href="#" class="cd-soc" title="YouTube">▶</a>
-          <a href="mailto:info@visionglobalbpo.com" class="cd-soc" title="Email">✉</a>
+          <a href="mailto:info@visionglobal.in" class="cd-soc" title="Email">✉</a>
         </div>
       </div>
 
       <!-- RIGHT: Enquiry Form -->
-      <div class="cd-right rv rt" style="transition-delay:.12s">
+     <div class="cd-right rv rt" style="transition-delay:.12s">
         <div class="eq-form-card">
           <div class="eq-form-head">
             <div class="eq-form-title">Send An Enquiry</div>
             <div class="eq-form-sub">We respond within 24 hours, guaranteed.</div>
           </div>
 
-          <form class="eq-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+          <form class="eq-form" id="contactForm" onsubmit="submitEnquiry(event,this)">
             <div class="eq-row">
               <div class="eq-field">
                 <label class="eq-label">First Name *</label>
-                <input class="eq-inp" type="text" placeholder="John" required/>
+                <input class="eq-inp" type="text" name="first_name" placeholder="John" required/>
               </div>
               <div class="eq-field">
                 <label class="eq-label">Last Name *</label>
-                <input class="eq-inp" type="text" placeholder="Smith" required/>
+                <input class="eq-inp" type="text" name="last_name" placeholder="Smith" required/>
               </div>
             </div>
             <div class="eq-field">
               <label class="eq-label">Work Email *</label>
-              <input class="eq-inp" type="email" placeholder="john@company.com" required/>
+              <input class="eq-inp" type="email" name="email" placeholder="john@company.com" required/>
             </div>
             <div class="eq-field">
               <label class="eq-label">Company</label>
-              <input class="eq-inp" type="text" placeholder="Your Company Name"/>
+              <input class="eq-inp" type="text" name="company" placeholder="Your Company Name"/>
             </div>
             <div class="eq-field">
               <label class="eq-label">Service Needed *</label>
-              <select class="eq-inp eq-sel" required>
+              <select class="eq-inp eq-sel" name="service" required>
                 <option value="" disabled selected>Select a service...</option>
                 <option>Image Annotation</option>
                 <option>Video Annotation</option>
@@ -1799,25 +2094,15 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
                 <option>Custom / Multiple Services</option>
               </select>
             </div>
-            <!-- <div class="eq-field">
-              <label class="eq-label">Estimated Volume</label>
-              <select class="eq-inp eq-sel">
-                <option value="" disabled selected>How many labels / month?</option>
-                <option>Under 10,000</option>
-                <option>10,000 – 50,000</option>
-                <option>50,000 – 250,000</option>
-                <option>250,000+</option>
-                <option>Not sure yet</option>
-              </select>
-            </div> -->
             <div class="eq-field">
               <label class="eq-label">Tell Us About Your Project</label>
-              <textarea class="eq-inp eq-ta" rows="4" placeholder="Describe your dataset, use case, or any specific requirements..."></textarea>
+              <textarea class="eq-inp eq-ta" name="message" rows="4" placeholder="Describe your dataset, use case, or any specific requirements..."></textarea>
             </div>
-            <button type="submit" class="eq-submit">
+            <button type="submit" class="eq-submit" id="contactSubmitBtn">
               <span class="eq-btn-txt">Send Enquiry</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg>
             </button>
+            <p class="eq-err" id="contactError" style="display:none;color:#e53e3e;font-family:var(--F4);font-size:9px;letter-spacing:1px;margin-top:10px;text-transform:uppercase"></p>
             <p class="eq-privacy">🔒 Your data is protected by our NDA and Privacy Policy. We never share your information.</p>
           </form>
 
@@ -1853,6 +2138,34 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </section>
 
 <!-- ══ FOOTER ══ -->
+<!-- ENQUIRY MODAL -->
+<div class="eq-modal-overlay" id="enquiryModal" onclick="if(event.target===this)closeEnquiryModal()">
+  <div class="eq-modal">
+    <button class="eq-modal-close" onclick="closeEnquiryModal()">✕</button>
+    <div class="eq-form-head">
+      <div class="eq-form-title">Quick Enquiry</div>
+      <div class="eq-form-sub">We respond within 24 hours, guaranteed.</div>
+    </div>
+    <form class="eq-form" onsubmit="this.closest('.eq-modal-overlay').classList.remove('open');return false;">
+      <div class="eq-row">
+        <div class="eq-field"><label class="eq-label">First Name *</label><input class="eq-inp" type="text" placeholder="John" required/></div>
+        <div class="eq-field"><label class="eq-label">Last Name *</label><input class="eq-inp" type="text" placeholder="Smith" required/></div>
+      </div>
+      <div class="eq-field"><label class="eq-label">Work Email *</label><input class="eq-inp" type="email" placeholder="john@company.com" required/></div>
+      <div class="eq-field"><label class="eq-label">Service Needed *</label>
+        <select class="eq-inp eq-sel" required>
+          <option value="" disabled selected>Select a service...</option>
+          <option>Image Annotation</option><option>Video Annotation</option>
+          <option>RLHF &amp; LLM Alignment</option><option>NLP &amp; Text Annotation</option>
+          <option>Medical Imaging</option><option>LiDAR &amp; 3D Annotation</option>
+          <option>Custom / Multiple Services</option>
+        </select>
+      </div>
+      <div class="eq-field"><label class="eq-label">Message</label><textarea class="eq-inp eq-ta" rows="3" placeholder="Tell us about your project..."></textarea></div>
+      <button type="submit" class="eq-submit"><span class="eq-btn-txt">Send Enquiry</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 7h11M8.5 3l3.5 4-3.5 4"/></svg></button>
+    </form>
+  </div>
+</div>
 <!-- <footer>
   <div class="foot-wrap">
     <div class="foot-grid">
@@ -1880,10 +2193,16 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </footer> -->
 
 <script>
-/* ══ LOADER ══ */
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('loader').classList.add('out'),1500);
-});
+/* ══ LOADER — always dismisses, never stuck ══ */
+function dismissLoader(){
+  const l=document.getElementById('loader');
+  if(l)l.classList.add('out');
+}
+// Dismiss after 1.6s no matter what (handles failed external scripts)
+setTimeout(dismissLoader,1600);
+// Also on load if it fires faster
+window.addEventListener('load',()=>setTimeout(dismissLoader,400));
+document.addEventListener('DOMContentLoaded',()=>setTimeout(dismissLoader,1600));
 
 /* ══ CURSOR ══ */
 const C1=document.getElementById('C1'),C2=document.getElementById('C2');
@@ -2052,17 +2371,27 @@ const actIO=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       navAs.forEach(a=>{
-        a.style.color=a.getAttribute('href')==='#'+e.target.id?'var(--ink)':'';
+        a.style.color=a.getAttribute('href')==='#'+etarget.id?'var(--b)':'';
       });
     }
   });
-},{threshold:.4});
+},{threshold:.3});
 sections.forEach(s=>actIO.observe(s));
 
-/* ══ SMOOTH SECTION COUNTER RING ANIMATION DELAY ══ */
-document.querySelectorAll('.nb-ring').forEach((ring,i)=>{
-  ring.style.animationDelay=`${i*-1}s`;
-});
+/* ══ FORM SUBMIT ══ */
+function handleFormSubmit(e){
+  e.preventDefault();
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').style.display='flex';
+}
+function openEnquiryModal(){
+  const m=document.getElementById('enquiryModal');
+  if(m){m.classList.add('on');document.body.style.overflow='hidden';}
+}
+function closeEnquiryModal(){
+  const m=document.getElementById('enquiryModal');
+  if(m){m.classList.remove('on');document.body.style.overflow='';}
+}
 </script>
 </body>
 </html>
