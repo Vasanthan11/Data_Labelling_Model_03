@@ -8,288 +8,168 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --white:#FFFFFF;
-  --bg:#F8F7F4;
-  --bg2:#F0EDE7;
-  --bg3:#E6E2D9;
-  --card:#FFFFFF;
-  --rule:rgba(15,17,30,.08);
-  --rule2:rgba(15,17,30,.12);
-  --ink:#0F111E;
-  --ink2:#1C1F32;
-  --mid:#454862;
-  --muted:#8589A0;
-  --light:#B8BCCC;
-  --b:#02A384;
-  --b2:#02A384;
-  --b3:#005751;
-  --bdk:#005751;
-  --bglow:rgba(2,163,132,.14);
-  --bdim:rgba(2,163,132,.07);
-  --bbord:rgba(2,163,132,.2);
-  --dark:#0B0E1C;
-  --dark2:#101424;
-  --dbord:rgba(255,255,255,.07);
-  --F1:'Bebas Neue',sans-serif;
-  --F2:'Playfair Display',serif;
-  --F3:'DM Sans',sans-serif;
-  --F4:'Space Mono',monospace;
+  --white:#FFFFFF;--bg:#F8F7F4;--card:#FFFFFF;
+  --rule:rgba(15,17,30,.08);--rule2:rgba(15,17,30,.13);
+  --ink:#0F111E;--mid:#454862;--muted:#8589A0;--light:#B8BCCC;
+  --b:#02A384;--b3:#005751;--bdk:#005751;
+  --bglow:rgba(2,163,132,.14);--bdim:rgba(2,163,132,.07);--bbord:rgba(2,163,132,.22);
+  --F1:'Bebas Neue',sans-serif;--F2:'Playfair Display',serif;
+  --F3:'DM Sans',sans-serif;--F4:'Space Mono',monospace;
   --e1:cubic-bezier(.16,1,.3,1);
-  --e2:cubic-bezier(.4,0,.2,1);
-  --e3:cubic-bezier(.23,1,.32,1);
 }
-
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--ink);font-family:var(--F3);overflow-x:hidden}
 img{display:block;max-width:100%;object-fit:cover}
-a{text-decoration:none;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
 
-/* ══ PROGRESS BAR ══ */
+/* PROGRESS BAR */
 #PB{position:fixed;top:0;left:0;height:2.5px;width:0;z-index:9000;
   background:linear-gradient(90deg,var(--b),var(--b3),var(--b));
   background-size:200% 100%;animation:pbshine 2s linear infinite}
 @keyframes pbshine{0%{background-position:0%}100%{background-position:200%}}
 
-/* ══ NAV — white background ══ */
-#nav{
-  position:fixed;inset:0 0 auto;z-index:800;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 64px;height:68px;
-  background:#fff;
-  border-bottom:1px solid var(--rule);
-  transition:box-shadow .3s;
-}
+/* NAV */
+#nav{position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;
+  justify-content:space-between;padding:0 64px;height:68px;
+  background:#fff;border-bottom:1px solid var(--rule);transition:box-shadow .3s}
 #nav.sc{box-shadow:0 4px 24px rgba(15,17,30,.07)}
-.logo{display:flex;align-items:center;gap:10px;z-index:801}
-.logo-wordmark{display:flex;flex-direction:column;line-height:1}
-.logo-title{font-family:var(--F1);font-size:22px;letter-spacing:1px;color:var(--ink)}
-.logo-sub{font-family:var(--F3);font-size:9px;color:var(--muted);letter-spacing:.5px;margin-top:1px}
-.nav-logo-img{height:38px}
+.logo{display:flex;align-items:center;z-index:801}
+.nav-logo-img{height:38px;transition:opacity .2s}
+.nav-logo-img:hover{opacity:.8}
 .nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{
-  font-family:var(--F4);font-size:10px;font-weight:400;letter-spacing:1.2px;
+.nav-links a{font-family:var(--F4);font-size:10px;letter-spacing:1.2px;
   text-transform:uppercase;color:var(--muted);transition:color .2s;
-  position:relative;padding-bottom:4px;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
-  background:var(--b);transition:width .35s var(--e1);
-}
+  position:relative;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+  background:var(--b);transition:width .35s var(--e1)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 .nav-links a.active{color:var(--b3)}
-.nav-cta{
-  font-family:var(--F4);font-size:10px;letter-spacing:1px;text-transform:uppercase;
+.nav-cta{font-family:var(--F4);font-size:10px;letter-spacing:1px;text-transform:uppercase;
   padding:10px 22px;background:var(--ink);color:#fff;border-radius:4px;
-  border:1.5px solid var(--ink);transition:all .22s;white-space:nowrap;
-}
+  border:1.5px solid var(--ink);transition:all .22s;white-space:nowrap}
 .nav-cta:hover{background:var(--b);border-color:var(--b);transform:translateY(-2px);box-shadow:0 8px 24px var(--bglow)}
 .ham{display:none;flex-direction:column;gap:5px;z-index:801;cursor:pointer;background:none;border:none;padding:4px}
 .ham span{width:22px;height:1.8px;background:var(--ink);border-radius:1px;display:block;transition:all .3s}
 .ham.x span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
 .ham.x span:nth-child(2){opacity:0;transform:scaleX(0)}
 .ham.x span:nth-child(3){transform:translateY(-6.8px) rotate(-45deg)}
-.mob-nav{position:fixed;inset:0;background:var(--white);z-index:799;
-  display:flex;flex-direction:column;justify-content:center;padding:40px;
-  opacity:0;pointer-events:none;transition:opacity .35s}
+.mob-nav{position:fixed;inset:0;background:#fff;z-index:799;display:flex;flex-direction:column;
+  justify-content:center;padding:40px;opacity:0;pointer-events:none;transition:opacity .35s}
 .mob-nav.on{opacity:1;pointer-events:all}
 .mob-nav a{font-family:var(--F1);font-size:clamp(36px,9vw,64px);color:var(--ink);
   display:block;padding:7px 0;border-bottom:1px solid var(--rule);
   opacity:0;transform:translateX(-24px);transition:all .4s}
 .mob-nav.on a{opacity:1;transform:none}
-.mob-nav.on a:nth-child(1){transition-delay:.04s}
-.mob-nav.on a:nth-child(2){transition-delay:.08s}
-.mob-nav.on a:nth-child(3){transition-delay:.12s}
-.mob-nav.on a:nth-child(4){transition-delay:.16s}
-.mob-nav.on a:nth-child(5){transition-delay:.20s}
-.mob-nav.on a:nth-child(6){transition-delay:.24s}
+.mob-nav.on a:nth-child(1){transition-delay:.04s}.mob-nav.on a:nth-child(2){transition-delay:.08s}
+.mob-nav.on a:nth-child(3){transition-delay:.12s}.mob-nav.on a:nth-child(4){transition-delay:.16s}
+.mob-nav.on a:nth-child(5){transition-delay:.20s}.mob-nav.on a:nth-child(6){transition-delay:.24s}
 .mob-cta-a{margin-top:20px;display:inline-block !important;padding:13px 28px;
   background:var(--b);color:#fff !important;font-family:var(--F4) !important;
   font-size:10px !important;letter-spacing:1px;border-radius:4px;
   opacity:0 !important;transition:all .4s !important}
 .mob-nav.on .mob-cta-a{opacity:1 !important;transition-delay:.28s !important}
+@media(max-width:960px){#nav{padding:0 20px}.nav-links,.nav-cta{display:none}.ham{display:flex}}
 
-@media(max-width:960px){
-  #nav{padding:0 20px}
-  .nav-links,.nav-cta{display:none}.ham{display:flex}
-}
-
-/* ══ SHARED ══ */
+/* UTILS */
 .W{max-width:1240px;margin:0 auto;padding:0 64px}
 @media(max-width:768px){.W{padding:0 20px}}
+.ey{display:inline-flex;align-items:center;gap:9px;margin-bottom:14px;
+  font-family:var(--F4);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--b)}
+.ey::before{content:'';width:22px;height:1.5px;background:var(--b);flex-shrink:0}
 
 /* scroll reveal */
-.rv{opacity:0;transition:opacity 1s var(--e1),transform 1s var(--e1)}
-.rv.up{transform:translateY(40px)}.rv.in{opacity:1 !important;transform:none !important}
-.sg>*{opacity:0;transform:translateY(24px);transition:opacity .8s var(--e1),transform .8s var(--e1)}
-.sg.in>*{opacity:1;transform:none}
-.sg.in>*:nth-child(1){transition-delay:0s}.sg.in>*:nth-child(2){transition-delay:.07s}
-.sg.in>*:nth-child(3){transition-delay:.14s}.sg.in>*:nth-child(4){transition-delay:.21s}
-.sg.in>*:nth-child(5){transition-delay:.28s}.sg.in>*:nth-child(6){transition-delay:.35s}
-.sg.in>*:nth-child(7){transition-delay:.42s}.sg.in>*:nth-child(8){transition-delay:.49s}
-.sg.in>*:nth-child(9){transition-delay:.56s}
+.rv{opacity:0;transition:opacity .9s var(--e1),transform .9s var(--e1)}
+.rv.up{transform:translateY(32px)}.rv.in{opacity:1 !important;transform:none !important}
 
-/* ══ PAGE HEADER (slim, replaces dark hero) ══ */
-.page-header{
-  padding:108px 0 40px;
-  background:var(--bg);
-  border-bottom:1px solid var(--rule);
-}
-.page-header-inner{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;
-}
-.page-header h1{
-  font-family:var(--F1);font-size:clamp(48px,6vw,80px);
-  line-height:.9;letter-spacing:-1px;color:var(--ink);
-}
+/* PAGE HEADER */
+.page-header{padding:108px 0 44px;background:var(--bg);border-bottom:1px solid var(--rule)}
+.page-header h1{font-family:var(--F1);font-size:clamp(52px,7vw,90px);
+  line-height:.9;letter-spacing:-1px;color:var(--ink)}
 .page-header h1 span{color:var(--b)}
-.page-header-right{
-  display:flex;flex-direction:column;align-items:flex-end;gap:12px;
-}
-.blog-search{
-  display:flex;max-width:360px;width:100%;
-  background:#fff;border:1.5px solid var(--rule2);
-  border-radius:6px;overflow:hidden;transition:border-color .25s,box-shadow .25s;
-}
-.blog-search:focus-within{border-color:var(--b);box-shadow:0 0 0 3px var(--bdim)}
-.blog-search input{
-  flex:1;background:transparent;border:none;outline:none;
-  padding:11px 16px;font-size:13px;color:var(--ink);font-family:var(--F3);
-}
-.blog-search input::placeholder{color:var(--light)}
-.blog-search-btn{
-  background:var(--b);border:none;padding:11px 18px;cursor:pointer;
-  font-family:var(--F4);font-size:9px;letter-spacing:1px;text-transform:uppercase;
-  color:#fff;transition:background .22s;white-space:nowrap;
-}
-.blog-search-btn:hover{background:var(--bdk)}
+.page-header-sub{font-family:var(--F3);font-size:15px;font-weight:300;color:var(--mid);
+  line-height:1.8;margin-top:16px;max-width:560px}
 
-/* ══ FILTER BAR ══ */
-.filter-bar{
-  padding:18px 0;
+/* FILTER / JUMP BAR */
+.filter-bar{padding:16px 0;
   background:rgba(248,247,244,.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--rule);
-  position:sticky;top:68px;z-index:100;
-}
-.filter-inner{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  border-bottom:1px solid var(--rule);position:sticky;top:68px;z-index:100}
+.filter-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .filter-label{font-family:var(--F4);font-size:8.5px;letter-spacing:2px;
   text-transform:uppercase;color:var(--muted);flex-shrink:0}
 .filter-chips{display:flex;gap:7px;flex-wrap:wrap}
-.f-chip{
-  font-family:var(--F4);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;
+.f-chip{font-family:var(--F4);font-size:8.5px;letter-spacing:1px;text-transform:uppercase;
   padding:6px 14px;border-radius:20px;border:1.5px solid var(--rule2);
-  color:var(--muted);cursor:pointer;transition:all .22s;background:var(--card);
-}
+  color:var(--muted);cursor:pointer;transition:all .22s;background:var(--card)}
 .f-chip:hover{border-color:var(--b);color:var(--b)}
 .f-chip.on{background:var(--b);border-color:var(--b);color:#fff}
-.filter-count{margin-left:auto;font-family:var(--F4);font-size:9px;color:var(--muted);white-space:nowrap}
-@media(max-width:768px){.filter-count{display:none}}
 
-/* ══ MAIN AREA ══ */
-.blog-main{padding:64px 0 96px;background:var(--bg)}
+/* BLOG MAIN */
+.blog-main{padding:80px 0 100px}
 
 /* topic divider */
-.topic-divider{
-  display:flex;align-items:center;gap:16px;margin:56px 0 24px;
-}
-.topic-divider:first-child{margin-top:0}
-.topic-divider h3{
-  font-family:var(--F1);font-size:28px;letter-spacing:-.5px;color:var(--ink);
-}
-.topic-tag{
-  font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--b);border:1px solid var(--bbord);padding:4px 10px;
-  border-radius:3px;background:var(--bdim);
-}
+.topic-divider{display:flex;align-items:center;gap:16px;
+  margin:80px 0 40px;scroll-margin-top:145px}
+.topic-divider:first-of-type{margin-top:0}
+.topic-divider h2{font-family:var(--F1);font-size:34px;letter-spacing:-.5px;color:var(--ink);white-space:nowrap}
+.topic-tag{font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--b);border:1px solid var(--bbord);padding:4px 10px;border-radius:3px;background:var(--bdim)}
 .topic-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
 
-/* ══ ARTICLE GRID ══ */
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:8px}
+/* article block */
+.article-block{display:grid;grid-template-columns:460px 1fr;gap:60px;
+  align-items:start;padding:44px 0;border-bottom:1px solid var(--rule);scroll-margin-top:145px}
+.article-block:last-of-type{border-bottom:none}
+.article-block.rev{grid-template-columns:1fr 460px}
+.article-block.rev .article-img{order:2}
+.article-block.rev .article-content{order:1}
 
-/* card */
-.a-card{
-  background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  overflow:hidden;cursor:pointer;transition:all .35s;display:flex;flex-direction:column;
-}
-.a-card:hover{transform:translateY(-5px);box-shadow:0 20px 56px rgba(15,17,30,.1);border-color:var(--bbord)}
-.a-card-img{overflow:hidden;position:relative}
-.a-card-img img{width:100%;height:190px;object-fit:cover;transition:transform .6s var(--e1)}
-.a-card:hover .a-card-img img{transform:scale(1.06)}
-.a-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(15,17,30,.22) 100%)}
-.a-read-time{
-  position:absolute;bottom:12px;right:14px;z-index:1;
-  background:rgba(15,17,30,.7);color:#fff;backdrop-filter:blur(8px);
-  font-family:var(--F4);font-size:8px;letter-spacing:1px;
-  padding:4px 10px;border-radius:3px;text-transform:uppercase;
-}
-.a-card-body{padding:22px 24px;display:flex;flex-direction:column;flex:1}
-.a-cat{
-  font-family:var(--F4);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--b);margin-bottom:10px;display:flex;align-items:center;gap:6px;
-}
-.a-cat::before{content:'';width:12px;height:1.5px;background:var(--b);flex-shrink:0}
-.a-card h3{
-  font-family:var(--F2);font-size:16px;font-weight:700;color:var(--ink);
-  line-height:1.35;margin-bottom:10px;
-}
-.a-card p{
-  font-family:var(--F3);font-size:13px;font-weight:300;color:var(--mid);
-  line-height:1.85;flex:1;margin-bottom:18px;
-}
-.a-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:14px;border-top:1px solid var(--rule);
-}
-.a-more{
-  font-family:var(--F4);font-size:9px;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--b);transition:gap .2s;display:flex;align-items:center;gap:5px;
-}
-.a-card:hover .a-more{gap:8px}
-.a-tags{display:flex;gap:5px;flex-wrap:wrap}
-.a-tag{
-  font-family:var(--F4);font-size:7.5px;letter-spacing:.5px;text-transform:uppercase;
-  color:var(--muted);border:1px solid var(--rule2);padding:3px 7px;border-radius:2px;
-}
+/* image */
+.article-img{border-radius:12px;overflow:hidden;
+  box-shadow:0 16px 56px rgba(15,17,30,.1);
+  aspect-ratio:16/10;position:relative}
+.article-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e1)}
+.article-img:hover img{transform:scale(1.04)}
+.read-badge{position:absolute;top:16px;left:16px;
+  background:rgba(15,17,30,.72);color:#fff;backdrop-filter:blur(8px);
+  font-family:var(--F4);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:5px 12px;border-radius:3px}
 
-/* Wide card */
-.a-card.wide{grid-column:span 2}
-.a-card.wide .a-card-img img{height:240px}
-.a-card.wide .a-card-body{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;align-items:start}
-.a-card.wide h3{font-size:19px;grid-column:1/-1;margin-bottom:12px}
-.a-card.wide p{margin-bottom:14px}
-.a-card.wide p:last-of-type{grid-column:1/-1}
-.a-card.wide .a-footer{grid-column:1/-1}
+/* content */
+.article-cat{font-family:var(--F4);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--b);display:flex;align-items:center;gap:7px;margin-bottom:14px}
+.article-cat::before{content:'';width:14px;height:1.5px;background:var(--b);flex-shrink:0}
+.article-content h3{font-family:var(--F2);font-size:clamp(20px,2.2vw,28px);font-weight:900;
+  color:var(--ink);line-height:1.2;margin-bottom:18px}
+.article-content p{font-family:var(--F3);font-size:14px;font-weight:300;color:var(--mid);
+  line-height:1.95;margin-bottom:14px}
+.article-content p:last-of-type{margin-bottom:24px}
+.article-content strong{color:var(--ink)}
 
-/* no results */
-.no-results{display:none;text-align:center;padding:80px 0;grid-column:1/-1}
-.no-results h3{font-family:var(--F2);font-size:24px;color:var(--ink);margin-bottom:8px}
-.no-results p{font-family:var(--F3);font-size:14px;color:var(--mid)}
+/* tags */
+.article-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:28px}
+.a-tag{font-family:var(--F4);font-size:7.5px;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--rule2);padding:4px 9px;border-radius:3px}
 
-/* pagination */
-.pagination{display:flex;align-items:center;justify-content:center;gap:8px;padding:52px 0 0}
-.pg-btn{
-  width:40px;height:40px;border-radius:5px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--F4);font-size:11px;color:var(--mid);cursor:pointer;
-  border:1.5px solid var(--rule2);transition:all .22s;background:var(--card);
-}
-.pg-btn:hover{border-color:var(--b);color:var(--b)}
-.pg-btn.on{background:var(--b);border-color:var(--b);color:#fff}
-.pg-btn.arr{font-size:14px}
-.pg-ellipsis{font-family:var(--F4);font-size:11px;color:var(--light);padding:0 4px}
+/* CONTACT US button */
+.contact-btn{display:inline-flex;align-items:center;gap:10px;
+  padding:13px 26px;background:var(--b);color:#fff;
+  font-family:var(--F4);font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  border-radius:4px;border:1.5px solid var(--b);transition:all .24s}
+.contact-btn:hover{background:var(--bdk);border-color:var(--bdk);
+  transform:translateY(-2px);box-shadow:0 10px 28px var(--bglow)}
+.contact-btn .arr{transition:transform .22s}
+.contact-btn:hover .arr{transform:translateX(4px)}
 
 /* responsive */
 @media(max-width:1024px){
-  .articles-grid{grid-template-columns:repeat(2,1fr)}
-  .a-card.wide{grid-column:span 2}
-  .a-card.wide .a-card-body{grid-template-columns:1fr}
+  .article-block,.article-block.rev{grid-template-columns:1fr;gap:28px}
+  .article-block.rev .article-img,.article-block.rev .article-content{order:0}
 }
 @media(max-width:640px){
-  .articles-grid{grid-template-columns:1fr}
-  .a-card.wide{grid-column:span 1}
-  .page-header-inner{flex-direction:column;align-items:flex-start}
-  .page-header-right{align-items:flex-start;width:100%}
-  .blog-search{max-width:100%}
+  .topic-divider{margin:56px 0 28px}
+  .article-block{padding:32px 0}
 }
 </style>
 </head>
@@ -297,10 +177,10 @@ a{text-decoration:none;color:inherit;cursor:pointer}
 
 <div id="PB"></div>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="logo">
-    <img src="./VG-1a.png" alt="Vision Global Logo" class="nav-logo-img">
+    <img src="./VG-1a.png" alt="Vision Global" class="nav-logo-img">
   </div>
   <ul class="nav-links">
     <li><a href="index.html#about">About</a></li>
@@ -324,445 +204,281 @@ a{text-decoration:none;color:inherit;cursor:pointer}
   <a href="index.html#contact" class="mob-cta-a">Contact Us Now →</a>
 </nav>
 
-<!-- ══ PAGE HEADER ══ -->
+<!-- PAGE HEADER -->
 <section class="page-header">
   <div class="W">
-    <div class="page-header-inner">
-      <h1>Blog &amp; <span>Resources</span></h1>
-      <div class="page-header-right">
-        <div class="blog-search">
-          <input type="text" id="searchInput" placeholder="Search articles, topics…" autocomplete="off"/>
-          <button class="blog-search-btn" onclick="runSearch()">Search →</button>
-        </div>
-      </div>
-    </div>
+    <div class="ey rv up">Resources &amp; Insights</div>
+    <h1 class="rv up" style="transition-delay:.07s">From The <span>Lab.</span></h1>
+    <p class="page-header-sub rv up" style="transition-delay:.13s">Annotation best practices, AI training data deep dives, and practical guides from the team labelling millions of data points every month.</p>
   </div>
 </section>
 
-<!-- ══ FILTER BAR ══ -->
-<div class="filter-bar" id="filterBar">
+<!-- JUMP BAR -->
+<div class="filter-bar">
   <div class="W">
     <div class="filter-inner">
-      <span class="filter-label">Filter by:</span>
+      <span class="filter-label">Jump to:</span>
       <div class="filter-chips">
-        <span class="f-chip on" onclick="filterTag('all',this)">All</span>
-        <!-- <span class="f-chip" onclick="filterTag('cv',this)">Computer Vision</span> -->
-        <span class="f-chip" onclick="filterTag('llm',this)">LLM / RLHF</span>
-        <span class="f-chip" onclick="filterTag('voice',this)">Voice AI</span>
-        <span class="f-chip" onclick="filterTag('av',this)">AV / Robotics</span>
-        <span class="f-chip" onclick="filterTag('quality',this)">QA &amp; Quality</span>
-        <span class="f-chip" onclick="filterTag('synth',this)">Synthetic Data</span>
+        <a href="#annotation-formats" class="f-chip">Annotation Formats</a>
+        <a href="#av-robotics"        class="f-chip">AV &amp; Robotics</a>
+        <a href="#voice-ai"           class="f-chip">Voice AI</a>
+        <a href="#llm-rlhf"           class="f-chip">LLM / RLHF</a>
+        <a href="#synthetic-data"     class="f-chip">Synthetic Data</a>
       </div>
-      <span class="filter-count" id="articleCount">Showing 15 articles</span>
     </div>
   </div>
 </div>
 
-<!-- ══ MAIN CONTENT ══ -->
+<!-- ARTICLES -->
 <section class="blog-main">
   <div class="W">
 
-    <!-- Topic: Annotation Formats & CV -->
-    <div class="topic-divider rv up">
-      <h3>Annotation Formats</h3>
-      <!-- <span class="topic-tag">Computer Vision</span> -->
+    <!-- ═══ TOPIC 1: ANNOTATION FORMATS ═══ -->
+    <div class="topic-divider rv up" id="annotation-formats">
+      <h2>Annotation Formats</h2>
+      <span class="topic-tag">Computer Vision</span>
     </div>
 
-    <div class="articles-grid sg" id="articleGrid">
-
-      <!-- Card 1 — Wide -->
-      <div class="a-card wide" data-cat="cv quality">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=520&fit=crop" alt="Annotation Guidelines"/>
-          <span class="a-read-time">7 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">Best Practice · Team Management</div>
-          <h3>How to Write Annotation Guidelines Your Team Will Actually Follow</h3>
-          <p>Vague guidelines produce inconsistent labels — and inconsistent labels produce broken models. Here's the exact framework we use for every client onboarding, with real examples from image, audio, and LiDAR annotation tasks that you can adapt immediately.</p>
-          <p>We cover: how to structure a guideline document, when to use decision trees vs prose, how to handle edge cases, and the single most common mistake teams make (hint: it's ambiguity, not complexity).</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Guidelines</span><span class="a-tag">QA</span></div>
-          </div>
-        </div>
+    <!-- Article 1 -->
+    <div class="article-block rv up" id="coco-vs-yolo">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=960&h=600&fit=crop" alt="COCO vs YOLO"/>
+        <span class="read-badge">8 min read</span>
       </div>
-
-      <!-- Card 2 -->
-      <div class="a-card" data-cat="quality llm">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="IAA"/>
-          <span class="a-read-time">6 min read</span>
+      <div class="article-content">
+        <div class="article-cat">Deep Dive · Annotation Formats</div>
+        <h3>COCO vs YOLO: Which Annotation Format Is Right for Your Pipeline?</h3>
+        <p>Choosing the wrong annotation format isn't just an inconvenience — it's a project delay waiting to happen. COCO JSON and YOLO TXT are the two dominant formats in computer vision, but they were built for very different use cases, and the decision you make here echoes through your entire training pipeline.</p>
+        <p><strong>COCO JSON</strong> gives you a richly structured format with support for bounding boxes, polygons, keypoints, and segmentation masks all in a single file. It's the format of choice for complex, multi-class datasets where you need to capture fine-grained object boundaries. The trade-off is file size and parsing overhead — COCO files grow fast, and loading a large dataset at training time requires careful handling.</p>
+        <p><strong>YOLO TXT</strong> takes the opposite approach. One text file per image, one line per object, normalised coordinates. It's lean, fast, and modern YOLO architectures are optimised to consume it directly. If you're building a real-time inference pipeline — edge deployment, robotics, live video — YOLO format removes unnecessary overhead.</p>
+        <p>The conversion gotcha nobody warns you about: COCO stores polygon coordinates as absolute pixel values, while YOLO expects normalised centre-x, centre-y, width, height. Converting between them for complex segmentation masks is non-trivial and introduces rounding errors at scale. If you know your target model architecture upfront, annotate directly in that format from day one.</p>
+        <div class="article-tags">
+          <span class="a-tag">COCO</span><span class="a-tag">YOLO</span><span class="a-tag">Formats</span><span class="a-tag">Computer Vision</span>
         </div>
-        <div class="a-card-body">
-          <div class="a-cat">Quality · RLHF</div>
-          <h3>What is Inter-Annotator Agreement — And Why 95% Isn't Enough</h3>
-          <p>IAA is the single most important number in your annotation pipeline. We explain Cohen's Kappa, Fleiss' Kappa, and why even a 98% score can hide dangerous label noise in edge cases your model will encounter first. If your pipeline lacks a rigorous IAA strategy, this is where to start.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">IAA</span><span class="a-tag">RLHF</span></div>
-          </div>
-        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
       </div>
+    </div>
 
-      <!-- Card 3 -->
-      <div class="a-card" data-cat="cv">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop" alt="Segmentation"/>
-          <span class="a-read-time">5 min read</span>
-        </div>
-        <div class="a-card-body">
-          <!-- <div class="a-cat">Computer Vision</div> -->
-          <h3>Semantic vs Instance Segmentation: Which Does Your Model Actually Need?</h3>
-          <p>Both produce pixel-level labels — but they answer entirely different questions. One tells you "what class is this pixel?" while the other says "which specific object does this pixel belong to?" Choosing wrong wastes annotation budget and harms model performance from day one.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Segmentation</span><span class="a-tag">CV</span></div>
-          </div>
-        </div>
+    <!-- Article 2 -->
+    <div class="article-block rev rv up" id="annotation-guidelines">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=960&h=600&fit=crop" alt="Annotation Guidelines"/>
+        <span class="read-badge">7 min read</span>
       </div>
+      <div class="article-content">
+        <div class="article-cat">Best Practice · Team Management</div>
+        <h3>How to Write Annotation Guidelines Your Team Will Actually Follow</h3>
+        <p>Vague guidelines are the most common root cause of label inconsistency we encounter when auditing annotation pipelines. Not bad annotators, not poor tooling — ambiguous instructions that leave too much room for individual interpretation.</p>
+        <p>The framework we use across all client projects starts with <strong>decision trees, not prose</strong>. If your guideline says "label the full vehicle including any visible trailer" and a flatbed truck appears with a load extending beyond its frame, what should the annotator do? A decision tree forces you to answer that question before your annotators encounter it at 2am on a deadline.</p>
+        <p>Real examples matter more than you think. Show labelled positives and negatives side by side. Annotators calibrate to visual examples faster than written descriptions, especially across language barriers. We include at minimum 3 positive and 3 negative examples per object class, plus 2 edge cases with explicit reasoning.</p>
+        <p>Finally: version your guidelines like code. Every change gets a changelog entry with a before/after example. When your IAA drops after a guideline update, you'll know exactly where to look.</p>
+        <div class="article-tags">
+          <span class="a-tag">Guidelines</span><span class="a-tag">QA</span><span class="a-tag">Team Management</span><span class="a-tag">Best Practice</span>
+        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
+      </div>
+    </div>
 
-    </div><!-- /grid 1 -->
+    <!-- Article 3 -->
+    <div class="article-block rv up" id="iaa">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=960&h=600&fit=crop" alt="IAA"/>
+        <span class="read-badge">6 min read</span>
+      </div>
+      <div class="article-content">
+        <div class="article-cat">Quality · RLHF</div>
+        <h3>What is Inter-Annotator Agreement — And Why 95% Isn't Enough</h3>
+        <p>Inter-Annotator Agreement (IAA) is the metric that tells you how consistently your annotators are applying your guidelines. It's the single number that most accurately predicts downstream model performance — and the most commonly misunderstood quality metric in the industry.</p>
+        <p><strong>Cohen's Kappa</strong> measures agreement between two annotators adjusted for chance. <strong>Fleiss' Kappa</strong> extends this to three or more. Both are more meaningful than raw percentage agreement, which is inflated by class imbalance — if 90% of your images contain no object, two annotators who always label "nothing" achieve 90% agreement without any actual agreement on the hard cases.</p>
+        <p>Here's the critical insight: a 98% IAA on a dataset where 95% of examples are clear-cut means your annotators disagree on nearly half the ambiguous edge cases. Those edge cases are exactly the scenarios your model will encounter first in production — unusual lighting, partial occlusion, out-of-distribution objects. High overall IAA can hide catastrophic disagreement precisely where it matters most.</p>
+        <p>We recommend reporting IAA separately for easy, medium, and hard examples. It takes more setup, but it's the only way to catch quality problems before they become model problems.</p>
+        <div class="article-tags">
+          <span class="a-tag">IAA</span><span class="a-tag">Cohen's Kappa</span><span class="a-tag">RLHF</span><span class="a-tag">Quality</span>
+        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
+      </div>
+    </div>
 
-    <!-- Topic: AV & Robotics -->
-    <div class="topic-divider rv up">
-      <h3>AV &amp; Robotics</h3>
+    <!-- ═══ TOPIC 2: AV & ROBOTICS ═══ -->
+    <div class="topic-divider rv up" id="av-robotics">
+      <h2>AV &amp; Robotics</h2>
       <span class="topic-tag">Perception AI</span>
     </div>
 
-    <div class="articles-grid sg">
-
-      <!-- Card 4 -->
-      <div class="a-card" data-cat="av">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="AV Edge Cases"/>
-          <span class="a-read-time">9 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">AV · Perception</div>
-          <h3>Why Edge Cases Kill AV Models — And How to Label Them</h3>
-          <p>The long tail of rare scenarios — pedestrian in costume, debris on highway, partial occlusion at dusk — disproportionately determines AV safety. We walk through how Tier 2/3 suppliers should identify, prioritise, and annotate edge cases before they reach production.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">LiDAR</span><span class="a-tag">Safety</span></div>
-          </div>
-        </div>
+    <!-- Article 4 -->
+    <div class="article-block rev rv up" id="av-edge-cases">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=960&h=600&fit=crop" alt="AV Edge Cases"/>
+        <span class="read-badge">9 min read</span>
       </div>
-
-      <!-- Card 5 -->
-      <div class="a-card" data-cat="av">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="LiDAR"/>
-          <span class="a-read-time">7 min read</span>
+      <div class="article-content">
+        <div class="article-cat">AV · Perception</div>
+        <h3>Why Edge Cases Kill AV Models — And How to Label Them</h3>
+        <p>Autonomous vehicle models don't fail on clear highway driving in good weather. They fail on scenarios that appear once in ten thousand miles: the pedestrian in a mascot costume, the shopping trolley blown into the lane, the partial occlusion of a stop sign by overgrown foliage at dusk. The long tail of rare scenarios disproportionately determines AV safety.</p>
+        <p>The challenge is that edge cases are, by definition, underrepresented in your natural data collection. A fleet driving 10 million miles may capture fewer than 100 examples of a specific failure-critical scenario. Annotating those 100 examples correctly is more valuable than perfectly annotating the next 100,000 highway miles.</p>
+        <p><strong>How to identify edge cases systematically:</strong> Use your model's uncertainty outputs to surface high-entropy predictions on validation data. Cluster by failure mode rather than by object class. Review your incident logs — near-misses in simulation often predict real-world edge cases better than any synthetic taxonomy.</p>
+        <p>For labelling edge cases, we increase our standard annotation consensus requirement from 2-of-3 annotators to 4-of-5, and add a mandatory written justification field for any bounding box touching the edge case criteria. The additional cost is real, but it's a fraction of the cost of a safety recall.</p>
+        <div class="article-tags">
+          <span class="a-tag">AV</span><span class="a-tag">Edge Cases</span><span class="a-tag">Safety</span><span class="a-tag">LiDAR</span>
         </div>
-        <div class="a-card-body">
-          <div class="a-cat">3D Annotation · LiDAR</div>
-          <h3>LiDAR Point Cloud Annotation: A Practical Guide for Robotics Teams</h3>
-          <p>3D cuboid annotation is fundamentally different from image bounding boxes — and the mistakes are more expensive. This guide covers density thresholds, sensor fusion alignment, and how to QA a point cloud dataset before it enters your training pipeline.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">LiDAR</span><span class="a-tag">3D</span></div>
-          </div>
-        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
       </div>
+    </div>
 
-      <!-- Card 6 -->
-      <div class="a-card" data-cat="av cv">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop" alt="Sensor Fusion"/>
-          <span class="a-read-time">6 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">Sensor Fusion · Multi-Modal</div>
-          <h3>Sensor Fusion Annotation: Aligning RGB, LiDAR, and Radar Data</h3>
-          <p>Multi-modal perception is the backbone of robust AV and robotics systems — but fusing annotation across sensors introduces calibration errors that compound at training time. Here's how we handle temporal and spatial alignment at scale.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Fusion</span><span class="a-tag">AV</span></div>
-          </div>
-        </div>
+    <!-- Article 5 -->
+    <div class="article-block rv up" id="lidar">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=960&h=600&fit=crop" alt="LiDAR"/>
+        <span class="read-badge">7 min read</span>
       </div>
+      <div class="article-content">
+        <div class="article-cat">3D Annotation · LiDAR</div>
+        <h3>LiDAR Point Cloud Annotation: A Practical Guide for Robotics Teams</h3>
+        <p>3D cuboid annotation in point cloud data is fundamentally different from drawing bounding boxes on images, and teams that treat it like an image task routinely ship datasets that degrade model performance. The mistakes are more expensive because they're harder to spot during QA and propagate invisibly into downstream sensor fusion steps.</p>
+        <p>The most common error: annotators tighten cuboids to the visible point cloud density rather than the physical object boundary. A vehicle in sparse LiDAR returns may have a visible cloud occupying only 60% of its actual frame. If your annotator snaps the cuboid to the visible returns, you're training your model to perceive vehicles as smaller than they are — with predictable consequences for path planning margin calculations.</p>
+        <p>Our annotation spec requires annotators to estimate the full physical extent of the object using all available cues: camera fusion, object class priors, and adjacent frame continuity. For moving objects, we annotate in bird's-eye view first, then verify in front and side projections before finalising.</p>
+        <div class="article-tags">
+          <span class="a-tag">LiDAR</span><span class="a-tag">3D</span><span class="a-tag">Robotics</span><span class="a-tag">Point Cloud</span>
+        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
+      </div>
+    </div>
 
-    </div><!-- /grid 2 -->
-
-    <!-- Topic: Voice AI -->
-    <div class="topic-divider rv up">
-      <h3>Voice AI &amp; Audio</h3>
+    <!-- ═══ TOPIC 3: VOICE AI ═══ -->
+    <div class="topic-divider rv up" id="voice-ai">
+      <h2>Voice AI &amp; Audio</h2>
       <span class="topic-tag">Speech Annotation</span>
     </div>
 
-    <div class="articles-grid sg">
-
-      <!-- Card 7 -->
-      <div class="a-card" data-cat="voice">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=600&h=400&fit=crop" alt="Speaker Diarisation"/>
-          <span class="a-read-time">8 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">Voice AI · NLP</div>
-          <h3>Speaker Diarisation: The Unsung Hero of Conversational AI</h3>
-          <p>Every voice AI product — from call-centre analytics to transcription services — depends on correctly attributing speech to speakers. We explain why diarisation is harder than it looks, common failure modes, and how to QA audio annotation at scale across 40+ language variants.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Diarisation</span><span class="a-tag">STT</span></div>
-          </div>
-        </div>
+    <!-- Article 6 -->
+    <div class="article-block rev rv up" id="speaker-diarisation">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=960&h=600&fit=crop" alt="Speaker Diarisation"/>
+        <span class="read-badge">8 min read</span>
       </div>
-
-      <!-- Card 8 -->
-      <div class="a-card" data-cat="voice">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=400&fit=crop" alt="Accent Coverage"/>
-          <span class="a-read-time">5 min read</span>
+      <div class="article-content">
+        <div class="article-cat">Voice AI · NLP</div>
+        <h3>Speaker Diarisation: The Unsung Hero of Conversational AI</h3>
+        <p>Every voice AI product that involves more than one speaker — call-centre analytics, meeting transcription, interview tools, conversational AI evaluation — depends on correctly attributing speech segments to individual speakers. This is speaker diarisation, and it's consistently underestimated during dataset planning.</p>
+        <p>Diarisation is harder than it looks for three reasons. First, speaker boundaries rarely align with clean silence — overlapping speech, laughter, and filler words create annotation ambiguity that no automated system handles reliably. Second, speaker identity is relative within a recording, not absolute across recordings, which means annotators can't rely on voice recognition shortcuts. Third, multi-speaker audio in real environments has variable background noise, channel effects, and recording artefacts that degrade automated pre-annotation quality.</p>
+        <p>Our quality protocol includes a dedicated calibration session for every new annotator on each language-accent combination, double annotation for any segment under 1.5 seconds, and a separate adjudication pass for all overlapping speech regions. Across our 40+ language variants, calibration reduces diarisation error rate by 31% compared to briefing-only onboarding.</p>
+        <div class="article-tags">
+          <span class="a-tag">Diarisation</span><span class="a-tag">STT</span><span class="a-tag">Voice AI</span><span class="a-tag">NLP</span>
         </div>
-        <div class="a-card-body">
-          <div class="a-cat">Speech · Multilingual</div>
-          <h3>Accent Bias in STT Models — And How to Fix It With Better Data</h3>
-          <p>Speech-to-text models trained predominantly on North American English fail dramatically on Scottish accents, Indian English, and non-native speakers. Here's a data-first strategy for building accent-inclusive datasets that actually generalise across regions.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Multilingual</span><span class="a-tag">Bias</span></div>
-          </div>
-        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
       </div>
+    </div>
 
-      <!-- Card 9 -->
-      <div class="a-card" data-cat="voice llm">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop" alt="Emotion Tagging"/>
-          <span class="a-read-time">4 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">Voice AI · Emotion</div>
-          <h3>Emotion Tagging for Conversational AI: What to Label and What to Skip</h3>
-          <p>Emotion detection in speech is one of the fastest-growing annotation verticals — and one of the most subjective. We share our framework for defining emotion categories, handling inter-annotator disagreement, and avoiding cultural bias in sentiment labels.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Emotion</span><span class="a-tag">NLP</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /grid 3 -->
-
-    <!-- Topic: LLM & RLHF -->
-    <div class="topic-divider rv up">
-      <h3>LLM &amp; RLHF</h3>
+    <!-- ═══ TOPIC 4: LLM & RLHF ═══ -->
+    <div class="topic-divider rv up" id="llm-rlhf">
+      <h2>LLM &amp; RLHF</h2>
       <span class="topic-tag">AI Alignment</span>
     </div>
 
-    <div class="articles-grid sg">
-
-      <!-- Card 10 — Wide -->
-      <div class="a-card wide" data-cat="llm">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&h=520&fit=crop" alt="RLHF"/>
-          <span class="a-read-time">10 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">RLHF · LLM Alignment</div>
-          <h3>RLHF From Scratch: What Your Human Annotators Actually Need to Know</h3>
-          <p>Reinforcement Learning from Human Feedback sounds simple — humans rank responses, model improves. In practice, your annotators need to understand implicit preferences, calibrate for nuanced helpfulness vs safety trade-offs, and recognise subtle hallucinations. This is the briefing document we give every RLHF team before they start.</p>
-          <p>Covers: preference collection design, ranking vs rating, handling ambiguous cases, and why domain expertise matters more than you think.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">RLHF</span><span class="a-tag">Alignment</span><span class="a-tag">LLM</span></div>
-          </div>
-        </div>
+    <!-- Article 7 -->
+    <div class="article-block rv up" id="rlhf">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=960&h=600&fit=crop" alt="RLHF"/>
+        <span class="read-badge">10 min read</span>
       </div>
-
-      <!-- Card 11 -->
-      <div class="a-card" data-cat="llm">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Chain of Thought"/>
-          <span class="a-read-time">6 min read</span>
+      <div class="article-content">
+        <div class="article-cat">RLHF · LLM Alignment</div>
+        <h3>RLHF From Scratch: What Your Human Annotators Actually Need to Know</h3>
+        <p>Reinforcement Learning from Human Feedback sounds conceptually simple: humans rank or rate model outputs, those signals train a reward model, and that reward model guides further fine-tuning. In practice, the quality of your RLHF data is determined almost entirely by how well your annotators understand the task — and most annotator briefings vastly underestimate what that understanding requires.</p>
+        <p>The most critical concept to convey is <strong>implicit preference calibration</strong>. When an annotator rates two responses, they're not just evaluating what's written — they're encoding a value judgement about what a helpful, honest, and appropriate response should look like. Without explicit calibration sessions, annotators default to personal preferences, which vary wildly across demographic groups and produce noisy, inconsistent reward signals.</p>
+        <p>Domain expertise matters more than general writing quality judgement. An RLHF task for a medical information model requires annotators who can evaluate clinical accuracy, not just fluency. A coding assistant task requires annotators who can test whether the code actually runs. Staffing RLHF projects with general-purpose raters is one of the most common and costly mistakes we see.</p>
+        <p>For ambiguous cases — and there are always ambiguous cases — a structured disagreement protocol beats majority vote. When annotators disagree on a preference pair, surface it for senior adjudication with a written rationale requirement. These disagreements are your most valuable signal for guideline refinement.</p>
+        <div class="article-tags">
+          <span class="a-tag">RLHF</span><span class="a-tag">Alignment</span><span class="a-tag">LLM</span><span class="a-tag">Fine-Tuning</span>
         </div>
-        <div class="a-card-body">
-          <div class="a-cat">LLM · CoT Reasoning</div>
-          <h3>Chain-of-Thought Annotation: Teaching Models to Show Their Work</h3>
-          <p>CoT annotation is one of the highest-leverage things you can do for reasoning-heavy LLMs. We break down exactly how to structure step-by-step reasoning annotations, common annotator errors, and how to evaluate CoT quality programmatically.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">CoT</span><span class="a-tag">Reasoning</span></div>
-          </div>
-        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
       </div>
+    </div>
 
-      <!-- Card 12 -->
-      <div class="a-card" data-cat="llm quality">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" alt="Red Teaming"/>
-          <span class="a-read-time">7 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">AI Safety · Red Teaming</div>
-          <h3>Red Teaming Your LLM: What to Test Before You Ship</h3>
-          <p>Red teaming is no longer optional for LLMs entering production. This practical guide covers adversarial prompt categories, jailbreak taxonomies, how to structure a red team engagement, and what to do when your model fails a safety boundary test.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Safety</span><span class="a-tag">Red Team</span></div>
-          </div>
-        </div>
+    <!-- Article 8 -->
+    <div class="article-block rev rv up" id="red-teaming">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=960&h=600&fit=crop" alt="Red Teaming"/>
+        <span class="read-badge">7 min read</span>
       </div>
+      <div class="article-content">
+        <div class="article-cat">AI Safety · Red Teaming</div>
+        <h3>Red Teaming Your LLM: What to Test Before You Ship</h3>
+        <p>Red teaming is the practice of systematically attempting to elicit unsafe, harmful, or policy-violating outputs from your model before it reaches users. For LLMs entering any production environment, it's no longer optional — it's a regulatory expectation under the EU AI Act and an increasingly common requirement from enterprise customers conducting security due diligence.</p>
+        <p>Effective red teaming requires a taxonomy. Broad categories include: direct harmful instruction requests, indirect jailbreaks through roleplay or hypothetical framing, prompt injection via user-supplied context, multi-turn manipulation that gradually shifts model behaviour, and adversarial inputs targeting specific knowledge gaps. Each category requires different annotator expertise and different evaluation criteria.</p>
+        <p>The most important insight: your model's failure modes are domain-specific. A customer service LLM has very different vulnerability surfaces than a coding assistant or medical information tool. Generic red team prompts from public benchmarks will miss the failure modes that matter most for your deployment context. Effective red teaming requires custom adversarial prompts designed around your specific use case and user population.</p>
+        <div class="article-tags">
+          <span class="a-tag">Red Teaming</span><span class="a-tag">AI Safety</span><span class="a-tag">LLM</span><span class="a-tag">Security</span>
+        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
+      </div>
+    </div>
 
-    </div><!-- /grid 4 -->
-
-    <!-- Topic: Synthetic Data -->
-    <div class="topic-divider rv up">
-      <h3>Synthetic Data</h3>
+    <!-- ═══ TOPIC 5: SYNTHETIC DATA ═══ -->
+    <div class="topic-divider rv up" id="synthetic-data">
+      <h2>Synthetic Data</h2>
       <span class="topic-tag">Data Strategy</span>
     </div>
 
-    <div class="articles-grid sg">
-
-      <!-- Card 13 -->
-      <div class="a-card" data-cat="synth">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop" alt="Synthetic Validation"/>
-          <span class="a-read-time">6 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">Synthetic Data · Validation</div>
-          <h3>Synthetic Data Is Only as Good as Its Human Validation Layer</h3>
-          <p>Generated datasets ship distribution gaps, visual artefacts, and physics violations that automated QA misses every time. We explain the human review layer that separates production-grade synthetic data from expensive model failures in downstream tasks.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Synthetic</span><span class="a-tag">QA</span></div>
-          </div>
-        </div>
+    <!-- Article 9 -->
+    <div class="article-block rv up" id="synthetic-validation">
+      <div class="article-img">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=960&h=600&fit=crop" alt="Synthetic Data Validation"/>
+        <span class="read-badge">6 min read</span>
       </div>
-
-      <!-- Card 14 -->
-      <div class="a-card" data-cat="synth cv">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Real vs Synthetic"/>
-          <span class="a-read-time">5 min read</span>
+      <div class="article-content">
+        <div class="article-cat">Synthetic Data · Validation</div>
+        <h3>Synthetic Data Is Only as Good as Its Human Validation Layer</h3>
+        <p>The promise of synthetic data is compelling: near-infinite scale, perfect label accuracy, controllable distribution. The reality is more complicated. Generated datasets consistently ship three categories of problems that automated QA misses and that degrade real-world model performance in ways that are difficult to diagnose: distribution gaps, visual artefacts, and physics violations.</p>
+        <p><strong>Distribution gaps</strong> occur when your synthetic data generator doesn't accurately model the statistical properties of real-world data. A synthetic pedestrian dataset generated from a 3D engine with limited character assets will underrepresent body size diversity, clothing variation, and motion patterns in ways that are invisible to automated metrics but immediately apparent to a trained human reviewer.</p>
+        <p><strong>Visual artefacts</strong> — texture seams, incorrect shadow directions, physically impossible reflections — are reliably caught by human reviewers in seconds but missed by automated perceptual quality metrics. We've seen artefact rates above 12% in synthetic datasets that passed automated QA with scores above 95%.</p>
+        <p>The human validation layer we recommend: a stratified sample review covering at least 5% of generated images, reviewed by annotators with domain expertise in the target environment. For any artefact category appearing in more than 0.5% of reviewed samples, the full dataset should be flagged for generator-level correction before training begins.</p>
+        <div class="article-tags">
+          <span class="a-tag">Synthetic Data</span><span class="a-tag">Validation</span><span class="a-tag">QA</span><span class="a-tag">Data Strategy</span>
         </div>
-        <div class="a-card-body">
-          <div class="a-cat">Data Strategy · CV</div>
-          <h3>When to Use Real Data vs Synthetic Data in Your Training Pipeline</h3>
-          <p>The answer depends on your domain, your budget, and your distribution requirements — not on which is "better." A practical decision framework for teams building computer vision models who need to allocate annotation spend efficiently.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">Strategy</span><span class="a-tag">Data</span></div>
-          </div>
-        </div>
+        <a href="index.html#contact" class="contact-btn">Contact Us <span class="arr">→</span></a>
       </div>
-
-      <!-- Card 15 -->
-      <div class="a-card" data-cat="synth llm">
-        <div class="a-card-img">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" alt="RAG"/>
-          <span class="a-read-time">8 min read</span>
-        </div>
-        <div class="a-card-body">
-          <div class="a-cat">RAG · LLM Fine-Tuning</div>
-          <h3>RAG Fine-Tuning: Getting Your Model to Cite Sources Correctly</h3>
-          <p>Retrieval-Augmented Generation is only as good as the retrieval — and annotation quality determines whether your model pulls relevant context or hallucinates citations. We cover the full annotation workflow for RAG pipeline optimisation.</p>
-          <div class="a-footer">
-            <span class="a-more"></span>
-            <div class="a-tags"><span class="a-tag">RAG</span><span class="a-tag">Fine-Tuning</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /grid 5 -->
-
-    <!-- No results -->
-    <div class="no-results" id="noResults">
-      <h3>No articles found</h3>
-      <p>Try a different search term or reset the filter.</p>
-    </div>
-
-    <!-- Pagination -->
-    <div class="pagination rv up">
-      <button class="pg-btn arr">←</button>
-      <button class="pg-btn on">1</button>
-      <button class="pg-btn">2</button>
-      <button class="pg-btn">3</button>
-      <span class="pg-ellipsis">…</span>
-      <button class="pg-btn">8</button>
-      <button class="pg-btn arr">→</button>
     </div>
 
   </div>
 </section>
 
 <script>
-/* ══ PROGRESS BAR ══ */
+/* PROGRESS BAR */
 window.addEventListener('scroll',()=>{
   document.getElementById('PB').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
 },{passive:true});
 
-/* ══ NAV SHADOW ══ */
+/* NAV SHADOW */
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>10),{passive:true});
 
-/* ══ MOBILE NAV ══ */
+/* MOBILE NAV */
 const ham=document.getElementById('ham'),mob=document.getElementById('mobnav');
-ham.addEventListener('click',()=>{ham.classList.toggle('x');mob.classList.toggle('on');document.body.style.overflow=mob.classList.contains('on')?'hidden':''});
-mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('x');mob.classList.remove('on');document.body.style.overflow=''}));
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('x');mob.classList.toggle('on');
+  document.body.style.overflow=mob.classList.contains('on')?'hidden':'';
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  ham.classList.remove('x');mob.classList.remove('on');document.body.style.overflow='';
+}));
 
-/* ══ SCROLL REVEAL ══ */
+/* SCROLL REVEAL */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
 },{threshold:.06,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv,.sg').forEach(el=>io.observe(el));
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-/* ══ FILTER ══ */
-function getAllCards(){return document.querySelectorAll('.a-card')}
-function filterTag(cat,el){
-  document.querySelectorAll('.f-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  applyFilter(cat);
-}
-function applyFilter(cat){
-  const cards=getAllCards();
-  let visible=0;
-  cards.forEach(card=>{
-    const cats=card.dataset.cat||'';
-    const show=cat==='all'||cats.includes(cat);
-    card.style.display=show?'':'none';
-    if(show)visible++;
-  });
-  // Show/hide topic dividers if all cards under them are hidden
-  document.querySelectorAll('.topic-divider').forEach(div=>{
-    const nextGrid=div.nextElementSibling;
-    if(nextGrid){
-      const visibleCards=[...nextGrid.querySelectorAll('.a-card')].some(c=>c.style.display!=='none');
-      div.style.display=visibleCards?'':'none';
+/* ACTIVE CHIP on scroll */
+const topicIds=['annotation-formats','av-robotics','voice-ai','llm-rlhf','synthetic-data'];
+const chips=document.querySelectorAll('.f-chip');
+const sio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      chips.forEach(c=>c.classList.toggle('on',c.getAttribute('href')==='#'+e.target.id));
     }
   });
-  document.getElementById('articleCount').textContent=`Showing ${visible} article${visible!==1?'s':''}`;
-  document.getElementById('noResults').style.display=visible===0?'block':'none';
-}
-
-/* ══ SEARCH ══ */
-function runSearch(){
-  const q=document.getElementById('searchInput').value.toLowerCase().trim();
-  if(!q){applyFilter('all');return}
-  const cards=getAllCards();
-  let visible=0;
-  cards.forEach(card=>{
-    const text=(card.querySelector('h3')?.textContent||'')+(card.querySelector('p')?.textContent||'')+(card.dataset.cat||'');
-    const show=text.toLowerCase().includes(q);
-    card.style.display=show?'':'none';
-    if(show)visible++;
-  });
-  document.getElementById('articleCount').textContent=`${visible} result${visible!==1?'s':''} for "${q}"`;
-  document.getElementById('noResults').style.display=visible===0?'block':'none';
-  document.querySelectorAll('.f-chip').forEach(c=>c.classList.remove('on'));
-}
-document.getElementById('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')runSearch()});
-
-/* ══ PAGINATION ══ */
-document.querySelectorAll('.pg-btn:not(.arr)').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pg-btn:not(.arr)').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    window.scrollTo({top:document.querySelector('.filter-bar').offsetTop-80,behavior:'smooth'});
-  });
-});
+},{threshold:.25,rootMargin:'-80px 0px -60% 0px'});
+topicIds.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
 </script>
 </body>
 </html>
